@@ -5,9 +5,10 @@ Instructions for AI coding assistants (Cursor, etc.) in a **new session** with n
 ## Bootstrap (read first)
 
 1. [docs/START-HERE.md](docs/START-HERE.md) — program map, repos, conventions
-2. If user mentions recent work: private repo `stubborn-ai-lab-notes` → latest `journal/*.md` and `ideas/*.md`
+2. If user mentions recent work: private repo `lab-notes` → latest `journal/*.md` and `ideas/*.md`
 3. Task-specific:
    - Core compiler / ingest / weave → [stubborn](https://github.com/stubborn-ai/stubborn) + its [ADR index](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/README.md)
+   - MCP / Cursor → [stubborn-mcp](https://github.com/stubborn-ai/stubborn-mcp)
    - Product positioning → [stubborn POSITIONING](https://github.com/stubborn-ai/stubborn/blob/main/docs/POSITIONING.md)
    - How we build → [stubborn DEVELOPMENT-MODEL](https://github.com/stubborn-ai/stubborn/blob/main/docs/DEVELOPMENT-MODEL.md)
 
@@ -17,7 +18,8 @@ Instructions for AI coding assistants (Cursor, etc.) in a **new session** with n
 
 - **Goal:** Deterministic LLM context compiler for SCIP-indexed codebases (Java-first beta).
 - **Public org:** https://github.com/stubborn-ai
-- **Deterministic deliverables:** Python (`stubborn-stub`) — same SCIP + target + options → same stub.
+- **PyPI:** `stubborn-stub` **0.9.0b4**, `stubborn-mcp` **0.1.0b1**
+- **Deterministic deliverables:** Python — same SCIP + target + options → same stub.
 - **AI role:** implement under architecture and boundary protocols; Stubborn does **not** call LLMs at runtime.
 
 ## Repository layout
@@ -26,6 +28,7 @@ Instructions for AI coding assistants (Cursor, etc.) in a **new session** with n
 |------|------|-------|
 | `stubborn-hub/` | public | Program docs — START-HERE, ARCHITECTURE, ROADMAP |
 | `stubborn/` | public | Core compiler — PyPI `stubborn-stub`, CLI `stubborn` |
+| `stubborn-mcp/` | public | MCP server — PyPI `stubborn-mcp`, entry `stubborn-mcp` |
 | `lab-notes/` | **private** | Journals, ideas, ADR drafts — may contain WIP |
 
 ## Hard conventions
@@ -43,15 +46,15 @@ Instructions for AI coding assistants (Cursor, etc.) in a **new session** with n
 | Machine index | SCIP via external indexers — [ADR-001](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-001-scip-as-machine-index.md) |
 | Store | SQLite `symbols.db` — [ADR-002](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-002-sqlite-symbol-graph-ssot.md) |
 | Beta scope | Java-first E2E — [ADR-007](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-007-java-first-beta-scope.md) |
-| Agent surface | MCP over `stubborn.api` — [ADR-006](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-006-mcp-first-agent-integration.md); split to `stubborn-mcp` planned |
+| Agent surface | MCP in **stubborn-mcp** over `stubborn.api` — [ADR-006](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-006-mcp-first-agent-integration.md) |
 | Incremental dev | `--merge` on path-scoped SCIP ingest — [ADR-009](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-009-incremental-index-merge.md) |
 | Ecosystem | Weak coupling to anchor-migration — [INTEGRATION.md](docs/INTEGRATION.md) |
 | Repos | Multi-repo under org; not a monorepo |
 
-## Current status (update via journal if stale)
+## Current status (2026-07-03)
 
-- **Done:** `stubborn` Beta `0.9.0b3`; ADR-001–009; Java E2E; MCP in-core
-- **Next:** ADR-009 implementation; `stubborn-mcp` split; `stubborn-watch`; publish `stubborn-hub`
+- **Done:** `stubborn-stub` **0.9.0b4**; `stubborn-mcp` **0.1.0b1** on PyPI; ADR-001–009; Java E2E; program hub published
+- **Next:** ADR-009 `--merge` implementation; `stubborn-watch`
 
 ## Typical tasks
 
@@ -60,10 +63,10 @@ Instructions for AI coding assistants (Cursor, etc.) in a **new session** with n
 | Ingest / store / merge | `stubborn/src/stubborn/store/`, `ingest/` |
 | Prune / weave / formats | `stubborn/src/stubborn/graph/`, `weave/` |
 | CLI / API | `stubborn/src/stubborn/cli.py`, `api.py` |
-| MCP server | `stubborn/src/stubborn/mcp_server/` → future `stubborn-mcp` |
+| MCP server | `stubborn-mcp/src/stubborn_mcp/` |
 | Program docs | `stubborn-hub/docs/` |
 | Exploratory ideas | `lab-notes/ideas/` — promote to ADR when stable |
 
 ## Workspace
 
-Open `stubborn-ai.code-workspace` at the parent of `stubborn-hub` and `stubborn`.
+Open `stubborn-ai.code-workspace` — includes `stubborn-hub`, `stubborn`, `stubborn-mcp`, `lab-notes`.

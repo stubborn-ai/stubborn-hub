@@ -6,22 +6,22 @@ Repository catalog for the Stubborn AI program. Status legend: ✅ Active · �
 
 | Repository | PyPI / entry | Role | Status |
 |------------|--------------|------|--------|
-| [**stubborn**](https://github.com/stubborn-ai/stubborn) | `stubborn-stub`, CLI `stubborn` | SCIP ingest, SQLite store, prune, weave, `stubborn.api`, CLI | ✅ **Beta** `0.9.0b3` |
+| [**stubborn**](https://github.com/stubborn-ai/stubborn) | [`stubborn-stub`](https://pypi.org/project/stubborn-stub/), CLI `stubborn` | SCIP ingest, SQLite store, prune, weave, `stubborn.api`, CLI | ✅ **Beta** `0.9.0b4` |
 | [**stubborn-hub**](https://github.com/stubborn-ai/stubborn-hub) | — | Program docs, architecture, roadmap | ✅ Active |
 
 ## Surfaces (agent & dev UX)
 
 | Repository | PyPI / entry | Role | Status |
 |------------|--------------|------|--------|
-| **stubborn-mcp** | `stubborn-mcp` | FastMCP stdio — `get_context`, `list_symbols`, `metrics` | ✅ Active (`0.1.0b1`) |
+| **stubborn-mcp** | [`stubborn-mcp`](https://pypi.org/project/stubborn-mcp/) | FastMCP stdio — `get_context`, `list_symbols`, `metrics` | ✅ **Beta** `0.1.0b1` |
 | **stubborn-watch** | `stubborn-watch` | File watch → external SCIP indexer → `stubborn index --merge` | 📋 Planned — depends on [ADR-009](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-009-incremental-index-merge.md) |
 
 ## Private / meta
 
 | Repository | Role | Status |
 |------------|------|--------|
-| **lab-notes** | Journals, ADR drafts, ecosystem ideas | ✅ Local — publish as **private** `stubborn-ai-lab-notes` |
-| **.github** | Org profile README | 📋 Planned |
+| **lab-notes** | Journals, ADR drafts, ecosystem ideas | ✅ Private remote |
+| **.github** | Org profile README | ✅ Active |
 
 ## Ideas (lab-notes — not public roadmap commitments)
 

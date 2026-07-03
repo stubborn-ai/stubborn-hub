@@ -11,8 +11,8 @@ Stubborn AI is an open engineering program: **architecture-led, AI-assisted deve
 | Repository | Role | Status |
 |------------|------|--------|
 | [**stubborn-hub**](https://github.com/stubborn-ai/stubborn-hub) | Program overview, architecture, roadmap | Active |
-| [**stubborn**](https://github.com/stubborn-ai/stubborn) | Core compiler: SCIP → SQLite → prune → weave (`stubborn-stub` on PyPI) | **Beta** (`0.9.0b3`) |
-| **stubborn-mcp** | MCP server (`get_context`, `list_symbols`, `metrics`) | ✅ Active (`0.1.0b1`) |
+| [**stubborn**](https://github.com/stubborn-ai/stubborn) | Core compiler: SCIP → SQLite → prune → weave ([`stubborn-stub`](https://pypi.org/project/stubborn-stub/)) | **Beta** (`0.9.0b4`) |
+| [**stubborn-mcp**](https://github.com/stubborn-ai/stubborn-mcp) | MCP server ([`stubborn-mcp`](https://pypi.org/project/stubborn-mcp/)) | **Beta** (`0.1.0b1`) |
 | **stubborn-watch** | Dev orchestration: file watch → scip-java → `index --merge` | 💡 Planned — see [ADR-009](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-009-incremental-index-merge.md) |
 | **lab-notes** | Private journals, ADR drafts, ecosystem ideas | Active (local / private remote) |
 
@@ -65,6 +65,7 @@ See [stubborn DEVELOPMENT-MODEL](https://github.com/stubborn-ai/stubborn/blob/ma
 stubborn-ai/
 ├── stubborn-hub/       # this repository
 ├── stubborn/           # core compiler
+├── stubborn-mcp/       # MCP server
 ├── lab-notes/          # private — journals & ideas
 └── stubborn-ai.code-workspace
 ```
@@ -77,16 +78,28 @@ stubborn-ai/
 - [Ecosystem](docs/ECOSYSTEM.md) — current and planned repositories
 - [Roadmap](docs/ROADMAP.md) — near-term program phases (lean)
 - [Integration](docs/INTEGRATION.md) — anchor-migration and optional consumers
-- [stubborn docs](https://github.com/stubborn-ai/stubborn/tree/main/docs) — product specs, ADRs, BETA, MCP
+- [stubborn docs](https://github.com/stubborn-ai/stubborn/tree/main/docs) — product specs, ADRs, BETA
+- [stubborn-mcp](https://github.com/stubborn-ai/stubborn-mcp) — MCP install, Cursor config
 
 ## Getting started
 
+**Compiler only (CLI):**
+
 ```bash
 pip install stubborn-stub
-stubborn index --scip examples/fixtures/minimal.scip --out /tmp/symbols.db
+stubborn index --scip index.scip --out /tmp/symbols.db
 stubborn context /tmp/symbols.db \
   --target "semanticdb maven com/example/OrderService#" \
   --out /tmp/order-service.stub.java
+```
+
+**Agents (Cursor / MCP):**
+
+```bash
+pip install stubborn-stub stubborn-mcp
+stubborn index --scip index.scip --out metadata/symbols.db
+export STUBBORN_DB=metadata/symbols.db
+stubborn-mcp
 ```
 
 Full quickstart: [stubborn README](https://github.com/stubborn-ai/stubborn#try-in-30-seconds-no-java-required).

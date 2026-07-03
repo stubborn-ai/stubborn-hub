@@ -14,6 +14,13 @@ Built with **architecture-led, AI-assisted development**:
 
 Public showcase: https://github.com/stubborn-ai
 
+## PyPI packages (current)
+
+| Package | Version | Role |
+|---------|---------|------|
+| [`stubborn-stub`](https://pypi.org/project/stubborn-stub/) | **0.9.0b4** | Core compiler — CLI `stubborn`, `stubborn.api` |
+| [`stubborn-mcp`](https://pypi.org/project/stubborn-mcp/) | **0.1.0b1** | MCP server — `get_context`, `list_symbols`, `metrics` |
+
 ## Reading order (recommended)
 
 | Step | Document | Why |
@@ -25,7 +32,8 @@ Public showcase: https://github.com/stubborn-ai
 | 5 | [ECOSYSTEM.md](ECOSYSTEM.md) | Current and planned repositories |
 | 6 | [ROADMAP.md](ROADMAP.md) | Near-term phases (lean) |
 | 7 | [stubborn BETA](https://github.com/stubborn-ai/stubborn/blob/main/docs/BETA.md) | Beta checklist, KPI baselines |
-| 8 | [INTEGRATION.md](INTEGRATION.md) | Optional anchor-migration consumer pattern |
+| 8 | [stubborn-mcp README](https://github.com/stubborn-ai/stubborn-mcp) | Cursor / agent setup |
+| 9 | [INTEGRATION.md](INTEGRATION.md) | Optional anchor-migration consumer pattern |
 
 **Private (if you have access):** `lab-notes/journal/` — latest session log and ecosystem ideas.
 
@@ -33,12 +41,12 @@ Public showcase: https://github.com/stubborn-ai
 
 | Repo | Visibility | Role | Status |
 |------|------------|------|--------|
-| **stubborn-hub** | public | Program docs (this repo) | Active |
-| **stubborn** | public | Core compiler — ingest, store, prune, weave, CLI, API | **Beta** (`0.9.0b3`) |
-| **stubborn-mcp** | public | MCP stdio server (split from `stubborn`) | 💡 Planned |
-| **stubborn-watch** | public | Dev orchestration: watch → SCIP indexer → merge | 💡 Planned |
-| **lab-notes** | **private** | Journals, ADR drafts, lab ideas | Active |
-| **.github** | public | Org profile README | 📋 Planned |
+| **stubborn-hub** | public | Program docs (this repo) | ✅ Active |
+| **stubborn** | public | Core compiler — ingest, store, prune, weave, CLI, API | **Beta** (`0.9.0b4` on PyPI) |
+| **stubborn-mcp** | public | MCP stdio server | **Beta** (`0.1.0b1` on PyPI) |
+| **stubborn-watch** | public | Dev orchestration: watch → SCIP indexer → merge | 📋 Planned |
+| **lab-notes** | **private** | Journals, ADR drafts, lab ideas | ✅ Active |
+| **.github** | public | Org profile README | ✅ Active |
 
 Product ADRs live in **`stubborn/docs/adr/`** until a cross-cutting decision needs a hub-level ADR.
 
@@ -46,9 +54,10 @@ Product ADRs live in **`stubborn/docs/adr/`** until a cross-cutting decision nee
 
 ```
 C:\github\stubborn-ai\
-├── stubborn-hub/           → github.com/stubborn-ai/stubborn-hub
-├── stubborn/               → github.com/stubborn-ai/stubborn
-├── lab-notes/              → private remote (stubborn-ai-lab-notes)
+├── stubborn-hub/
+├── stubborn/
+├── stubborn-mcp/
+├── lab-notes/              private
 └── stubborn-ai.code-workspace
 ```
 
@@ -72,12 +81,11 @@ Full diagrams: [ARCHITECTURE.md](ARCHITECTURE.md).
 |------------|--------|
 | SCIP ingest → SQLite (`stubborn index`) | ✅ |
 | Prune + weave + token budget | ✅ |
-| MCP tools (`get_context`, `list_symbols`, `metrics`) | ✅ in `stubborn` |
+| MCP tools via **stubborn-mcp** on PyPI | ✅ |
 | Java E2E (demo-spring, petclinic, dukesbank) | ✅ |
 | `stubborn diff` / PR symbol-diff workflow | ✅ |
 | Incremental `--merge` (ADR-009) | 📋 ADR accepted; not implemented |
-| `stubborn-mcp` standalone package | 💡 Planned |
-| `stubborn-watch` | 💡 Planned |
+| `stubborn-watch` | 📋 Planned |
 
 ## Conventions (do not forget)
 
@@ -92,9 +100,8 @@ Full diagrams: [ARCHITECTURE.md](ARCHITECTURE.md).
 ## Next work (priority)
 
 1. **stubborn** — implement ADR-009 (`--merge`, schema v2, `relative_path`)
-2. **stubborn-mcp** — extract MCP server; depend on `stubborn-stub`
-3. **stubborn-watch** — Java save → scip-java → merge
-4. Publish **stubborn-hub** + private **lab-notes** remotes on GitHub
+2. **stubborn-watch** — Java save → scip-java → merge
+3. Real-project validation runbook
 
 See **[AGENTS.md](../AGENTS.md)** for AI session bootstrap.
 
