@@ -9,6 +9,7 @@ Instructions for AI coding assistants (Cursor, etc.) in a **new session** with n
 3. Task-specific:
    - Core compiler / ingest / weave → [stubborn](https://github.com/stubborn-ai/stubborn) + its [ADR index](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/README.md)
    - MCP / Cursor → [stubborn-mcp](https://github.com/stubborn-ai/stubborn-mcp)
+   - Dev watch loop → [stubborn-watch](https://github.com/stubborn-ai/stubborn-watch)
    - Product positioning → [stubborn POSITIONING](https://github.com/stubborn-ai/stubborn/blob/main/docs/POSITIONING.md)
    - How we build → [stubborn DEVELOPMENT-MODEL](https://github.com/stubborn-ai/stubborn/blob/main/docs/DEVELOPMENT-MODEL.md)
 
@@ -29,6 +30,7 @@ Instructions for AI coding assistants (Cursor, etc.) in a **new session** with n
 | `stubborn-hub/` | public | Program docs — START-HERE, ARCHITECTURE, ROADMAP |
 | `stubborn/` | public | Core compiler — PyPI `stubborn-stub`, CLI `stubborn` |
 | `stubborn-mcp/` | public | MCP server — PyPI `stubborn-mcp`, entry `stubborn-mcp` |
+| `stubborn-watch/` | public | Dev orchestration — PyPI `stubborn-watch`, watch → merge |
 | `lab-notes/` | **private** | Journals, ideas, ADR drafts — may contain WIP |
 
 ## Hard conventions
@@ -53,8 +55,8 @@ Instructions for AI coding assistants (Cursor, etc.) in a **new session** with n
 
 ## Current status (2026-07-03)
 
-- **Done:** `stubborn-stub` **0.9.0b4**; `stubborn-mcp` **0.1.0b1** on PyPI; ADR-001–009; Java E2E; program hub published
-- **Next:** ADR-009 `--merge` implementation; `stubborn-watch`
+- **Done:** ADR-009 `--merge` + schema v2; `stubborn-watch` scaffold; `stubborn-stub` **0.9.0b4**; `stubborn-mcp` **0.1.0b1** on PyPI; ADR-001–009; Java E2E; program hub published
+- **Next:** demo-spring merge E2E; PyPI `0.9.0b5` / `stubborn-watch` release
 
 ## Typical tasks
 
@@ -64,6 +66,7 @@ Instructions for AI coding assistants (Cursor, etc.) in a **new session** with n
 | Prune / weave / formats | `stubborn/src/stubborn/graph/`, `weave/` |
 | CLI / API | `stubborn/src/stubborn/cli.py`, `api.py` |
 | MCP server | `stubborn-mcp/src/stubborn_mcp/` |
+| File watch / merge orchestration | `stubborn-watch/src/stubborn_watch/` |
 | Program docs | `stubborn-hub/docs/` |
 | Exploratory ideas | `lab-notes/ideas/` — promote to ADR when stable |
 

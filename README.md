@@ -13,7 +13,7 @@ Stubborn AI is an open engineering program: **architecture-led, AI-assisted deve
 | [**stubborn-hub**](https://github.com/stubborn-ai/stubborn-hub) | Program overview, architecture, roadmap | Active |
 | [**stubborn**](https://github.com/stubborn-ai/stubborn) | Core compiler: SCIP → SQLite → prune → weave ([`stubborn-stub`](https://pypi.org/project/stubborn-stub/)) | **Beta** (`0.9.0b4`) |
 | [**stubborn-mcp**](https://github.com/stubborn-ai/stubborn-mcp) | MCP server ([`stubborn-mcp`](https://pypi.org/project/stubborn-mcp/)) | **Beta** (`0.1.0b1`) |
-| **stubborn-watch** | Dev orchestration: file watch → scip-java → `index --merge` | 💡 Planned — see [ADR-009](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-009-incremental-index-merge.md) |
+| [**stubborn-watch**](https://github.com/stubborn-ai/stubborn-watch) | Dev orchestration: file watch → scip-java → `index --merge` | **Beta** (`0.1.0b1` scaffold) |
 | **lab-notes** | Private journals, ADR drafts, ecosystem ideas | Active (local / private remote) |
 
 Details: [ECOSYSTEM.md](docs/ECOSYSTEM.md) · [ROADMAP.md](docs/ROADMAP.md)

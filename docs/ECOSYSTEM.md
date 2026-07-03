@@ -14,7 +14,7 @@ Repository catalog for the Stubborn AI program. Status legend: ✅ Active · �
 | Repository | PyPI / entry | Role | Status |
 |------------|--------------|------|--------|
 | **stubborn-mcp** | [`stubborn-mcp`](https://pypi.org/project/stubborn-mcp/) | FastMCP stdio — `get_context`, `list_symbols`, `metrics` | ✅ **Beta** `0.1.0b1` |
-| **stubborn-watch** | `stubborn-watch` | File watch → external SCIP indexer → `stubborn index --merge` | 📋 Planned — depends on [ADR-009](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-009-incremental-index-merge.md) |
+| **stubborn-watch** | `stubborn-watch` | File watch → external SCIP indexer → `stubborn index --merge` | ✅ **Beta** `0.1.0b1` (repo scaffold) |
 
 ## Private / meta
 

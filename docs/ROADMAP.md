@@ -19,14 +19,14 @@ Large exploratory items stay in [`lab-notes/ideas/`](../lab-notes/ideas/) — no
 
 | Item | Repo | Status |
 |------|------|--------|
-| ADR-009 incremental merge (`--merge`, schema v2) | stubborn | 📋 ADR accepted |
+| ADR-009 incremental merge (`--merge`, schema v2) | stubborn | ✅ |
 | Real-project validation runbook | stubborn-hub or stubborn | 📋 |
 
 ## Phase 2 — Dev loop
 
 | Item | Repo | Status |
 |------|------|--------|
-| `stubborn-watch` (Java, debounced) | stubborn-watch | 📋 |
+| `stubborn-watch` (Java, debounced) | stubborn-watch | ✅ scaffold `0.1.0b1` |
 | demo-spring: save → merge → `list_symbols` E2E | stubborn | 📋 |
 
 ## Phase 3 — Stable 1.0 (direction)

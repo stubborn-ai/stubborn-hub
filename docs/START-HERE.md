@@ -44,7 +44,7 @@ Public showcase: https://github.com/stubborn-ai
 | **stubborn-hub** | public | Program docs (this repo) | ✅ Active |
 | **stubborn** | public | Core compiler — ingest, store, prune, weave, CLI, API | **Beta** (`0.9.0b4` on PyPI) |
 | **stubborn-mcp** | public | MCP stdio server | **Beta** (`0.1.0b1` on PyPI) |
-| **stubborn-watch** | public | Dev orchestration: watch → SCIP indexer → merge | 📋 Planned |
+| **stubborn-watch** | public | Dev orchestration: watch → SCIP indexer → merge | **Beta** (`0.1.0b1` scaffold) |
 | **lab-notes** | **private** | Journals, ADR drafts, lab ideas | ✅ Active |
 | **.github** | public | Org profile README | ✅ Active |
 
@@ -57,6 +57,7 @@ C:\github\stubborn-ai\
 ├── stubborn-hub/
 ├── stubborn/
 ├── stubborn-mcp/
+├── stubborn-watch/
 ├── lab-notes/              private
 └── stubborn-ai.code-workspace
 ```
@@ -71,7 +72,7 @@ scip-java / scip-*  →  stubborn index  →  symbols.db
               CLI / stubborn.api / stubborn-mcp → LLM / Agent
 ```
 
-Dev loop (planned): `stubborn-watch` → indexer → `stubborn index --merge` → same `symbols.db`.
+Dev loop: `stubborn-watch` → indexer → `stubborn index --merge` → same `symbols.db`.
 
 Full diagrams: [ARCHITECTURE.md](ARCHITECTURE.md).
 
@@ -84,8 +85,8 @@ Full diagrams: [ARCHITECTURE.md](ARCHITECTURE.md).
 | MCP tools via **stubborn-mcp** on PyPI | ✅ |
 | Java E2E (demo-spring, petclinic, dukesbank) | ✅ |
 | `stubborn diff` / PR symbol-diff workflow | ✅ |
-| Incremental `--merge` (ADR-009) | 📋 ADR accepted; not implemented |
-| `stubborn-watch` | 📋 Planned |
+| Incremental `--merge` (ADR-009) | ✅ |
+| `stubborn-watch` | ✅ scaffold |
 
 ## Conventions (do not forget)
 
@@ -99,9 +100,9 @@ Full diagrams: [ARCHITECTURE.md](ARCHITECTURE.md).
 
 ## Next work (priority)
 
-1. **stubborn** — implement ADR-009 (`--merge`, schema v2, `relative_path`)
-2. **stubborn-watch** — Java save → scip-java → merge
-3. Real-project validation runbook
+1. Real-project validation runbook
+2. demo-spring save → merge → `list_symbols` E2E
+3. PyPI releases (`0.9.0b5`, `stubborn-watch`)
 
 See **[AGENTS.md](../AGENTS.md)** for AI session bootstrap.
 
