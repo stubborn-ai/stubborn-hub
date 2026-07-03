@@ -9,7 +9,7 @@ Large exploratory items stay in [`lab-notes/ideas/`](../lab-notes/ideas/) — no
 | Item | Repo | Status |
 |------|------|--------|
 | Core compiler (ingest → weave) | stubborn | ✅ Beta `0.9.0b4` on PyPI |
-| Java E2E + Docker CI | stubborn | ✅ |
+| Java E2E + Docker CI | stubborn-demo | ✅ |
 | Product ADRs 001–009 | stubborn | ✅ |
 | Program hub (`stubborn-hub`) | stubborn-hub | ✅ |
 | Org profile (`.github`) | stubborn-ai | ✅ |
@@ -20,14 +20,14 @@ Large exploratory items stay in [`lab-notes/ideas/`](../lab-notes/ideas/) — no
 | Item | Repo | Status |
 |------|------|--------|
 | ADR-009 incremental merge (`--merge`, schema v2) | stubborn | ✅ |
-| Real-project validation runbook | stubborn-hub or stubborn | 📋 |
+| Real-project validation runbook | stubborn-demo | ✅ initial repo |
 
 ## Phase 2 — Dev loop
 
 | Item | Repo | Status |
 |------|------|--------|
 | `stubborn-watch` (Java, debounced) | stubborn-watch | ✅ scaffold `0.1.0b1` |
-| demo-spring: save → merge → `list_symbols` E2E | stubborn | 📋 |
+| demo-spring: save → merge → `list_symbols` E2E | stubborn-demo | ✅ host runbook |
 
 ## Phase 3 — Stable 1.0 (direction)
 

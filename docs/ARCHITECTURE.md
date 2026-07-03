@@ -2,7 +2,7 @@
 
 ## Overview
 
-Stubborn AI is a **multi-repo program** for compiling SCIP symbol graphs into bounded, privacy-safe LLM context. Each repository owns one layer of the stack. Shared contracts (`IndexSnapshot`, SQLite schema v1+, `stubborn.api`) link layers without a monorepo.
+Stubborn AI is a **multi-repo program** for compiling SCIP symbol graphs into bounded, privacy-safe LLM context. The `stubborn` repo is the headless core; surrounding repos own surfaces, orchestration, and runnable validation projects. Shared contracts (`IndexSnapshot`, SQLite schema v1+, `stubborn.api`) link layers without a monorepo.
 
 **Visual maps:** [Program overview](#program-overview) · [Developer experience layers](#developer-experience-layers) · [Repository map](#repository-map)
 
@@ -43,12 +43,19 @@ flowchart TB
     API --> MCP
   end
 
-  subgraph L4["Layer 4 — Dev orchestration (planned)"]
+  subgraph L4["Layer 4 — Dev orchestration"]
     WATCH["stubborn-watch"]
     IDE["IDE extensions (optional)"]
     WATCH --> SCIP_IDX
     WATCH --> ING
     IDE --> WATCH
+  end
+
+  subgraph VAL["Validation & demos"]
+    DEMO["stubborn-demo"]
+    DEMO --> SCIP_IDX
+    DEMO --> CLI
+    DEMO --> MCP
   end
 ```
 
@@ -57,12 +64,13 @@ flowchart TB
 | SCIP indexing | External indexer | Source tree | `index.scip` |
 | Ingest | `stubborn` | SCIP | `symbols.db` |
 | Context compile | `stubborn` | `symbols.db` + target | stub text |
-| Agent access | `stubborn-mcp` (planned) | API calls | MCP tool JSON |
-| Dev hot path | `stubborn-watch` (planned) | File events | merge into `symbols.db` |
+| Agent access | `stubborn-mcp` | API calls | MCP tool JSON |
+| Dev hot path | `stubborn-watch` | File events | merge into `symbols.db` |
+| Demos / validation | `stubborn-demo` | Runnable projects | black-box proof via CLI / MCP |
 
 ## Developer experience layers
 
-Complete DX requires all layers; beta today ships **L1–L3** with manual indexing.
+Complete DX requires all layers; beta today ships the headless core, MCP, watch scaffold, and runnable Java validation projects.
 
 ```mermaid
 flowchart LR
@@ -97,21 +105,27 @@ flowchart LR
   CORE["stubborn<br/>compiler"]
   MCP["stubborn-mcp"]
   WATCH["stubborn-watch"]
+  DEMO["stubborn-demo"]
   NOTES["lab-notes<br/>private"]
 
   HUB -.-> CORE
   HUB -.-> MCP
+  HUB -.-> DEMO
   MCP --> CORE
   WATCH --> CORE
+  DEMO --> CORE
+  DEMO --> MCP
+  DEMO --> WATCH
   NOTES -.-> HUB
 ```
 
 | Repository | Layer | Depends on |
 |------------|-------|------------|
 | `stubborn-hub` | Program docs | — |
-| `stubborn` | L1 + L2 + CLI + API | SCIP ecosystem |
+| `stubborn` | Headless core: L1 + L2 + CLI + API | SCIP ecosystem |
 | `stubborn-mcp` | L3 (MCP) | `stubborn-stub` |
 | `stubborn-watch` | L4 (orchestration) | `stubborn-stub`, scip-java |
+| `stubborn-demo` | Runnable demos / validation | `stubborn-stub`, `stubborn-mcp`, `stubborn-watch`, scip-java |
 | `lab-notes` | Private drafts | — |
 
 Future ideas (not committed repos): `stubborn-indexer` (multi-SCIP CLI glue), `vscode-stubborn`, `stubborn-ingest-openapi` — tracked in lab-notes only.

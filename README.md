@@ -11,9 +11,10 @@ Stubborn AI is an open engineering program: **architecture-led, AI-assisted deve
 | Repository | Role | Status |
 |------------|------|--------|
 | [**stubborn-hub**](https://github.com/stubborn-ai/stubborn-hub) | Program overview, architecture, roadmap | Active |
-| [**stubborn**](https://github.com/stubborn-ai/stubborn) | Core compiler: SCIP → SQLite → prune → weave ([`stubborn-stub`](https://pypi.org/project/stubborn-stub/)) | **Beta** (`0.9.0b4`) |
+| [**stubborn**](https://github.com/stubborn-ai/stubborn) | Headless core: SCIP → SQLite → prune → weave ([`stubborn-stub`](https://pypi.org/project/stubborn-stub/)) | **Beta** (`0.9.0b4`) |
 | [**stubborn-mcp**](https://github.com/stubborn-ai/stubborn-mcp) | MCP server ([`stubborn-mcp`](https://pypi.org/project/stubborn-mcp/)) | **Beta** (`0.1.0b1`) |
 | [**stubborn-watch**](https://github.com/stubborn-ai/stubborn-watch) | Dev orchestration: file watch → scip-java → `index --merge` | **Beta** (`0.1.0b1` scaffold) |
+| [**stubborn-demo**](https://github.com/stubborn-ai/stubborn-demo) | Runnable demos and validation projects | Active |
 | **lab-notes** | Private journals, ADR drafts, ecosystem ideas | Active (local / private remote) |
 
 Details: [ECOSYSTEM.md](docs/ECOSYSTEM.md) · [ROADMAP.md](docs/ROADMAP.md)
@@ -54,7 +55,7 @@ flowchart LR
 2. **SQLite symbol graph as SSoT** — one file per project snapshot; prune/weave read from it.
 3. **Deterministic core** — same index + target + options → same stub text.
 4. **Architecture-led, AI-implemented** — ADRs and E2E cases document intent; code is ordinary Python.
-5. **Composable repos** — core compiler, MCP adapter, watch orchestration ship on independent cadences.
+5. **Composable repos** — core compiler, MCP adapter, watch orchestration, and demos/validation ship on independent cadences.
 6. **Honest scope** — Java-first beta; multi-language and dev UX layers grow with E2E proof.
 
 See [stubborn DEVELOPMENT-MODEL](https://github.com/stubborn-ai/stubborn/blob/main/docs/DEVELOPMENT-MODEL.md) for roles and boundary protocols.
@@ -66,6 +67,8 @@ stubborn-ai/
 ├── stubborn-hub/       # this repository
 ├── stubborn/           # core compiler
 ├── stubborn-mcp/       # MCP server
+├── stubborn-watch/     # dev-loop orchestration
+├── stubborn-demo/      # runnable demos & validation
 ├── lab-notes/          # private — journals & ideas
 └── stubborn-ai.code-workspace
 ```

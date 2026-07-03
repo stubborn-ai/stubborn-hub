@@ -6,8 +6,14 @@ Repository catalog for the Stubborn AI program. Status legend: ✅ Active · �
 
 | Repository | PyPI / entry | Role | Status |
 |------------|--------------|------|--------|
-| [**stubborn**](https://github.com/stubborn-ai/stubborn) | [`stubborn-stub`](https://pypi.org/project/stubborn-stub/), CLI `stubborn` | SCIP ingest, SQLite store, prune, weave, `stubborn.api`, CLI | ✅ **Beta** `0.9.0b4` |
+| [**stubborn**](https://github.com/stubborn-ai/stubborn) | [`stubborn-stub`](https://pypi.org/project/stubborn-stub/), CLI `stubborn` | Headless core: SCIP ingest, SQLite store, prune, weave, `stubborn.api`, CLI | ✅ **Beta** `0.9.0b4` |
 | [**stubborn-hub**](https://github.com/stubborn-ai/stubborn-hub) | — | Program docs, architecture, roadmap | ✅ Active |
+
+## Demos & validation
+
+| Repository | PyPI / entry | Role | Status |
+|------------|--------------|------|--------|
+| [**stubborn-demo**](https://github.com/stubborn-ai/stubborn-demo) | — | Runnable demos and black-box validation projects (`demo-spring`, PetClinic, Duke's Bank) | ✅ Active |
 
 ## Surfaces (agent & dev UX)
 
@@ -51,16 +57,16 @@ Tracked in [`lab-notes/ideas/`](../lab-notes/ideas/) until promoted:
 scip-* (external)
        ↓
    stubborn-stub  ←── stubborn-mcp
-       ↑
-   stubborn-watch
+       ↑                 ↑
+   stubborn-watch    stubborn-demo
 ```
 
 ## Naming conventions
 
 | Pattern | Example | Use |
 |---------|---------|-----|
-| `stubborn` | core repo | Compiler — short name for the main product |
-| `stubborn-*` | `stubborn-mcp`, `stubborn-watch` | Program repos in the same org |
+| `stubborn` | core repo | Headless compiler / engine — short name for the main product |
+| `stubborn-*` | `stubborn-mcp`, `stubborn-watch`, `stubborn-demo` | Program repos in the same org |
 | `stubborn-stub` | PyPI package | Historical PyPI name for the core library |
 | `stubborn-ingest-*` | `stubborn-ingest-openapi` | Optional future adapter packages |
 

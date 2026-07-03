@@ -28,9 +28,10 @@ Instructions for AI coding assistants (Cursor, etc.) in a **new session** with n
 | Path | Repo | Notes |
 |------|------|-------|
 | `stubborn-hub/` | public | Program docs — START-HERE, ARCHITECTURE, ROADMAP |
-| `stubborn/` | public | Core compiler — PyPI `stubborn-stub`, CLI `stubborn` |
+| `stubborn/` | public | Headless core — PyPI `stubborn-stub`, CLI `stubborn` |
 | `stubborn-mcp/` | public | MCP server — PyPI `stubborn-mcp`, entry `stubborn-mcp` |
 | `stubborn-watch/` | public | Dev orchestration — PyPI `stubborn-watch`, watch → merge |
+| `stubborn-demo/` | public | Runnable demos and black-box validation projects |
 | `lab-notes/` | **private** | Journals, ideas, ADR drafts — may contain WIP |
 
 ## Hard conventions
@@ -55,8 +56,8 @@ Instructions for AI coding assistants (Cursor, etc.) in a **new session** with n
 
 ## Current status (2026-07-03)
 
-- **Done:** ADR-009 `--merge` + schema v2; `stubborn-watch` scaffold; `stubborn-stub` **0.9.0b4**; `stubborn-mcp` **0.1.0b1** on PyPI; ADR-001–009; Java E2E; program hub published
-- **Next:** demo-spring merge E2E; PyPI `0.9.0b5` / `stubborn-watch` release
+- **Done:** ADR-009 `--merge` + schema v2; `stubborn-watch` scaffold; `stubborn-demo` created for runnable validation; `stubborn-stub` **0.9.0b4**; `stubborn-mcp` **0.1.0b1** on PyPI; ADR-001–009; Java E2E; program hub published
+- **Next:** validate `stubborn-demo` E2E with JDK/Maven/scip-java; PyPI `0.9.0b5` / `stubborn-watch` release
 
 ## Typical tasks
 
@@ -67,9 +68,10 @@ Instructions for AI coding assistants (Cursor, etc.) in a **new session** with n
 | CLI / API | `stubborn/src/stubborn/cli.py`, `api.py` |
 | MCP server | `stubborn-mcp/src/stubborn_mcp/` |
 | File watch / merge orchestration | `stubborn-watch/src/stubborn_watch/` |
+| Runnable demos / validation | `stubborn-demo/` |
 | Program docs | `stubborn-hub/docs/` |
 | Exploratory ideas | `lab-notes/ideas/` — promote to ADR when stable |
 
 ## Workspace
 
-Open `stubborn-ai.code-workspace` — includes `stubborn-hub`, `stubborn`, `stubborn-mcp`, `lab-notes`.
+Open `stubborn-ai.code-workspace` — includes `stubborn-hub`, `stubborn`, `stubborn-mcp`, `stubborn-watch`, `stubborn-demo`, `lab-notes`.

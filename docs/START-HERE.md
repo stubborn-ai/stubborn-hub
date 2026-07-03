@@ -42,9 +42,10 @@ Public showcase: https://github.com/stubborn-ai
 | Repo | Visibility | Role | Status |
 |------|------------|------|--------|
 | **stubborn-hub** | public | Program docs (this repo) | ✅ Active |
-| **stubborn** | public | Core compiler — ingest, store, prune, weave, CLI, API | **Beta** (`0.9.0b4` on PyPI) |
+| **stubborn** | public | Headless core — ingest, store, prune, weave, CLI, API | **Beta** (`0.9.0b4` on PyPI) |
 | **stubborn-mcp** | public | MCP stdio server | **Beta** (`0.1.0b1` on PyPI) |
 | **stubborn-watch** | public | Dev orchestration: watch → SCIP indexer → merge | **Beta** (`0.1.0b1` scaffold) |
+| **stubborn-demo** | public | Runnable demos + black-box validation projects | ✅ Active |
 | **lab-notes** | **private** | Journals, ADR drafts, lab ideas | ✅ Active |
 | **.github** | public | Org profile README | ✅ Active |
 
@@ -58,6 +59,7 @@ C:\github\stubborn-ai\
 ├── stubborn/
 ├── stubborn-mcp/
 ├── stubborn-watch/
+├── stubborn-demo/
 ├── lab-notes/              private
 └── stubborn-ai.code-workspace
 ```
@@ -76,6 +78,16 @@ Dev loop: `stubborn-watch` → indexer → `stubborn index --merge` → same `sy
 
 Full diagrams: [ARCHITECTURE.md](ARCHITECTURE.md).
 
+## Validation entrypoints
+
+Use the repo that owns the contract you want to prove:
+
+| Scope | Canonical entrypoint | Owner |
+|-------|----------------------|-------|
+| ADR-009 merge contract | `stubborn-demo/demo-spring/scripts/run-merge-e2e.ps1` | `stubborn-demo` |
+| Watch / orchestration smoke | `stubborn-watch/tests/test_watch.py` | `stubborn-watch` |
+| MCP surface smoke over prepared `symbols.db` | `stubborn-demo/demo-spring/scripts/mcp-smoke.ps1` | `stubborn-mcp` + `stubborn-demo` assets |
+
 ## What is verified today
 
 | Capability | Status |
@@ -83,10 +95,11 @@ Full diagrams: [ARCHITECTURE.md](ARCHITECTURE.md).
 | SCIP ingest → SQLite (`stubborn index`) | ✅ |
 | Prune + weave + token budget | ✅ |
 | MCP tools via **stubborn-mcp** on PyPI | ✅ |
-| Java E2E (demo-spring, petclinic, dukesbank) | ✅ |
+| Java E2E (demo-spring, petclinic, dukesbank) | ✅ via `stubborn-demo` |
 | `stubborn diff` / PR symbol-diff workflow | ✅ |
 | Incremental `--merge` (ADR-009) | ✅ |
-| `stubborn-watch` | ✅ scaffold |
+| demo-spring save → merge → `list_symbols` host runbook | ✅ |
+| `stubborn-watch` | ✅ scaffold + CLI smoke |
 
 ## Conventions (do not forget)
 
@@ -100,8 +113,8 @@ Full diagrams: [ARCHITECTURE.md](ARCHITECTURE.md).
 
 ## Next work (priority)
 
-1. Real-project validation runbook
-2. demo-spring save → merge → `list_symbols` E2E
+1. Validate `stubborn-demo` host E2E on a machine with JDK/Maven/scip-java
+2. Add Docker / CI path for demo-spring merge E2E in `stubborn-demo`
 3. PyPI releases (`0.9.0b5`, `stubborn-watch`)
 
 See **[AGENTS.md](../AGENTS.md)** for AI session bootstrap.
