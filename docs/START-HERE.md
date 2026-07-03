@@ -47,6 +47,7 @@ Public showcase: https://github.com/stubborn-ai
 | **stubborn-mcp** | public | MCP stdio server | **Beta** (`0.1.0b1` on PyPI) |
 | **stubborn-watch** | public | Dev orchestration: watch → SCIP indexer → merge | **Beta** (`0.1.0b1` on PyPI) |
 | **stubborn-demo** | public | Runnable demos + black-box validation projects | ✅ Active |
+| **vscode-stubborn** | public | VS Code bridge for MCP setup + sidecar stubs | 📋 Planned |
 | **lab-notes** | **private** | Journals, ADR drafts, lab ideas | ✅ Active |
 | **.github** | public | Org profile README | ✅ Active |
 
@@ -61,6 +62,7 @@ C:\github\stubborn-ai\
 ├── stubborn-mcp/
 ├── stubborn-watch/
 ├── stubborn-demo/
+├── vscode-stubborn/
 ├── lab-notes/              private
 └── stubborn-ai.code-workspace
 ```

@@ -15,6 +15,7 @@ Stubborn AI is an open engineering program: **architecture-led, AI-assisted deve
 | [**stubborn-mcp**](https://github.com/stubborn-ai/stubborn-mcp) | MCP server ([`stubborn-mcp`](https://pypi.org/project/stubborn-mcp/)) | **Beta** (`0.1.0b1`) |
 | [**stubborn-watch**](https://github.com/stubborn-ai/stubborn-watch) | Dev orchestration: file watch → scip-java → `index --merge` ([`stubborn-watch`](https://pypi.org/project/stubborn-watch/)) | **Beta** (`0.1.0b1`) |
 | [**stubborn-demo**](https://github.com/stubborn-ai/stubborn-demo) | Runnable demos and validation projects | Active |
+| [**vscode-stubborn**](https://github.com/stubborn-ai/vscode-stubborn) | VS Code bridge for MCP setup and sidecar stub UX | Planned |
 | **lab-notes** | Private journals, ADR drafts, ecosystem ideas | Active (local / private remote) |
 
 Details: [ECOSYSTEM.md](docs/ECOSYSTEM.md) · [ROADMAP.md](docs/ROADMAP.md)
@@ -69,6 +70,7 @@ stubborn-ai/
 ├── stubborn-mcp/       # MCP server
 ├── stubborn-watch/     # dev-loop orchestration
 ├── stubborn-demo/      # runnable demos & validation
+├── vscode-stubborn/    # VS Code bridge
 ├── lab-notes/          # private — journals & ideas
 └── stubborn-ai.code-workspace
 ```

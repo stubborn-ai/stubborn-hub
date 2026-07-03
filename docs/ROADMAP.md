@@ -28,6 +28,7 @@ Large exploratory items stay in [`lab-notes/ideas/`](../lab-notes/ideas/) — no
 |------|------|--------|
 | `stubborn-watch` (Java, debounced) | stubborn-watch | ✅ `0.1.0b1` on PyPI |
 | demo-spring: save → merge → `list_symbols` E2E | stubborn-demo | ✅ host runbook |
+| VS Code thin bridge scaffold | vscode-stubborn | 📋 Planned |
 
 ## Phase 3 — Stable 1.0 (direction)
 
@@ -35,7 +36,7 @@ Large exploratory items stay in [`lab-notes/ideas/`](../lab-notes/ideas/) — no
 |------|------|--------|
 | Multi-language weave E2E (TS first) | stubborn | 💡 |
 | Stable public API semver | stubborn | 💡 |
-| IDE extension MVP | vscode-stubborn | 💡 |
+| IDE extension MVP | vscode-stubborn | 📋 MCP setup + sidecar stubs |
 
 ## Not on this roadmap
 

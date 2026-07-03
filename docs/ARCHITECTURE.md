@@ -45,9 +45,10 @@ flowchart TB
 
   subgraph L4["Layer 4 — Dev orchestration"]
     WATCH["stubborn-watch"]
-    IDE["IDE extensions (optional)"]
+    IDE["vscode-stubborn<br/>(planned thin bridge)"]
     WATCH --> SCIP_IDX
     WATCH --> ING
+    IDE --> MCP
     IDE --> WATCH
   end
 
@@ -66,6 +67,7 @@ flowchart TB
 | Context compile | `stubborn` | `symbols.db` + target | stub text |
 | Agent access | `stubborn-mcp` | API calls | MCP tool JSON |
 | Dev hot path | `stubborn-watch` | File events | merge into `symbols.db` |
+| IDE bridge | `vscode-stubborn` | VS Code commands/settings | MCP setup + sidecar stubs |
 | Demos / validation | `stubborn-demo` | Runnable projects | black-box proof via CLI / MCP |
 
 ## Developer experience layers
@@ -105,6 +107,7 @@ flowchart LR
   CORE["stubborn<br/>compiler"]
   MCP["stubborn-mcp"]
   WATCH["stubborn-watch"]
+  VSCODE["vscode-stubborn"]
   DEMO["stubborn-demo"]
   NOTES["lab-notes<br/>private"]
 
@@ -113,6 +116,8 @@ flowchart LR
   HUB -.-> DEMO
   MCP --> CORE
   WATCH --> CORE
+  VSCODE --> MCP
+  VSCODE --> WATCH
   DEMO --> CORE
   DEMO --> MCP
   DEMO --> WATCH
@@ -125,10 +130,11 @@ flowchart LR
 | `stubborn` | Headless core: L1 + L2 + CLI + API | SCIP ecosystem |
 | `stubborn-mcp` | L3 (MCP) | `stubborn-stub` |
 | `stubborn-watch` | L4 (orchestration) | `stubborn-stub`, scip-java |
+| `vscode-stubborn` | L4 (VS Code bridge) | `stubborn-mcp`, `stubborn-watch` |
 | `stubborn-demo` | Runnable demos / validation | `stubborn-stub`, `stubborn-mcp`, `stubborn-watch`, scip-java |
 | `lab-notes` | Private drafts | — |
 
-Future ideas (not committed repos): `stubborn-indexer` (multi-SCIP CLI glue), `vscode-stubborn`, `stubborn-ingest-openapi` — tracked in lab-notes only.
+Future ideas (not committed repos): `stubborn-indexer` (multi-SCIP CLI glue), `intellij-stubborn`, `stubborn-ingest-openapi` — tracked in lab-notes only.
 
 ## Contracts (boundary protocols)
 
