@@ -26,7 +26,7 @@ Large exploratory items stay in [`lab-notes/ideas/`](../lab-notes/ideas/) — no
 
 | Item | Repo | Status |
 |------|------|--------|
-| `stubborn-watch` (Java, debounced) | stubborn-watch | ✅ scaffold `0.1.0b1` |
+| `stubborn-watch` (Java, debounced) | stubborn-watch | ✅ `0.1.0b1` on PyPI |
 | demo-spring: save → merge → `list_symbols` E2E | stubborn-demo | ✅ host runbook |
 
 ## Phase 3 — Stable 1.0 (direction)

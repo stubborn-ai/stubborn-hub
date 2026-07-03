@@ -13,7 +13,7 @@ Stubborn AI is an open engineering program: **architecture-led, AI-assisted deve
 | [**stubborn-hub**](https://github.com/stubborn-ai/stubborn-hub) | Program overview, architecture, roadmap | Active |
 | [**stubborn**](https://github.com/stubborn-ai/stubborn) | Headless core: SCIP → SQLite → prune → weave ([`stubborn-stub`](https://pypi.org/project/stubborn-stub/)) | **Beta** (`0.9.0b4`) |
 | [**stubborn-mcp**](https://github.com/stubborn-ai/stubborn-mcp) | MCP server ([`stubborn-mcp`](https://pypi.org/project/stubborn-mcp/)) | **Beta** (`0.1.0b1`) |
-| [**stubborn-watch**](https://github.com/stubborn-ai/stubborn-watch) | Dev orchestration: file watch → scip-java → `index --merge` | **Beta** (`0.1.0b1` scaffold) |
+| [**stubborn-watch**](https://github.com/stubborn-ai/stubborn-watch) | Dev orchestration: file watch → scip-java → `index --merge` ([`stubborn-watch`](https://pypi.org/project/stubborn-watch/)) | **Beta** (`0.1.0b1`) |
 | [**stubborn-demo**](https://github.com/stubborn-ai/stubborn-demo) | Runnable demos and validation projects | Active |
 | **lab-notes** | Private journals, ADR drafts, ecosystem ideas | Active (local / private remote) |
 

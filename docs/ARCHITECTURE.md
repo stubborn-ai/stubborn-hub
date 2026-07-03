@@ -70,7 +70,7 @@ flowchart TB
 
 ## Developer experience layers
 
-Complete DX requires all layers; beta today ships the headless core, MCP, watch scaffold, and runnable Java validation projects.
+Complete DX requires all layers; beta today ships the headless core, MCP, watch package, and runnable Java validation projects.
 
 ```mermaid
 flowchart LR

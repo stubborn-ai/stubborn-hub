@@ -20,6 +20,7 @@ Public showcase: https://github.com/stubborn-ai
 |---------|---------|------|
 | [`stubborn-stub`](https://pypi.org/project/stubborn-stub/) | **0.9.0b4** | Core compiler — CLI `stubborn`, `stubborn.api` |
 | [`stubborn-mcp`](https://pypi.org/project/stubborn-mcp/) | **0.1.0b1** | MCP server — `get_context`, `list_symbols`, `metrics` |
+| [`stubborn-watch`](https://pypi.org/project/stubborn-watch/) | **0.1.0b1** | Dev orchestration — file watch → SCIP indexer → merge |
 
 ## Reading order (recommended)
 
@@ -44,7 +45,7 @@ Public showcase: https://github.com/stubborn-ai
 | **stubborn-hub** | public | Program docs (this repo) | ✅ Active |
 | **stubborn** | public | Headless core — ingest, store, prune, weave, CLI, API | **Beta** (`0.9.0b4` on PyPI) |
 | **stubborn-mcp** | public | MCP stdio server | **Beta** (`0.1.0b1` on PyPI) |
-| **stubborn-watch** | public | Dev orchestration: watch → SCIP indexer → merge | **Beta** (`0.1.0b1` scaffold) |
+| **stubborn-watch** | public | Dev orchestration: watch → SCIP indexer → merge | **Beta** (`0.1.0b1` on PyPI) |
 | **stubborn-demo** | public | Runnable demos + black-box validation projects | ✅ Active |
 | **lab-notes** | **private** | Journals, ADR drafts, lab ideas | ✅ Active |
 | **.github** | public | Org profile README | ✅ Active |
@@ -99,7 +100,7 @@ Use the repo that owns the contract you want to prove:
 | `stubborn diff` / PR symbol-diff workflow | ✅ |
 | Incremental `--merge` (ADR-009) | ✅ |
 | demo-spring save → merge → `list_symbols` host runbook | ✅ |
-| `stubborn-watch` | ✅ scaffold + CLI smoke |
+| `stubborn-watch` | ✅ PyPI beta + CLI smoke |
 
 ## Conventions (do not forget)
 
@@ -115,7 +116,7 @@ Use the repo that owns the contract you want to prove:
 
 1. Validate `stubborn-demo` host E2E on a machine with JDK/Maven/scip-java
 2. Add Docker / CI path for demo-spring merge E2E in `stubborn-demo`
-3. PyPI releases (`0.9.0b5`, `stubborn-watch`)
+3. PyPI release `stubborn-stub` `0.9.0b5`
 
 See **[AGENTS.md](../AGENTS.md)** for AI session bootstrap.
 

@@ -19,7 +19,7 @@ Instructions for AI coding assistants (Cursor, etc.) in a **new session** with n
 
 - **Goal:** Deterministic LLM context compiler for SCIP-indexed codebases (Java-first beta).
 - **Public org:** https://github.com/stubborn-ai
-- **PyPI:** `stubborn-stub` **0.9.0b4**, `stubborn-mcp` **0.1.0b1**
+- **PyPI:** `stubborn-stub` **0.9.0b4**, `stubborn-mcp` **0.1.0b1**, `stubborn-watch` **0.1.0b1**
 - **Deterministic deliverables:** Python — same SCIP + target + options → same stub.
 - **AI role:** implement under architecture and boundary protocols; Stubborn does **not** call LLMs at runtime.
 
@@ -54,10 +54,10 @@ Instructions for AI coding assistants (Cursor, etc.) in a **new session** with n
 | Ecosystem | Weak coupling to anchor-migration — [INTEGRATION.md](docs/INTEGRATION.md) |
 | Repos | Multi-repo under org; not a monorepo |
 
-## Current status (2026-07-03)
+## Current status (2026-07-04)
 
-- **Done:** ADR-009 `--merge` + schema v2; `stubborn-watch` scaffold; `stubborn-demo` created for runnable validation; `stubborn-stub` **0.9.0b4**; `stubborn-mcp` **0.1.0b1** on PyPI; ADR-001–009; Java E2E; program hub published
-- **Next:** validate `stubborn-demo` E2E with JDK/Maven/scip-java; PyPI `0.9.0b5` / `stubborn-watch` release
+- **Done:** ADR-009 `--merge` + schema v2; `stubborn-watch` **0.1.0b1** on PyPI; `stubborn-demo` created for runnable validation; `stubborn-stub` **0.9.0b4**; `stubborn-mcp` **0.1.0b1** on PyPI; ADR-001–009; Java E2E; program hub published
+- **Next:** validate `stubborn-demo` E2E with JDK/Maven/scip-java; PyPI `stubborn-stub` `0.9.0b5`
 
 ## Typical tasks
 
