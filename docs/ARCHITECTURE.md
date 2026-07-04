@@ -2,7 +2,7 @@
 
 ## Overview
 
-Stubborn AI is a **multi-repo program** for compiling SCIP symbol graphs into bounded, privacy-safe LLM context. The `stubborn` repo is the headless core; surrounding repos own surfaces, orchestration, and runnable validation projects. Shared contracts (`IndexSnapshot`, SQLite schema v1+, `stubborn.api`) link layers without a monorepo.
+Stubborn AI is a **multi-repo program** for compiling deterministic graph facts into bounded, privacy-safe LLM context. SCIP remains the canonical code-symbol input; ADR-011 promotes OpenAPI as the planned REST contract input. The `stubborn` repo is the headless core; surrounding repos own surfaces, orchestration, adapters, and runnable validation projects. Shared contracts (`IndexSnapshot`, SQLite schema v1+, `stubborn.api`) link layers without a monorepo.
 
 **Visual maps:** [Program overview](#program-overview) · [Developer experience layers](#developer-experience-layers) · [Repository map](#repository-map)
 
@@ -16,14 +16,17 @@ Repos are **independent**; integration is via **PyPI packages**, **CLI**, and **
 flowchart TB
   subgraph sources["Sources"]
     SRC["Source code"]
+    OPENAPI["OpenAPI specs"]
     SCIP_IDX["SCIP indexers<br/>(scip-java, …)"]
-    ALT["Optional future ingest<br/>(OpenAPI, LSP, …)"]
+    OPENAPI_ING["stubborn-ingest-openapi<br/>(planned)"]
+    ALT["Optional future ingest<br/>(LSP, DB, …)"]
   end
 
   subgraph L1["Layer 1 — Index & store"]
     ING["stubborn ingest"]
     DB[(symbols.db)]
     SRC --> SCIP_IDX --> ING
+    OPENAPI --> OPENAPI_ING --> ING
     ALT -.-> ING
     ING --> DB
   end
@@ -63,6 +66,7 @@ flowchart TB
 | Stage | Owner | Input | Output |
 |-------|-------|-------|--------|
 | SCIP indexing | External indexer | Source tree | `index.scip` |
+| OpenAPI contract ingest | `stubborn-ingest-openapi` (planned) | OpenAPI spec + binding evidence | endpoint/contract graph facts |
 | Ingest | `stubborn` | SCIP | `symbols.db` |
 | Context compile | `stubborn` | `symbols.db` + target | stub text |
 | Agent access | `stubborn-mcp` | API calls | MCP tool JSON |
@@ -97,7 +101,7 @@ flowchart LR
 | **Hot** | Save / watch | `index --merge` | Update active run by `relative_path` ([ADR-009](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-009-incremental-index-merge.md)) |
 | **Cold** | Compile / CI | `index` (default) | Append full snapshot `index_run` |
 
-SCIP remains **canonical** for CI and reconcile. Optional non-SCIP ingest adapters (lab idea) are **opt-in** and must carry provenance — see `lab-notes/ideas/pluggable-ingest.md`.
+SCIP remains **canonical** for code-symbol CI and reconcile. OpenAPI contract graph support is planned by [ADR-011](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-011-openapi-contract-graph.md); all non-SCIP adapters are **opt-in** and must carry provenance/evidence tiers.
 
 ## Repository map
 
@@ -108,6 +112,7 @@ flowchart LR
   MCP["stubborn-mcp"]
   WATCH["stubborn-watch"]
   VSCODE["vscode-stubborn"]
+  OPENAPI["stubborn-ingest-openapi"]
   DEMO["stubborn-demo"]
   NOTES["lab-notes<br/>private"]
 
@@ -116,6 +121,7 @@ flowchart LR
   HUB -.-> DEMO
   MCP --> CORE
   WATCH --> CORE
+  OPENAPI --> CORE
   VSCODE --> MCP
   VSCODE --> WATCH
   DEMO --> CORE
@@ -128,19 +134,21 @@ flowchart LR
 |------------|-------|------------|
 | `stubborn-hub` | Program docs | — |
 | `stubborn` | Headless core: L1 + L2 + CLI + API | SCIP ecosystem |
+| `stubborn-ingest-openapi` | Planned L1 adapter | `stubborn-stub`, OpenAPI specs |
 | `stubborn-mcp` | L3 (MCP) | `stubborn-stub` |
 | `stubborn-watch` | L4 (orchestration) | `stubborn-stub`, scip-java |
 | `vscode-stubborn` | L4 (VS Code bridge) | `stubborn-mcp`, `stubborn-watch` |
 | `stubborn-demo` | Runnable demos / validation | `stubborn-stub`, `stubborn-mcp`, `stubborn-watch`, scip-java |
 | `lab-notes` | Private drafts | — |
 
-Future ideas (not committed repos): `stubborn-indexer` (multi-SCIP CLI glue), `intellij-stubborn`, `stubborn-ingest-openapi` — tracked in lab-notes only.
+Future ideas (not committed repos): `stubborn-indexer` (multi-SCIP CLI glue), `intellij-stubborn`, LSP/DB ingest adapters beyond OpenAPI — tracked in lab-notes only.
 
 ## Contracts (boundary protocols)
 
 | Boundary | Contract | Document |
 |----------|----------|----------|
 | SCIP → snapshot | `IndexSnapshot`, ingest enrichment | [SCIP-INGEST](https://github.com/stubborn-ai/stubborn/blob/main/docs/SCIP-INGEST.md) |
+| OpenAPI → contract graph | Endpoint stable IDs, binding evidence tiers | [ADR-011](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-011-openapi-contract-graph.md) |
 | Snapshot → store | SQLite schema v1+ | [ADR-002](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-002-sqlite-symbol-graph-ssot.md) |
 | Store → context | `stubborn.api`, budgets, weave options | `stubborn` source |
 | Output formats | `java-stub`, `stubborn-dsl` grammars | [STUBBORN-DSL](https://github.com/stubborn-ai/stubborn/blob/main/docs/STUBBORN-DSL.md) |

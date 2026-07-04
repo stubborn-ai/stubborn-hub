@@ -23,6 +23,12 @@ Repository catalog for the Stubborn AI program. Status legend: ✅ Active · �
 | **stubborn-watch** | [`stubborn-watch`](https://pypi.org/project/stubborn-watch/) | File watch → external SCIP indexer → `stubborn index --merge` | ✅ **Beta** `0.1.0b1` |
 | [**vscode-stubborn**](https://github.com/stubborn-ai/vscode-stubborn) | VS Code extension | Thin IDE bridge for Stubborn MCP setup and sidecar stub UX | 📋 Planned |
 
+## Planned ingest adapters
+
+| Repository | PyPI / entry | Role | Status |
+|------------|--------------|------|--------|
+| **stubborn-ingest-openapi** | TBD | OpenAPI → contract graph facts for REST endpoints and service-boundary evidence ([ADR-011](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-011-openapi-contract-graph.md)) | 📋 Planned |
+
 ## Private / meta
 
 | Repository | Role | Status |
@@ -36,11 +42,11 @@ Tracked in [`lab-notes/ideas/`](../lab-notes/ideas/) until promoted:
 
 | Idea | Summary |
 |------|---------|
-| Pluggable ingest | SCIP canonical + opt-in OpenAPI / LSP / DB adapters |
+| Pluggable ingest beyond OpenAPI | SCIP canonical + opt-in LSP / DB adapters |
 | IntelliJ extension | Separate future repo; platform-specific thin IDE bridge |
 | `stubborn-indexer` | Unified CLI to invoke scip-java / scip-typescript / … |
 | Gradle/Maven hook | Post-compile full snapshot in CI |
-| Hybrid graph | Code + API + schema edges in one `symbols.db` |
+| Hybrid graph beyond REST | Code + API + schema edges in one `symbols.db` |
 
 ## External ecosystem (not our repos)
 
@@ -55,11 +61,13 @@ Tracked in [`lab-notes/ideas/`](../lab-notes/ideas/) until promoted:
 ## Dependency graph
 
 ```
-scip-* (external)
-       ↓
-   stubborn-stub  ←── stubborn-mcp  ←── vscode-stubborn
+scip-* (external)        OpenAPI specs
+       ↓                      ↓
+   stubborn-stub  ←── stubborn-ingest-openapi
+       ↑
+   stubborn-watch  ←── stubborn-mcp  ←── vscode-stubborn
        ↑                 ↑
-   stubborn-watch    stubborn-demo
+   stubborn-demo ────────┘
 ```
 
 ## Naming conventions

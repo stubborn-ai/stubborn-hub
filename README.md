@@ -52,7 +52,7 @@ flowchart LR
 
 ## Design principles
 
-1. **SCIP is the machine index** — Stubborn does not parse source for production graphs ([stubborn ADR-001](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-001-scip-as-machine-index.md)).
+1. **SCIP is the code-symbol machine index** — Stubborn does not parse source for production code graphs ([stubborn ADR-001](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-001-scip-as-machine-index.md)); OpenAPI contract graph support is planned separately ([stubborn ADR-011](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-011-openapi-contract-graph.md)).
 2. **SQLite symbol graph as SSoT** — one file per project snapshot; prune/weave read from it.
 3. **Deterministic core** — same index + target + options → same stub text.
 4. **Architecture-led, AI-implemented** — ADRs and E2E cases document intent; code is ordinary Python.

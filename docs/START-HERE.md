@@ -29,7 +29,7 @@ Public showcase: https://github.com/stubborn-ai
 | 1 | [stubborn DEVELOPMENT-MODEL](https://github.com/stubborn-ai/stubborn/blob/main/docs/DEVELOPMENT-MODEL.md) | Roles, deterministic core, boundary protocols |
 | 2 | [ARCHITECTURE.md](ARCHITECTURE.md) | Layers, repo map, diagrams |
 | 3 | [stubborn POSITIONING](https://github.com/stubborn-ai/stubborn/blob/main/docs/POSITIONING.md) | Audience, honest scope, competitors |
-| 4 | [stubborn ADR index](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/README.md) | Design rationale (ADR-001–009 in `stubborn`) |
+| 4 | [stubborn ADR index](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/README.md) | Design rationale (ADR-001–011 in `stubborn`) |
 | 5 | [ECOSYSTEM.md](ECOSYSTEM.md) | Current and planned repositories |
 | 6 | [ROADMAP.md](ROADMAP.md) | Near-term phases (lean) |
 | 7 | [stubborn BETA](https://github.com/stubborn-ai/stubborn/blob/main/docs/BETA.md) | Beta checklist, KPI baselines |
@@ -78,6 +78,7 @@ scip-java / scip-*  →  stubborn index  →  symbols.db
 ```
 
 Dev loop: `stubborn-watch` → indexer → `stubborn index --merge` → same `symbols.db`.
+Planned REST contract path: OpenAPI → `stubborn-ingest-openapi` → contract graph facts in the same workspace view.
 
 Full diagrams: [ARCHITECTURE.md](ARCHITECTURE.md).
 

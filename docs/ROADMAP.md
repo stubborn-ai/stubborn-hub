@@ -36,11 +36,12 @@ Large exploratory items stay in [`lab-notes/ideas/`](../lab-notes/ideas/) — no
 |------|------|--------|
 | Multi-language weave E2E (TS first) | stubborn | 💡 |
 | Stable public API semver | stubborn | 💡 |
+| OpenAPI contract graph adapter | stubborn-ingest-openapi | 📋 Planned after ADR-011 |
 | IDE extension MVP | vscode-stubborn | 📋 MCP setup + sidecar stubs |
 
 ## Not on this roadmap
 
-See lab-notes for: pluggable non-SCIP ingest, hybrid code+API graphs, IntelliJ plugin, `stubborn-indexer` wrapper.
+See lab-notes for: pluggable non-SCIP ingest beyond OpenAPI, hybrid code+API+schema graphs beyond REST, IntelliJ plugin, `stubborn-indexer` wrapper.
 
 ## Related
 
