@@ -19,7 +19,7 @@ Instructions for AI coding assistants (Cursor, etc.) in a **new session** with n
 
 - **Goal:** Deterministic LLM context compiler for code symbols and service contracts (Java-first beta for code weave quality).
 - **Public org:** https://github.com/stubborn-ai
-- **PyPI:** `stubborn-stub` **0.9.0b5**, `stubborn-mcp` **0.1.0b2**, `stubborn-watch` **0.1.0b1**
+- **PyPI:** `stubborn-stub` **0.9.0b5**, `stubborn-mcp` **0.1.0b2**, `stubborn-watch` **0.1.0b2**
 - **Deterministic deliverables:** Python — same source graph + target + options → same context.
 - **AI role:** implement under architecture and boundary protocols; Stubborn does **not** call LLMs at runtime.
 
@@ -59,7 +59,7 @@ Instructions for AI coding assistants (Cursor, etc.) in a **new session** with n
 
 ## Current status (2026-07-04)
 
-- **Done:** schema v4 contract evidence; `index-contract`; `index-openapi`; source-neutral endpoint queries; optional SCIP protobuf runtime; `stubborn-watch` **0.1.0b1**; `stubborn-stub` **0.9.0b5**; `stubborn-mcp` **0.1.0b2** with contract tools; Java E2E; program hub published
+- **Done:** schema v4 contract evidence; `index-contract`; `index-openapi`; source-neutral endpoint queries; optional SCIP protobuf runtime; `stubborn-watch` **0.1.0b2**; `stubborn-stub` **0.9.0b5**; `stubborn-mcp` **0.1.0b2** with contract tools; Java E2E; program hub published
 - **Next:** refresh demo smoke docs around contract evidence and MCP endpoint discovery
 
 ## Typical tasks

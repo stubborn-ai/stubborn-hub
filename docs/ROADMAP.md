@@ -26,7 +26,7 @@ Large exploratory items stay in [`lab-notes/ideas/`](../lab-notes/ideas/) — no
 
 | Item | Repo | Status |
 |------|------|--------|
-| `stubborn-watch` (Java, debounced) | stubborn-watch | ✅ `0.1.0b1` on PyPI |
+| `stubborn-watch` (Java, debounced) | stubborn-watch | ✅ `0.1.0b2` on PyPI |
 | demo-spring: save → merge → `list_symbols` E2E | stubborn-demo | ✅ host runbook |
 | VS Code thin bridge scaffold | vscode-stubborn | 📋 Planned |
 
