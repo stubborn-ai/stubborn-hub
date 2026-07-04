@@ -53,6 +53,26 @@ Public showcase: https://github.com/stubborn-ai
 
 Product ADRs live in **`stubborn/docs/adr/`** until a cross-cutting decision needs a hub-level ADR.
 
+## Execution tiers
+
+The public strategy is intentionally simple:
+
+| Tier | Default for | What it runs | Notes |
+|------|-------------|--------------|-------|
+| Docker | Most users, CI, cross-platform reproducibility | `docker compose build`, `docker compose run --rm ...` | Canonical environment on Windows, Linux, and macOS |
+| WSL/bash | Contributors doing fast local checks on Unix-like shells | Bash host scripts under `stubborn-demo/**/scripts/*.sh` | Preferred local quick-test path on WSL2, Linux, and macOS |
+| PowerShell fallback | Windows host users who cannot or do not want to use WSL | Thin `pwsh` wrappers, or the historical `*.ps1` scripts recoverable from git history | Keep this path as a fallback only; do not duplicate core logic here |
+
+Where a repo ships bash wrappers today, those wrappers are the source of truth. Any PowerShell entrypoint should stay thin and call the same underlying targets.
+
+### Validation matrix
+
+| Tier | Canonical command shape | Expected result |
+|------|-------------------------|-----------------|
+| Docker | `docker compose build` → `docker compose run --rm e2e` | Same artifact shape across Windows, Linux, and macOS |
+| WSL/bash | `./scripts/run-e2e.sh` or `./scripts/run-merge-e2e.sh` | Fast local validation with the same assertions as Docker |
+| PowerShell fallback | Historical `*.ps1` launcher or thin wrapper to the same target | Windows host fallback only; do not fork behavior or assertions |
+
 ## Local workspace (author machine)
 
 ```
@@ -91,9 +111,9 @@ Use the repo that owns the contract you want to prove:
 
 | Scope | Canonical entrypoint | Owner |
 |-------|----------------------|-------|
-| ADR-009 merge contract | `stubborn-demo/demo-spring/scripts/run-merge-e2e.ps1` | `stubborn-demo` |
+| ADR-009 merge contract | `stubborn-demo/demo-spring/scripts/run-merge-e2e.sh` | `stubborn-demo` |
 | Watch / orchestration smoke | `stubborn-watch/tests/test_watch.py` | `stubborn-watch` |
-| MCP surface smoke over prepared `symbols.db` | `stubborn-demo/demo-spring/scripts/mcp-smoke.ps1` | `stubborn-mcp` + `stubborn-demo` assets |
+| MCP surface smoke over prepared `symbols.db` | `stubborn-demo/demo-spring/scripts/mcp-smoke.sh` | `stubborn-mcp` + `stubborn-demo` assets |
 
 ## What is verified today
 
