@@ -6,7 +6,7 @@ Repository catalog for the Stubborn AI program. Status legend: ✅ Active · �
 
 | Repository | PyPI / entry | Role | Status |
 |------------|--------------|------|--------|
-| [**stubborn**](https://github.com/stubborn-ai/stubborn) | [`stubborn-stub`](https://pypi.org/project/stubborn-stub/), CLI `stubborn` | Headless core: SCIP code ingest, OpenAPI/manifest contract ingest, SQLite store, prune, weave, `stubborn.api`, CLI | ✅ **Beta** `0.9.0b4` |
+| [**stubborn**](https://github.com/stubborn-ai/stubborn) | [`stubborn-stub`](https://pypi.org/project/stubborn-stub/), CLI `stubborn` | Headless core: SCIP code ingest, OpenAPI/manifest contract ingest, SQLite store, prune, weave, `stubborn.api`, CLI | ✅ **Beta** `0.9.0b5` |
 | [**stubborn-hub**](https://github.com/stubborn-ai/stubborn-hub) | — | Program docs, architecture, roadmap | ✅ Active |
 
 ## Demos & validation
@@ -19,7 +19,7 @@ Repository catalog for the Stubborn AI program. Status legend: ✅ Active · �
 
 | Repository | PyPI / entry | Role | Status |
 |------------|--------------|------|--------|
-| **stubborn-mcp** | [`stubborn-mcp`](https://pypi.org/project/stubborn-mcp/) | FastMCP stdio — `workspace_info`, `list_symbols`, `list_contracts`, `get_context`, `metrics` | ✅ **Beta** `0.1.0b1` |
+| **stubborn-mcp** | [`stubborn-mcp`](https://pypi.org/project/stubborn-mcp/) | FastMCP stdio — `workspace_info`, `list_symbols`, `list_contracts`, `get_context`, `metrics` | ✅ **Beta** `0.1.0b2` |
 | **stubborn-watch** | [`stubborn-watch`](https://pypi.org/project/stubborn-watch/) | File watch → external SCIP indexer → `stubborn index --merge` | ✅ **Beta** `0.1.0b1` |
 | [**vscode-stubborn**](https://github.com/stubborn-ai/vscode-stubborn) | VS Code extension | Thin IDE bridge for Stubborn MCP setup and sidecar stub UX | 📋 Planned |
 

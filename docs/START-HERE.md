@@ -18,8 +18,8 @@ Public showcase: https://github.com/stubborn-ai
 
 | Package | Version | Role |
 |---------|---------|------|
-| [`stubborn-stub`](https://pypi.org/project/stubborn-stub/) | **0.9.0b4** | Core compiler — CLI `stubborn`, `stubborn.api`, code + contract graph |
-| [`stubborn-mcp`](https://pypi.org/project/stubborn-mcp/) | **0.1.0b1** | MCP server — `workspace_info`, `list_symbols`, `list_contracts`, `get_context`, `metrics` |
+| [`stubborn-stub`](https://pypi.org/project/stubborn-stub/) | **0.9.0b5** | Core compiler — CLI `stubborn`, `stubborn.api`, code + contract graph |
+| [`stubborn-mcp`](https://pypi.org/project/stubborn-mcp/) | **0.1.0b2** | MCP server — `workspace_info`, `list_symbols`, `list_contracts`, `get_context`, `metrics` |
 | [`stubborn-watch`](https://pypi.org/project/stubborn-watch/) | **0.1.0b1** | Dev orchestration — file watch → SCIP indexer → merge |
 
 ## Reading order (recommended)
@@ -43,8 +43,8 @@ Public showcase: https://github.com/stubborn-ai
 | Repo | Visibility | Role | Status |
 |------|------------|------|--------|
 | **stubborn-hub** | public | Program docs (this repo) | ✅ Active |
-| **stubborn** | public | Headless core — code/contract ingest, store, prune, weave, CLI, API | **Beta** (`0.9.0b4` on PyPI) |
-| **stubborn-mcp** | public | Source-neutral MCP stdio server | **Beta** (`0.1.0b1` on PyPI) |
+| **stubborn** | public | Headless core — code/contract ingest, store, prune, weave, CLI, API | **Beta** (`0.9.0b5` on PyPI) |
+| **stubborn-mcp** | public | Source-neutral MCP stdio server | **Beta** (`0.1.0b2` on PyPI) |
 | **stubborn-watch** | public | Dev orchestration: watch → SCIP indexer → merge | **Beta** (`0.1.0b1` on PyPI) |
 | **stubborn-demo** | public | Runnable demos + black-box validation projects | ✅ Active |
 | **vscode-stubborn** | public | VS Code bridge for MCP setup + sidecar stubs | 📋 Planned |
