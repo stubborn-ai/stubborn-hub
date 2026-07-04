@@ -4,13 +4,13 @@ Program map for humans and for onboarding AI in a new session. Read this file fi
 
 ## What this program is
 
-**Stubborn AI** is a multi-repo program around **deterministic LLM context compilation** for SCIP-indexed codebases — **Java/Spring first** in beta.
+**Stubborn AI** is a multi-repo program around **deterministic LLM context compilation** for code symbols and service contracts — **Java/Spring first** for code weave quality in beta.
 
 Built with **architecture-led, AI-assisted development**:
 
 - The **developer** defines architecture and boundary protocols (ADRs, schema, CLI/MCP contracts).
 - **AI** implements most code under those contracts.
-- **Shipped artifacts** are deterministic Python (same SCIP + target + options → same stub).
+- **Shipped artifacts** are deterministic Python (same source graph + target + options → same context).
 
 Public showcase: https://github.com/stubborn-ai
 
@@ -18,8 +18,8 @@ Public showcase: https://github.com/stubborn-ai
 
 | Package | Version | Role |
 |---------|---------|------|
-| [`stubborn-stub`](https://pypi.org/project/stubborn-stub/) | **0.9.0b4** | Core compiler — CLI `stubborn`, `stubborn.api` |
-| [`stubborn-mcp`](https://pypi.org/project/stubborn-mcp/) | **0.1.0b1** | MCP server — `get_context`, `list_symbols`, `metrics` |
+| [`stubborn-stub`](https://pypi.org/project/stubborn-stub/) | **0.9.0b4** | Core compiler — CLI `stubborn`, `stubborn.api`, code + contract graph |
+| [`stubborn-mcp`](https://pypi.org/project/stubborn-mcp/) | **0.1.0b1** | MCP server — `workspace_info`, `list_symbols`, `list_contracts`, `get_context`, `metrics` |
 | [`stubborn-watch`](https://pypi.org/project/stubborn-watch/) | **0.1.0b1** | Dev orchestration — file watch → SCIP indexer → merge |
 
 ## Reading order (recommended)
@@ -29,7 +29,7 @@ Public showcase: https://github.com/stubborn-ai
 | 1 | [stubborn DEVELOPMENT-MODEL](https://github.com/stubborn-ai/stubborn/blob/main/docs/DEVELOPMENT-MODEL.md) | Roles, deterministic core, boundary protocols |
 | 2 | [ARCHITECTURE.md](ARCHITECTURE.md) | Layers, repo map, diagrams |
 | 3 | [stubborn POSITIONING](https://github.com/stubborn-ai/stubborn/blob/main/docs/POSITIONING.md) | Audience, honest scope, competitors |
-| 4 | [stubborn ADR index](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/README.md) | Design rationale (ADR-001–011 in `stubborn`) |
+| 4 | [stubborn ADR index](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/README.md) | Design rationale (SCIP, workspace graph, contract graph, source-neutral queries) |
 | 5 | [ECOSYSTEM.md](ECOSYSTEM.md) | Current and planned repositories |
 | 6 | [ROADMAP.md](ROADMAP.md) | Near-term phases (lean) |
 | 7 | [stubborn BETA](https://github.com/stubborn-ai/stubborn/blob/main/docs/BETA.md) | Beta checklist, KPI baselines |
@@ -43,8 +43,8 @@ Public showcase: https://github.com/stubborn-ai
 | Repo | Visibility | Role | Status |
 |------|------------|------|--------|
 | **stubborn-hub** | public | Program docs (this repo) | ✅ Active |
-| **stubborn** | public | Headless core — ingest, store, prune, weave, CLI, API | **Beta** (`0.9.0b4` on PyPI) |
-| **stubborn-mcp** | public | MCP stdio server | **Beta** (`0.1.0b1` on PyPI) |
+| **stubborn** | public | Headless core — code/contract ingest, store, prune, weave, CLI, API | **Beta** (`0.9.0b4` on PyPI) |
+| **stubborn-mcp** | public | Source-neutral MCP stdio server | **Beta** (`0.1.0b1` on PyPI) |
 | **stubborn-watch** | public | Dev orchestration: watch → SCIP indexer → merge | **Beta** (`0.1.0b1` on PyPI) |
 | **stubborn-demo** | public | Runnable demos + black-box validation projects | ✅ Active |
 | **vscode-stubborn** | public | VS Code bridge for MCP setup + sidecar stubs | 📋 Planned |
@@ -70,15 +70,18 @@ C:\github\stubborn-ai\
 ## Pipeline (one picture)
 
 ```
-scip-java / scip-*  →  stubborn index  →  symbols.db
-                              ↓
-                    prune + weave (java-stub | stubborn-dsl)
-                              ↓
+scip-java / scip-*  →  stubborn index        ┐
+OpenAPI specs       →  stubborn index-openapi ├→ symbols.db
+explicit contracts  →  stubborn index-contract┘
+                                      ↓
+                    source-neutral prune + weave
+                    (java-stub | stubborn-dsl)
+                                      ↓
               CLI / stubborn.api / stubborn-mcp → LLM / Agent
 ```
 
 Dev loop: `stubborn-watch` → indexer → `stubborn index --merge` → same `symbols.db`.
-Planned REST contract path: OpenAPI → `stubborn-ingest-openapi` → contract graph facts in the same workspace view.
+Contract path: OpenAPI/manifest → v4 contract tables → endpoint/schema context and evidence-tiered bindings in the same workspace view.
 
 Full diagrams: [ARCHITECTURE.md](ARCHITECTURE.md).
 
@@ -97,8 +100,11 @@ Use the repo that owns the contract you want to prove:
 | Capability | Status |
 |------------|--------|
 | SCIP ingest → SQLite (`stubborn index`) | ✅ |
+| OpenAPI endpoint/schema ingest (`stubborn index-openapi`) | ✅ |
+| Explicit contract evidence ingest (`stubborn index-contract`) | ✅ |
+| Source-neutral endpoint context (`openapi ...` targets) | ✅ |
 | Prune + weave + token budget | ✅ |
-| MCP tools via **stubborn-mcp** on PyPI | ✅ |
+| MCP code + contract tools via **stubborn-mcp** | ✅ |
 | Java E2E (demo-spring, petclinic, dukesbank) | ✅ via `stubborn-demo` |
 | `stubborn diff` / PR symbol-diff workflow | ✅ |
 | Incremental `--merge` (ADR-009) | ✅ |
@@ -111,15 +117,15 @@ Use the repo that owns the contract you want to prove:
 |-------|------|
 | Chat with AI | Chinese is fine |
 | Code comments, docs, commits | **English** |
-| Machine index | SCIP (canonical); optional future ingest adapters are opt-in |
+| Machine index | SCIP for code symbols; OpenAPI for REST contracts; optional future ingest adapters are opt-in |
 | Public vs draft | Stabilized docs → `stubborn-hub` or `stubborn`; raw thinking → `lab-notes` |
 | Commits | Only when the user explicitly asks |
 
 ## Next work (priority)
 
-1. Validate `stubborn-demo` host E2E on a machine with JDK/Maven/scip-java
-2. Add Docker / CI path for demo-spring merge E2E in `stubborn-demo`
-3. PyPI release `stubborn-stub` `0.9.0b5`
+1. Release `stubborn-stub` with schema v4/source-neutral contract query updates
+2. Release `stubborn-mcp` with `workspace_info` / `list_contracts`
+3. Refresh `stubborn-demo` smoke docs around PetClinic contract evidence
 
 See **[AGENTS.md](../AGENTS.md)** for AI session bootstrap.
 

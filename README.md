@@ -1,6 +1,6 @@
 # Stubborn AI
 
-**Deterministic LLM context compiler for SCIP-indexed codebases.**
+**Deterministic LLM context compiler for code symbols and service contracts.**
 
 Stubborn AI is an open engineering program: **architecture-led, AI-assisted development** where the developer defines pipeline shape and boundary protocols; AI implements most of the code; shipped artifacts are **deterministic Python** — reproducible, test-gated, and verifiable.
 
@@ -11,8 +11,8 @@ Stubborn AI is an open engineering program: **architecture-led, AI-assisted deve
 | Repository | Role | Status |
 |------------|------|--------|
 | [**stubborn-hub**](https://github.com/stubborn-ai/stubborn-hub) | Program overview, architecture, roadmap | Active |
-| [**stubborn**](https://github.com/stubborn-ai/stubborn) | Headless core: SCIP → SQLite → prune → weave ([`stubborn-stub`](https://pypi.org/project/stubborn-stub/)) | **Beta** (`0.9.0b4`) |
-| [**stubborn-mcp**](https://github.com/stubborn-ai/stubborn-mcp) | MCP server ([`stubborn-mcp`](https://pypi.org/project/stubborn-mcp/)) | **Beta** (`0.1.0b1`) |
+| [**stubborn**](https://github.com/stubborn-ai/stubborn) | Headless core: SCIP code graph + OpenAPI contract graph → SQLite → prune → weave ([`stubborn-stub`](https://pypi.org/project/stubborn-stub/)) | **Beta** (`0.9.0b4`) |
+| [**stubborn-mcp**](https://github.com/stubborn-ai/stubborn-mcp) | Source-neutral MCP server (`workspace_info`, `list_symbols`, `list_contracts`, `get_context`) ([`stubborn-mcp`](https://pypi.org/project/stubborn-mcp/)) | **Beta** (`0.1.0b1`) |
 | [**stubborn-watch**](https://github.com/stubborn-ai/stubborn-watch) | Dev orchestration: file watch → scip-java → `index --merge` ([`stubborn-watch`](https://pypi.org/project/stubborn-watch/)) | **Beta** (`0.1.0b1`) |
 | [**stubborn-demo**](https://github.com/stubborn-ai/stubborn-demo) | Runnable demos and validation projects | Active |
 | [**vscode-stubborn**](https://github.com/stubborn-ai/vscode-stubborn) | VS Code bridge for MCP setup and sidecar stub UX | Planned |
@@ -26,6 +26,7 @@ Details: [ECOSYSTEM.md](docs/ECOSYSTEM.md) · [ROADMAP.md](docs/ROADMAP.md)
 flowchart LR
   subgraph index["Indexing (ecosystem)"]
     SCIP["scip-java / scip-*"]
+    OPENAPI["OpenAPI specs"]
   end
 
   subgraph core["stubborn (core)"]
@@ -43,6 +44,7 @@ flowchart LR
   end
 
   SCIP --> ING
+  OPENAPI --> ING
   WEA --> CLI
   WEA --> API
   API --> MCP
@@ -52,12 +54,13 @@ flowchart LR
 
 ## Design principles
 
-1. **SCIP is the code-symbol machine index** — Stubborn does not parse source for production code graphs ([stubborn ADR-001](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-001-scip-as-machine-index.md)); OpenAPI contract graph support is planned separately ([stubborn ADR-011](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-011-openapi-contract-graph.md)).
-2. **SQLite symbol graph as SSoT** — one file per project snapshot; prune/weave read from it.
-3. **Deterministic core** — same index + target + options → same stub text.
-4. **Architecture-led, AI-implemented** — ADRs and E2E cases document intent; code is ordinary Python.
-5. **Composable repos** — core compiler, MCP adapter, watch orchestration, and demos/validation ship on independent cadences.
-6. **Honest scope** — Java-first beta; multi-language and dev UX layers grow with E2E proof.
+1. **SCIP is the code-symbol machine index** — Stubborn does not parse source for production code graphs ([stubborn ADR-001](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-001-scip-as-machine-index.md)).
+2. **OpenAPI is the REST contract truth source** — contract endpoints and schema facts live beside code facts without being forced into SCIP ([ADR-011](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-011-openapi-contract-graph.md), [ADR-013](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-013-source-neutral-contract-queries.md)).
+3. **SQLite graph store as SSoT** — one file per workspace snapshot; prune/weave read code and contract facts from it.
+4. **Deterministic core** — same index + target + options → same context text.
+5. **Architecture-led, AI-implemented** — ADRs and E2E cases document intent; code is ordinary Python.
+6. **Composable repos** — core compiler, MCP adapter, watch orchestration, and demos/validation ship on independent cadences.
+7. **Honest scope** — Java-first beta for code weave quality; contract graph support is protocol-first and evidence-tiered.
 
 See [stubborn DEVELOPMENT-MODEL](https://github.com/stubborn-ai/stubborn/blob/main/docs/DEVELOPMENT-MODEL.md) for roles and boundary protocols.
 
@@ -92,7 +95,7 @@ stubborn-ai/
 
 ```bash
 pip install stubborn-stub
-stubborn index --scip index.scip --out /tmp/symbols.db
+stubborn index --scip examples/fixtures/minimal.json --out /tmp/symbols.db
 stubborn context /tmp/symbols.db \
   --target "semanticdb maven com/example/OrderService#" \
   --out /tmp/order-service.stub.java
@@ -102,6 +105,15 @@ stubborn context /tmp/symbols.db \
 
 ```bash
 pip install stubborn-stub stubborn-mcp
+stubborn index-openapi --openapi openapi.json --service customers-service --workspace petclinic --out metadata/symbols.db
+export STUBBORN_DB=metadata/symbols.db
+stubborn-mcp
+```
+
+For binary/NDJSON SCIP input, install the optional SCIP runtime:
+
+```bash
+pip install "stubborn-stub[scip]" stubborn-mcp
 stubborn index --scip index.scip --out metadata/symbols.db
 export STUBBORN_DB=metadata/symbols.db
 stubborn-mcp

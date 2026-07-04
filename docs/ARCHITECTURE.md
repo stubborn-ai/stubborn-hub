@@ -2,7 +2,7 @@
 
 ## Overview
 
-Stubborn AI is a **multi-repo program** for compiling deterministic graph facts into bounded, privacy-safe LLM context. SCIP remains the canonical code-symbol input; ADR-011 promotes OpenAPI as the planned REST contract input. The `stubborn` repo is the headless core; surrounding repos own surfaces, orchestration, adapters, and runnable validation projects. Shared contracts (`IndexSnapshot`, SQLite schema v1+, `stubborn.api`) link layers without a monorepo.
+Stubborn AI is a **multi-repo program** for compiling deterministic graph facts into bounded, privacy-safe LLM context. SCIP remains the canonical code-symbol input; OpenAPI is the canonical REST contract input. The `stubborn` repo is the headless core; surrounding repos own surfaces, orchestration, and runnable validation projects. Shared contracts (`IndexSnapshot`, schema v4 contract tables, `stubborn.api`) link layers without a monorepo.
 
 **Visual maps:** [Program overview](#program-overview) · [Developer experience layers](#developer-experience-layers) · [Repository map](#repository-map)
 
@@ -18,15 +18,14 @@ flowchart TB
     SRC["Source code"]
     OPENAPI["OpenAPI specs"]
     SCIP_IDX["SCIP indexers<br/>(scip-java, …)"]
-    OPENAPI_ING["stubborn-ingest-openapi<br/>(planned)"]
     ALT["Optional future ingest<br/>(LSP, DB, …)"]
   end
 
   subgraph L1["Layer 1 — Index & store"]
-    ING["stubborn ingest"]
+    ING["stubborn ingest<br/>(SCIP + contract)"]
     DB[(symbols.db)]
     SRC --> SCIP_IDX --> ING
-    OPENAPI --> OPENAPI_ING --> ING
+    OPENAPI --> ING
     ALT -.-> ING
     ING --> DB
   end
@@ -66,10 +65,11 @@ flowchart TB
 | Stage | Owner | Input | Output |
 |-------|-------|-------|--------|
 | SCIP indexing | External indexer | Source tree | `index.scip` |
-| OpenAPI contract ingest | `stubborn-ingest-openapi` (planned) | OpenAPI spec + binding evidence | endpoint/contract graph facts |
-| Ingest | `stubborn` | SCIP | `symbols.db` |
-| Context compile | `stubborn` | `symbols.db` + target | stub text |
-| Agent access | `stubborn-mcp` | API calls | MCP tool JSON |
+| Code ingest | `stubborn` | SCIP / JSON fixture | code-symbol graph facts |
+| Contract ingest | `stubborn` | OpenAPI spec or explicit manifest | endpoint/schema/binding facts |
+| Store | `stubborn` | code + contract facts | `symbols.db` |
+| Context compile | `stubborn` | `symbols.db` + code or endpoint target | `java-stub` / `stubborn-dsl` context |
+| Agent access | `stubborn-mcp` | API calls | source-neutral MCP tool JSON |
 | Dev hot path | `stubborn-watch` | File events | merge into `symbols.db` |
 | IDE bridge | `vscode-stubborn` | VS Code commands/settings | MCP setup + sidecar stubs |
 | Demos / validation | `stubborn-demo` | Runnable projects | black-box proof via CLI / MCP |
@@ -101,7 +101,7 @@ flowchart LR
 | **Hot** | Save / watch | `index --merge` | Update active run by `relative_path` ([ADR-009](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-009-incremental-index-merge.md)) |
 | **Cold** | Compile / CI | `index` (default) | Append full snapshot `index_run` |
 
-SCIP remains **canonical** for code-symbol CI and reconcile. OpenAPI contract graph support is planned by [ADR-011](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-011-openapi-contract-graph.md); all non-SCIP adapters are **opt-in** and must carry provenance/evidence tiers.
+SCIP remains **canonical** for code-symbol CI and reconcile. OpenAPI contract graph support is implemented in `stubborn index-openapi`; explicit bindings use `stubborn index-contract`. Contract facts are physically separate from SCIP facts and are composed at query time ([ADR-012](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-012-schema-v4-contract-evidence.md), [ADR-013](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-013-source-neutral-contract-queries.md)).
 
 ## Repository map
 
@@ -112,7 +112,6 @@ flowchart LR
   MCP["stubborn-mcp"]
   WATCH["stubborn-watch"]
   VSCODE["vscode-stubborn"]
-  OPENAPI["stubborn-ingest-openapi"]
   DEMO["stubborn-demo"]
   NOTES["lab-notes<br/>private"]
 
@@ -121,7 +120,6 @@ flowchart LR
   HUB -.-> DEMO
   MCP --> CORE
   WATCH --> CORE
-  OPENAPI --> CORE
   VSCODE --> MCP
   VSCODE --> WATCH
   DEMO --> CORE
@@ -133,8 +131,7 @@ flowchart LR
 | Repository | Layer | Depends on |
 |------------|-------|------------|
 | `stubborn-hub` | Program docs | — |
-| `stubborn` | Headless core: L1 + L2 + CLI + API | SCIP ecosystem |
-| `stubborn-ingest-openapi` | Planned L1 adapter | `stubborn-stub`, OpenAPI specs |
+| `stubborn` | Headless core: L1 + L2 + CLI + API | SCIP ecosystem, OpenAPI specs |
 | `stubborn-mcp` | L3 (MCP) | `stubborn-stub` |
 | `stubborn-watch` | L4 (orchestration) | `stubborn-stub`, scip-java |
 | `vscode-stubborn` | L4 (VS Code bridge) | `stubborn-mcp`, `stubborn-watch` |
@@ -148,11 +145,11 @@ Future ideas (not committed repos): `stubborn-indexer` (multi-SCIP CLI glue), `i
 | Boundary | Contract | Document |
 |----------|----------|----------|
 | SCIP → snapshot | `IndexSnapshot`, ingest enrichment | [SCIP-INGEST](https://github.com/stubborn-ai/stubborn/blob/main/docs/SCIP-INGEST.md) |
-| OpenAPI → contract graph | Endpoint stable IDs, binding evidence tiers | [ADR-011](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-011-openapi-contract-graph.md) |
-| Snapshot → store | SQLite schema v1+ | [ADR-002](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-002-sqlite-symbol-graph-ssot.md) |
-| Store → context | `stubborn.api`, budgets, weave options | `stubborn` source |
+| OpenAPI/manifest → contract graph | Endpoint stable IDs, schema constraints, binding evidence tiers | [ADR-011](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-011-openapi-contract-graph.md), [ADR-012](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-012-schema-v4-contract-evidence.md) |
+| Snapshot/contract → store | SQLite schema v4 | [ADR-002](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-002-sqlite-symbol-graph-ssot.md), [ADR-012](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-012-schema-v4-contract-evidence.md) |
+| Store → context | Source-neutral `stubborn.api`, budgets, weave options | [ADR-013](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-013-source-neutral-contract-queries.md) |
 | Output formats | `java-stub`, `stubborn-dsl` grammars | [STUBBORN-DSL](https://github.com/stubborn-ai/stubborn/blob/main/docs/STUBBORN-DSL.md) |
-| Agent tools | MCP tool schemas | [MCP.md](https://github.com/stubborn-ai/stubborn/blob/main/docs/MCP.md) → moves to `stubborn-mcp` |
+| Agent tools | MCP tool schemas (`workspace_info`, `list_symbols`, `list_contracts`, `get_context`, `metrics`) | [stubborn-mcp MCP.md](https://github.com/stubborn-ai/stubborn-mcp/blob/main/docs/MCP.md) |
 
 ## Relationship to anchor-migration
 

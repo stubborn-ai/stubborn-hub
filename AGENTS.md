@@ -17,10 +17,10 @@ Instructions for AI coding assistants (Cursor, etc.) in a **new session** with n
 
 ## Program summary
 
-- **Goal:** Deterministic LLM context compiler for SCIP-indexed codebases (Java-first beta).
+- **Goal:** Deterministic LLM context compiler for code symbols and service contracts (Java-first beta for code weave quality).
 - **Public org:** https://github.com/stubborn-ai
 - **PyPI:** `stubborn-stub` **0.9.0b4**, `stubborn-mcp` **0.1.0b1**, `stubborn-watch` **0.1.0b1**
-- **Deterministic deliverables:** Python — same SCIP + target + options → same stub.
+- **Deterministic deliverables:** Python — same source graph + target + options → same context.
 - **AI role:** implement under architecture and boundary protocols; Stubborn does **not** call LLMs at runtime.
 
 ## Repository layout
@@ -46,8 +46,11 @@ Instructions for AI coding assistants (Cursor, etc.) in a **new session** with n
 
 | Topic | Decision |
 |-------|----------|
-| Machine index | SCIP via external indexers — [ADR-001](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-001-scip-as-machine-index.md) |
-| Store | SQLite `symbols.db` — [ADR-002](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-002-sqlite-symbol-graph-ssot.md) |
+| Code-symbol index | SCIP via external indexers — [ADR-001](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-001-scip-as-machine-index.md) |
+| Contract index | OpenAPI/explicit manifests as contract graph facts — [ADR-011](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-011-openapi-contract-graph.md), [ADR-012](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-012-schema-v4-contract-evidence.md) |
+| Store | SQLite `symbols.db` with code + contract facts — [ADR-002](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-002-sqlite-symbol-graph-ssot.md), [ADR-012](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-012-schema-v4-contract-evidence.md) |
+| Query model | Source-neutral code/contract targets — [ADR-013](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-013-source-neutral-contract-queries.md) |
+| Packaging | SCIP protobuf runtime is optional via `stubborn-stub[scip]` — [ADR-014](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-014-optional-scip-protobuf-runtime.md) |
 | Beta scope | Java-first E2E — [ADR-007](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-007-java-first-beta-scope.md) |
 | Agent surface | MCP in **stubborn-mcp** over `stubborn.api` — [ADR-006](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-006-mcp-first-agent-integration.md) |
 | Incremental dev | `--merge` on path-scoped SCIP ingest — [ADR-009](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-009-incremental-index-merge.md) |
@@ -56,14 +59,15 @@ Instructions for AI coding assistants (Cursor, etc.) in a **new session** with n
 
 ## Current status (2026-07-04)
 
-- **Done:** ADR-009 `--merge` + schema v2; `stubborn-watch` **0.1.0b1** on PyPI; `stubborn-demo` created for runnable validation; `stubborn-stub` **0.9.0b4**; `stubborn-mcp` **0.1.0b1** on PyPI; ADR-001–009; Java E2E; program hub published
-- **Next:** validate `stubborn-demo` E2E with JDK/Maven/scip-java; PyPI `stubborn-stub` `0.9.0b5`
+- **Done:** schema v4 contract evidence; `index-contract`; `index-openapi`; source-neutral endpoint queries; optional SCIP protobuf runtime; `stubborn-watch` **0.1.0b1**; `stubborn-stub` **0.9.0b4**; `stubborn-mcp` **0.1.0b1** with contract tools; Java E2E; program hub published
+- **Next:** release updated `stubborn-stub` / `stubborn-mcp`; refresh demo smoke docs around contract evidence and MCP endpoint discovery
 
 ## Typical tasks
 
 | User ask | Where to work |
 |----------|----------------|
 | Ingest / store / merge | `stubborn/src/stubborn/store/`, `ingest/` |
+| Contract graph / OpenAPI | `stubborn/src/stubborn/ingest/openapi.py`, `ingest/contracts.py`, `store/`, `graph/prune.py` |
 | Prune / weave / formats | `stubborn/src/stubborn/graph/`, `weave/` |
 | CLI / API | `stubborn/src/stubborn/cli.py`, `api.py` |
 | MCP server | `stubborn-mcp/src/stubborn_mcp/` |

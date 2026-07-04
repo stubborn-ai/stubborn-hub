@@ -6,7 +6,7 @@ Repository catalog for the Stubborn AI program. Status legend: ✅ Active · �
 
 | Repository | PyPI / entry | Role | Status |
 |------------|--------------|------|--------|
-| [**stubborn**](https://github.com/stubborn-ai/stubborn) | [`stubborn-stub`](https://pypi.org/project/stubborn-stub/), CLI `stubborn` | Headless core: SCIP ingest, SQLite store, prune, weave, `stubborn.api`, CLI | ✅ **Beta** `0.9.0b4` |
+| [**stubborn**](https://github.com/stubborn-ai/stubborn) | [`stubborn-stub`](https://pypi.org/project/stubborn-stub/), CLI `stubborn` | Headless core: SCIP code ingest, OpenAPI/manifest contract ingest, SQLite store, prune, weave, `stubborn.api`, CLI | ✅ **Beta** `0.9.0b4` |
 | [**stubborn-hub**](https://github.com/stubborn-ai/stubborn-hub) | — | Program docs, architecture, roadmap | ✅ Active |
 
 ## Demos & validation
@@ -19,15 +19,15 @@ Repository catalog for the Stubborn AI program. Status legend: ✅ Active · �
 
 | Repository | PyPI / entry | Role | Status |
 |------------|--------------|------|--------|
-| **stubborn-mcp** | [`stubborn-mcp`](https://pypi.org/project/stubborn-mcp/) | FastMCP stdio — `get_context`, `list_symbols`, `metrics` | ✅ **Beta** `0.1.0b1` |
+| **stubborn-mcp** | [`stubborn-mcp`](https://pypi.org/project/stubborn-mcp/) | FastMCP stdio — `workspace_info`, `list_symbols`, `list_contracts`, `get_context`, `metrics` | ✅ **Beta** `0.1.0b1` |
 | **stubborn-watch** | [`stubborn-watch`](https://pypi.org/project/stubborn-watch/) | File watch → external SCIP indexer → `stubborn index --merge` | ✅ **Beta** `0.1.0b1` |
 | [**vscode-stubborn**](https://github.com/stubborn-ai/vscode-stubborn) | VS Code extension | Thin IDE bridge for Stubborn MCP setup and sidecar stub UX | 📋 Planned |
 
-## Planned ingest adapters
+## Contract ingest
 
 | Repository | PyPI / entry | Role | Status |
 |------------|--------------|------|--------|
-| **stubborn-ingest-openapi** | TBD | OpenAPI → contract graph facts for REST endpoints and service-boundary evidence ([ADR-011](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-011-openapi-contract-graph.md)) | 📋 Planned |
+| [**stubborn**](https://github.com/stubborn-ai/stubborn) | CLI `index-openapi`, `index-contract` | OpenAPI/manifest → contract graph facts for REST endpoints, schema constraints, and service-boundary evidence ([ADR-011](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-011-openapi-contract-graph.md), [ADR-012](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-012-schema-v4-contract-evidence.md)) | ✅ Active |
 
 ## Private / meta
 
@@ -42,7 +42,7 @@ Tracked in [`lab-notes/ideas/`](../lab-notes/ideas/) until promoted:
 
 | Idea | Summary |
 |------|---------|
-| Pluggable ingest beyond OpenAPI | SCIP canonical + opt-in LSP / DB adapters |
+| Pluggable ingest beyond OpenAPI | SCIP canonical for code + opt-in LSP / DB adapters |
 | IntelliJ extension | Separate future repo; platform-specific thin IDE bridge |
 | `stubborn-indexer` | Unified CLI to invoke scip-java / scip-typescript / … |
 | Gradle/Maven hook | Post-compile full snapshot in CI |
@@ -61,13 +61,13 @@ Tracked in [`lab-notes/ideas/`](../lab-notes/ideas/) until promoted:
 ## Dependency graph
 
 ```
-scip-* (external)        OpenAPI specs
+scip-* (external)        OpenAPI specs / contract manifests
        ↓                      ↓
-   stubborn-stub  ←── stubborn-ingest-openapi
-       ↑
-   stubborn-watch  ←── stubborn-mcp  ←── vscode-stubborn
-       ↑                 ↑
-   stubborn-demo ────────┘
+                stubborn-stub
+                ↑          ↑
+   stubborn-watch          stubborn-mcp  ←── vscode-stubborn
+                ↑          ↑
+             stubborn-demo ┘
 ```
 
 ## Naming conventions
@@ -77,7 +77,7 @@ scip-* (external)        OpenAPI specs
 | `stubborn` | core repo | Headless compiler / engine — short name for the main product |
 | `stubborn-*` | `stubborn-mcp`, `stubborn-watch`, `stubborn-demo` | Program repos in the same org |
 | `stubborn-stub` | PyPI package | Historical PyPI name for the core library |
-| `stubborn-ingest-*` | `stubborn-ingest-openapi` | Optional future adapter packages |
+| `stubborn-ingest-*` | `stubborn-ingest-db` | Optional future adapter packages beyond core OpenAPI ingest |
 
 ## Promotion workflow
 
