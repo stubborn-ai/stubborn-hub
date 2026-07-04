@@ -18,6 +18,14 @@ Stubborn AI is an open engineering program: **architecture-led, AI-assisted deve
 | [**vscode-stubborn**](https://github.com/stubborn-ai/vscode-stubborn) | VS Code bridge for MCP setup and sidecar stub UX | Planned |
 | **lab-notes** | Private journals, ADR drafts, ecosystem ideas | Active (local / private remote) |
 
+## Release matrix
+
+| Package | Published version | Depends on |
+|---------|-------------------|------------|
+| `stubborn-stub` | `0.9.0b5` | Core compiler line |
+| `stubborn-mcp` | `0.1.0b2` | `stubborn-stub>=0.9.0b5,<1.0` |
+| `stubborn-watch` | `0.1.0b2` | `stubborn-stub>=0.9.0b5,<1.0` |
+
 Details: [ECOSYSTEM.md](docs/ECOSYSTEM.md) · [ROADMAP.md](docs/ROADMAP.md)
 
 ## Pipeline

@@ -22,6 +22,14 @@ Public showcase: https://github.com/stubborn-ai
 | [`stubborn-mcp`](https://pypi.org/project/stubborn-mcp/) | **0.1.0b2** | MCP server — `workspace_info`, `list_symbols`, `list_contracts`, `get_context`, `metrics` |
 | [`stubborn-watch`](https://pypi.org/project/stubborn-watch/) | **0.1.0b2** | Dev orchestration — file watch → SCIP indexer → merge |
 
+## Release matrix
+
+| Package | Published version | Depends on |
+|---------|-------------------|------------|
+| `stubborn-stub` | `0.9.0b5` | Core compiler line |
+| `stubborn-mcp` | `0.1.0b2` | `stubborn-stub>=0.9.0b5,<1.0` |
+| `stubborn-watch` | `0.1.0b2` | `stubborn-stub>=0.9.0b5,<1.0` |
+
 ## Reading order (recommended)
 
 | Step | Document | Why |
