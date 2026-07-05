@@ -41,6 +41,8 @@ Instructions for AI coding assistants (Cursor, etc.) in a **new session** with n
 - Only commit when the user explicitly asks.
 - Public docs must not link to or expose private lab-notes content.
 - Material pipeline changes → ADR in `stubborn/docs/adr/` before bulk implementation.
+- Major or release-worthy changes should bump at least the next minor version step
+  rather than a patch-only bump, e.g. `0.1.0 -> 0.2.0`.
 
 ## Key technical decisions (already made)
 

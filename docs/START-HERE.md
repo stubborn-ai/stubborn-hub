@@ -73,6 +73,11 @@ The public strategy is intentionally simple:
 
 Where a repo ships bash wrappers today, those wrappers are the source of truth. Any PowerShell entrypoint should stay thin and call the same underlying targets.
 
+Host/bash launchers now expect the required Python packages in the active
+environment and explicit roots like `BANK_ROOT` or per-demo `upstream/`
+directories; they no longer chase sibling source trees or private `PYTHONPATH`
+conventions.
+
 ### Validation matrix
 
 | Tier | Canonical command shape | Expected result |
