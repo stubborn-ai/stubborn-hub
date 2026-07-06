@@ -156,6 +156,20 @@ These are not top-level launchers unless noted.
 PetClinic workflows are intentionally **not** on every PR — they are heavier and
 pinned to upstream commits.
 
+## Setup diagnostics (ADR-015)
+
+Each package owns a read-only `doctor` command with a narrow custody scope. Run
+them in order when onboarding; they do not invoke indexers or start MCP:
+
+```bash
+stubborn doctor
+stubborn-mcp doctor        # if using agents
+stubborn-watch doctor      # if using dev watch loop
+stubborn-indexer doctor    # future — scip-java toolchain
+```
+
+Spec: [stubborn ADR-015](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-015-federated-doctor-diagnostics.md).
+
 ## Host ↔ Docker differences worth remembering
 
 1. **demo-spring E2E:** Docker also runs `stubborn metrics`; host script skips it.

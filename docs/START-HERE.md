@@ -41,10 +41,11 @@ Public showcase: https://github.com/stubborn-ai
 | 5 | [ECOSYSTEM.md](ECOSYSTEM.md) | Current and planned repositories |
 | 6 | [ROADMAP.md](ROADMAP.md) | Near-term phases (lean) |
 | 7 | [stubborn BETA](https://github.com/stubborn-ai/stubborn/blob/main/docs/BETA.md) | Beta checklist, KPI baselines |
-| 8 | [stubborn-mcp README](https://github.com/stubborn-ai/stubborn-mcp) | Cursor / agent setup |
-| 9 | [INTEGRATION.md](INTEGRATION.md) | Optional anchor-migration consumer pattern |
-| 10 | [DEMO-LAUNCHERS.md](DEMO-LAUNCHERS.md) | Explicit env/CLI contracts for all demo scripts |
-| 11 | [PETCLINIC-VALIDATION.md](PETCLINIC-VALIDATION.md) | Monolith vs microservices PetClinic proof model |
+| 8 | [stubborn ADR-015](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-015-federated-doctor-diagnostics.md) | Federated `doctor` per package (onboarding without auto-orchestration) |
+| 9 | [stubborn-mcp README](https://github.com/stubborn-ai/stubborn-mcp) | Cursor / agent setup |
+| 10 | [INTEGRATION.md](INTEGRATION.md) | Optional anchor-migration consumer pattern |
+| 11 | [DEMO-LAUNCHERS.md](DEMO-LAUNCHERS.md) | Explicit env/CLI contracts for all demo scripts |
+| 12 | [PETCLINIC-VALIDATION.md](PETCLINIC-VALIDATION.md) | Monolith vs microservices PetClinic proof model |
 
 **Private (if you have access):** `lab-notes/journal/` — latest session log and ecosystem ideas.
 
@@ -166,9 +167,10 @@ Use the repo that owns the contract you want to prove. Full launcher contracts:
 
 ## Next work (priority)
 
-1. Coordinated beta release across `stubborn-stub`, `stubborn-mcp`, and hub release matrix
-2. Milestone release checklist wired to `check_release_matrix.py`
-3. CLI per-repo `--workspace` / `--repo` indexing (unblocks real two-index multi-repo verifier)
+1. Implement federated `doctor` per [ADR-015](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-015-federated-doctor-diagnostics.md) (`stubborn` → `stubborn-mcp` → `stubborn-watch`)
+2. Coordinated beta release across `stubborn-stub`, `stubborn-mcp`, and hub release matrix
+3. Milestone release checklist wired to `check_release_matrix.py`
+4. Charter `stubborn-indexer` (separate ADR candidate) for scip-java orchestration
 
 See **[AGENTS.md](../AGENTS.md)** for AI session bootstrap.
 
