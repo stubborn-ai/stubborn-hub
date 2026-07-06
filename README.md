@@ -94,6 +94,8 @@ stubborn-ai/
 - [Ecosystem](docs/ECOSYSTEM.md) — current and planned repositories
 - [Roadmap](docs/ROADMAP.md) — near-term program phases (lean)
 - [Integration](docs/INTEGRATION.md) — anchor-migration and optional consumers
+- [Demo launchers](docs/DEMO-LAUNCHERS.md) — explicit env/CLI contracts for validation scripts
+- [PetClinic validation](docs/PETCLINIC-VALIDATION.md) — monolith vs microservices proof model
 - [stubborn docs](https://github.com/stubborn-ai/stubborn/tree/main/docs) — product specs, ADRs, BETA
 - [stubborn-mcp](https://github.com/stubborn-ai/stubborn-mcp) — MCP install, Cursor config
 

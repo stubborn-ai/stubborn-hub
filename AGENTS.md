@@ -60,10 +60,10 @@ Instructions for AI coding assistants (Cursor, etc.) in a **new session** with n
 | Repos | Multi-repo under org; not a monorepo |
 | Release docs | Hub `README.md` release matrix is canonical; verify with `python3 scripts/check_release_matrix.py --pypi` from `stubborn-hub/` |
 
-## Current status (2026-07-04)
+## Current status (2026-07-07)
 
-- **Done:** schema v4 contract evidence; `index-contract`; `index-openapi`; source-neutral endpoint queries; optional SCIP protobuf runtime; `stubborn-watch` **0.1.0b2**; `stubborn-stub` **0.9.0b5**; `stubborn-mcp` **0.1.0b2** with contract tools; Java E2E; program hub published
-- **Next:** refresh demo smoke docs around contract evidence and MCP endpoint discovery
+- **Done:** schema v4 contract evidence; `index-contract`; `index-openapi`; source-neutral endpoint queries; optional SCIP protobuf runtime; `stubborn-watch` **0.1.0b2**; `stubborn-stub` **0.9.0b5**; `stubborn-mcp` **0.1.0b2** with contract tools; Java E2E; program hub published; demo launcher contracts ([DEMO-LAUNCHERS.md](docs/DEMO-LAUNCHERS.md)); PetClinic validation model ([PETCLINIC-VALIDATION.md](docs/PETCLINIC-VALIDATION.md))
+- **Next:** coordinated beta release + milestone checklist via `check_release_matrix.py`
 
 ## Typical tasks
 
@@ -75,7 +75,7 @@ Instructions for AI coding assistants (Cursor, etc.) in a **new session** with n
 | CLI / API | `stubborn/src/stubborn/cli.py`, `api.py` |
 | MCP server | `stubborn-mcp/src/stubborn_mcp/` |
 | File watch / merge orchestration | `stubborn-watch/src/stubborn_watch/` |
-| Runnable demos / validation | `stubborn-demo/` |
+| Runnable demos / validation | `stubborn-demo/` + [DEMO-LAUNCHERS.md](docs/DEMO-LAUNCHERS.md), [PETCLINIC-VALIDATION.md](docs/PETCLINIC-VALIDATION.md) |
 | Program docs | `stubborn-hub/docs/` |
 | Exploratory ideas | `lab-notes/ideas/` — promote to ADR when stable |
 

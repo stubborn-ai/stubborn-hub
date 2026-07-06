@@ -43,6 +43,8 @@ Public showcase: https://github.com/stubborn-ai
 | 7 | [stubborn BETA](https://github.com/stubborn-ai/stubborn/blob/main/docs/BETA.md) | Beta checklist, KPI baselines |
 | 8 | [stubborn-mcp README](https://github.com/stubborn-ai/stubborn-mcp) | Cursor / agent setup |
 | 9 | [INTEGRATION.md](INTEGRATION.md) | Optional anchor-migration consumer pattern |
+| 10 | [DEMO-LAUNCHERS.md](DEMO-LAUNCHERS.md) | Explicit env/CLI contracts for all demo scripts |
+| 11 | [PETCLINIC-VALIDATION.md](PETCLINIC-VALIDATION.md) | Monolith vs microservices PetClinic proof model |
 
 **Private (if you have access):** `lab-notes/journal/` — latest session log and ecosystem ideas.
 
@@ -120,13 +122,20 @@ Full diagrams: [ARCHITECTURE.md](ARCHITECTURE.md).
 
 ## Validation entrypoints
 
-Use the repo that owns the contract you want to prove:
+Use the repo that owns the contract you want to prove. Full launcher contracts:
+[DEMO-LAUNCHERS.md](DEMO-LAUNCHERS.md). PetClinic code + contract evidence:
+[PETCLINIC-VALIDATION.md](PETCLINIC-VALIDATION.md).
 
 | Scope | Canonical entrypoint | Owner |
 |-------|----------------------|-------|
 | ADR-009 merge contract | `stubborn-demo/demo-spring/scripts/run-merge-e2e.sh` | `stubborn-demo` |
+| Multi-repo workspace graph | `stubborn-demo/multi-repo/scripts/run-e2e.sh` | `stubborn-demo` |
+| PetClinic monolith scale-up | `stubborn-demo/spring-petclinic/scripts/run-e2e.sh` | `stubborn-demo` |
+| PetClinic MS + contract bridge | `stubborn-demo/spring-petclinic-microservices/scripts/run-e2e.sh` | `stubborn-demo` |
+| PetClinic MS MCP smoke | `stubborn-demo/spring-petclinic-microservices/scripts/mcp-smoke.sh` | `stubborn-mcp` + `stubborn-demo` |
 | Watch / orchestration smoke | `stubborn-watch/tests/test_watch.py` | `stubborn-watch` |
 | MCP surface smoke over prepared `symbols.db` | `stubborn-demo/demo-spring/scripts/mcp-smoke.sh` | `stubborn-mcp` + `stubborn-demo` assets |
+| Release matrix consistency | `stubborn-hub/scripts/check_release_matrix.py --pypi` | `stubborn-hub` |
 
 ## What is verified today
 
@@ -138,7 +147,8 @@ Use the repo that owns the contract you want to prove:
 | Source-neutral endpoint context (`openapi ...` targets) | ✅ |
 | Prune + weave + token budget | ✅ |
 | MCP code + contract tools via **stubborn-mcp** | ✅ |
-| Java E2E (demo-spring, petclinic, dukesbank) | ✅ via `stubborn-demo` |
+| Multi-repo workspace composition | ✅ via `stubborn-demo/multi-repo` |
+| PetClinic monolith + MS contract evidence | ✅ via `stubborn-demo/spring-petclinic*` |
 | `stubborn diff` / PR symbol-diff workflow | ✅ |
 | Incremental `--merge` (ADR-009) | ✅ |
 | demo-spring save → merge → `list_symbols` host runbook | ✅ |
@@ -156,9 +166,9 @@ Use the repo that owns the contract you want to prove:
 
 ## Next work (priority)
 
-1. Release `stubborn-stub` with schema v4/source-neutral contract query updates
-2. Release `stubborn-mcp` with `workspace_info` / `list_contracts`
-3. Refresh `stubborn-demo` smoke docs around PetClinic contract evidence
+1. Coordinated beta release across `stubborn-stub`, `stubborn-mcp`, and hub release matrix
+2. Milestone release checklist wired to `check_release_matrix.py`
+3. CLI per-repo `--workspace` / `--repo` indexing (unblocks real two-index multi-repo verifier)
 
 See **[AGENTS.md](../AGENTS.md)** for AI session bootstrap.
 
