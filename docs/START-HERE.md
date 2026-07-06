@@ -42,10 +42,11 @@ Public showcase: https://github.com/stubborn-ai
 | 6 | [ROADMAP.md](ROADMAP.md) | Near-term phases (lean) |
 | 7 | [stubborn BETA](https://github.com/stubborn-ai/stubborn/blob/main/docs/BETA.md) | Beta checklist, KPI baselines |
 | 8 | [stubborn ADR-015](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-015-federated-doctor-diagnostics.md) | Federated `doctor` per package (onboarding without auto-orchestration) |
-| 9 | [stubborn-mcp README](https://github.com/stubborn-ai/stubborn-mcp) | Cursor / agent setup |
-| 10 | [INTEGRATION.md](INTEGRATION.md) | Optional anchor-migration consumer pattern |
-| 11 | [DEMO-LAUNCHERS.md](DEMO-LAUNCHERS.md) | Explicit env/CLI contracts for all demo scripts |
-| 12 | [PETCLINIC-VALIDATION.md](PETCLINIC-VALIDATION.md) | Monolith vs microservices PetClinic proof model |
+| 9 | [stubborn ADR-016](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-016-doctor-status-aggregation.md) | `stubborn-status` — aggregate doctor JSON for terminal, CI, IDEs |
+| 10 | [stubborn-mcp README](https://github.com/stubborn-ai/stubborn-mcp) | Cursor / agent setup |
+| 11 | [INTEGRATION.md](INTEGRATION.md) | Optional anchor-migration consumer pattern |
+| 12 | [DEMO-LAUNCHERS.md](DEMO-LAUNCHERS.md) | Explicit env/CLI contracts for all demo scripts |
+| 13 | [PETCLINIC-VALIDATION.md](PETCLINIC-VALIDATION.md) | Monolith vs microservices PetClinic proof model |
 
 **Private (if you have access):** `lab-notes/journal/` — latest session log and ecosystem ideas.
 
@@ -171,6 +172,7 @@ Use the repo that owns the contract you want to prove. Full launcher contracts:
 2. Coordinated beta release across `stubborn-stub`, `stubborn-mcp`, and hub release matrix
 3. Milestone release checklist wired to `check_release_matrix.py`
 4. Charter `stubborn-indexer` (separate ADR candidate) for scip-java orchestration
+5. Scaffold `stubborn-status` per [ADR-016](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-016-doctor-status-aggregation.md) after `doctor --json` ships
 
 See **[AGENTS.md](../AGENTS.md)** for AI session bootstrap.
 

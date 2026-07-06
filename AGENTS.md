@@ -62,7 +62,7 @@ Instructions for AI coding assistants (Cursor, etc.) in a **new session** with n
 
 ## Current status (2026-07-07)
 
-- **Done:** schema v4 contract evidence; `index-contract`; `index-openapi`; source-neutral endpoint queries; optional SCIP protobuf runtime; `stubborn-watch` **0.1.0b2**; `stubborn-stub` **0.9.0b5**; `stubborn-mcp` **0.1.0b2** with contract tools; Java E2E; program hub published; demo launcher contracts; PetClinic validation model; [ADR-015 federated doctor](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-015-federated-doctor-diagnostics.md) (accepted, not yet implemented)
+- **Done:** schema v4 contract evidence; `index-contract`; `index-openapi`; source-neutral endpoint queries; optional SCIP protobuf runtime; `stubborn-watch` **0.1.0b2**; `stubborn-stub` **0.9.0b5**; `stubborn-mcp` **0.1.0b2** with contract tools; Java E2E; program hub published; demo launcher contracts; PetClinic validation model; [ADR-015 federated doctor](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-015-federated-doctor-diagnostics.md) (accepted, not yet implemented); [ADR-016 `stubborn-status`](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-016-doctor-status-aggregation.md) (accepted, planned)
 - **Next:** implement `stubborn doctor` + `stubborn-mcp doctor` per ADR-015; coordinated beta release
 
 ## Typical tasks

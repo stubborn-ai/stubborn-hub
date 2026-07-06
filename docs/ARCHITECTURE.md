@@ -134,11 +134,12 @@ flowchart LR
 | `stubborn` | Headless core: L1 + L2 + CLI + API | SCIP ecosystem, OpenAPI specs |
 | `stubborn-mcp` | L3 (MCP) | `stubborn-stub` |
 | `stubborn-watch` | L4 (orchestration) | `stubborn-stub`, scip-java |
-| `vscode-stubborn` | L4 (VS Code bridge) | `stubborn-mcp`, `stubborn-watch` |
+| `vscode-stubborn` | L4 (VS Code bridge) | `stubborn-mcp`, `stubborn-watch`, `stubborn-status` (planned) |
+| `stubborn-status` | L4 (setup aggregation) | federated `doctor` CLIs via subprocess ([ADR-016](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-016-doctor-status-aggregation.md)) |
 | `stubborn-demo` | Runnable demos / validation | `stubborn-stub`, `stubborn-mcp`, `stubborn-watch`, scip-java |
 | `lab-notes` | Private drafts | — |
 
-Future ideas (not committed repos): `stubborn-indexer` (multi-SCIP CLI glue), `intellij-stubborn`, LSP/DB ingest adapters beyond OpenAPI — tracked in lab-notes only.
+Future ideas (not committed repos): `stubborn-indexer` (multi-SCIP CLI glue), `intellij-stubborn`, LSP/DB ingest adapters beyond OpenAPI — tracked in lab-notes only. **`stubborn-status`** is accepted in [ADR-016](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-016-doctor-status-aggregation.md) but not yet a repo.
 
 ## Contracts (boundary protocols)
 
@@ -150,6 +151,7 @@ Future ideas (not committed repos): `stubborn-indexer` (multi-SCIP CLI glue), `i
 | Store → context | Source-neutral `stubborn.api`, budgets, weave options | [ADR-013](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-013-source-neutral-contract-queries.md) |
 | Output formats | `java-stub`, `stubborn-dsl` grammars | [STUBBORN-DSL](https://github.com/stubborn-ai/stubborn/blob/main/docs/STUBBORN-DSL.md) |
 | Agent tools | MCP tool schemas (`workspace_info`, `list_symbols`, `list_contracts`, `get_context`, `metrics`) | [stubborn-mcp MCP.md](https://github.com/stubborn-ai/stubborn-mcp/blob/main/docs/MCP.md) |
+| Setup diagnostics | Doctor Report v1, Status Report v1 | [ADR-015](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-015-federated-doctor-diagnostics.md), [ADR-016](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-016-doctor-status-aggregation.md) |
 
 ## Relationship to anchor-migration
 

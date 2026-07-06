@@ -22,6 +22,7 @@ Repository catalog for the Stubborn AI program. Status legend: ✅ Active · �
 | **stubborn-mcp** | [`stubborn-mcp`](https://pypi.org/project/stubborn-mcp/) | FastMCP stdio — `workspace_info`, `list_symbols`, `list_contracts`, `get_context`, `metrics` | ✅ **Beta** `0.1.0b2` |
 | **stubborn-watch** | [`stubborn-watch`](https://pypi.org/project/stubborn-watch/) | File watch → external SCIP indexer → `stubborn index --merge` | ✅ **Beta** `0.1.0b2` |
 | [**vscode-stubborn**](https://github.com/stubborn-ai/vscode-stubborn) | VS Code extension | Thin IDE bridge for Stubborn MCP setup and sidecar stub UX | 📋 Planned |
+| **stubborn-status** | CLI `stubborn-status` (planned) | Aggregate federated `doctor --json` for terminal, CI, and IDE consumers ([ADR-016](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-016-doctor-status-aggregation.md)) | 📋 Planned |
 
 ## Contract ingest
 
@@ -66,8 +67,8 @@ scip-* (external)        OpenAPI specs / contract manifests
                 stubborn-stub
                 ↑          ↑
    stubborn-watch          stubborn-mcp  ←── vscode-stubborn
-                ↑          ↑
-             stubborn-demo ┘
+                ↑          ↑                    ↑
+             stubborn-demo ┘              stubborn-status (doctor aggregate)
 ```
 
 ## Naming conventions
@@ -76,6 +77,7 @@ scip-* (external)        OpenAPI specs / contract manifests
 |---------|---------|-----|
 | `stubborn` | core repo | Headless compiler / engine — short name for the main product |
 | `stubborn-*` | `stubborn-mcp`, `stubborn-watch`, `stubborn-demo` | Program repos in the same org |
+| `stubborn-status` | CLI `stubborn-status` | Federated doctor aggregation (not an IDE bridge) |
 | `stubborn-stub` | PyPI package | Historical PyPI name for the core library |
 | `stubborn-ingest-*` | `stubborn-ingest-db` | Optional future adapter packages beyond core OpenAPI ingest |
 

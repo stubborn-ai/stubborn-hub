@@ -156,10 +156,13 @@ These are not top-level launchers unless noted.
 PetClinic workflows are intentionally **not** on every PR — they are heavier and
 pinned to upstream commits.
 
-## Setup diagnostics (ADR-015)
+## Setup diagnostics (ADR-015 / ADR-016)
 
-Each package owns a read-only `doctor` command with a narrow custody scope. Run
-them in order when onboarding; they do not invoke indexers or start MCP:
+Each package owns a read-only `doctor` command with a narrow custody scope.
+For a **single terminal or CI view**, use **`stubborn-status`** (planned) to
+aggregate `doctor --json` output via subprocess — not IDE-specific.
+
+Manual sequence (until `stubborn-status` ships):
 
 ```bash
 stubborn doctor
@@ -168,7 +171,15 @@ stubborn-watch doctor      # if using dev watch loop
 stubborn-indexer doctor    # future — scip-java toolchain
 ```
 
-Spec: [stubborn ADR-015](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-015-federated-doctor-diagnostics.md).
+Planned one-shot:
+
+```bash
+stubborn-status            # merges Doctor Report v1 JSON from installed packages
+stubborn-status --json     # for CI and IDE bridges (vscode-stubborn, future IntelliJ)
+```
+
+Specs: [ADR-015](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-015-federated-doctor-diagnostics.md),
+[ADR-016](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-016-doctor-status-aggregation.md).
 
 ## Host ↔ Docker differences worth remembering
 
