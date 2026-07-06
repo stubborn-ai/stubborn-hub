@@ -1,0 +1,40 @@
+name: Release Consistency
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  release-consistency:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout stubborn-hub
+        uses: actions/checkout@v4
+        with:
+          path: stubborn-hub
+
+      - name: Checkout package repos
+        uses: actions/checkout@v4
+        with:
+          repository: stubborn-ai/stubborn
+          path: stubborn
+
+      - uses: actions/checkout@v4
+        with:
+          repository: stubborn-ai/stubborn-mcp
+          path: stubborn-mcp
+
+      - uses: actions/checkout@v4
+        with:
+          repository: stubborn-ai/stubborn-watch
+          path: stubborn-watch
+
+      - name: Verify release matrix, PyPI, and local package metadata
+        run: |
+          python3 stubborn-hub/scripts/check_release_matrix.py \
+            --hub-root stubborn-hub \
+            --program-root .

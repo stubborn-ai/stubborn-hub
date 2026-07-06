@@ -58,6 +58,7 @@ Instructions for AI coding assistants (Cursor, etc.) in a **new session** with n
 | Incremental dev | `--merge` on path-scoped SCIP ingest — [ADR-009](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-009-incremental-index-merge.md) |
 | Ecosystem | Weak coupling to anchor-migration — [INTEGRATION.md](docs/INTEGRATION.md) |
 | Repos | Multi-repo under org; not a monorepo |
+| Release docs | Hub `README.md` release matrix is canonical; verify with `python3 scripts/check_release_matrix.py --pypi` from `stubborn-hub/` |
 
 ## Current status (2026-07-04)
 
