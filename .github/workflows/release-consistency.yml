@@ -22,16 +22,19 @@ jobs:
         with:
           repository: stubborn-ai/stubborn
           path: stubborn
+          fetch-depth: 0
 
       - uses: actions/checkout@v4
         with:
           repository: stubborn-ai/stubborn-mcp
           path: stubborn-mcp
+          fetch-depth: 0
 
       - uses: actions/checkout@v4
         with:
           repository: stubborn-ai/stubborn-watch
           path: stubborn-watch
+          fetch-depth: 0
 
       - name: Verify release matrix, PyPI, and local package metadata
         run: |
