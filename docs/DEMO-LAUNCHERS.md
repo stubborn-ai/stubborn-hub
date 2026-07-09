@@ -159,8 +159,9 @@ pinned to upstream commits.
 ## Setup diagnostics (ADR-015 / ADR-016)
 
 Each package owns a read-only `doctor` command with a narrow custody scope.
-For a **single terminal or CI view**, use **`stubborn-status`** to aggregate
-`doctor --json` output via subprocess — not IDE-specific.
+Inspecting `symbols.db` does **not** migrate schema — legacy versions warn and
+recommend re-index. For a **single terminal or CI view**, use **`stubborn-status`**
+to aggregate `doctor --json` output via subprocess — not IDE-specific.
 
 Per-package checks:
 
@@ -178,7 +179,7 @@ stubborn-status --json            # merges Doctor Report v1 JSON from installed 
 stubborn-status --require stubborn-mcp,stubborn-watch
 ```
 
-Repo: [stubborn-status](https://github.com/stubborn-ai/stubborn-status) (`0.1.0b1`).
+Repo: [stubborn-status](https://github.com/stubborn-ai/stubborn-status) (`0.1.0b1`; install from repo until PyPI ships).
 
 Specs: [ADR-015](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-015-federated-doctor-diagnostics.md),
 [ADR-016](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-016-doctor-status-aggregation.md).
