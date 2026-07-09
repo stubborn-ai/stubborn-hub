@@ -159,10 +159,10 @@ pinned to upstream commits.
 ## Setup diagnostics (ADR-015 / ADR-016)
 
 Each package owns a read-only `doctor` command with a narrow custody scope.
-For a **single terminal or CI view**, use **`stubborn-status`** (planned) to
-aggregate `doctor --json` output via subprocess — not IDE-specific.
+For a **single terminal or CI view**, use **`stubborn-status`** to aggregate
+`doctor --json` output via subprocess — not IDE-specific.
 
-Manual sequence (until `stubborn-status` ships):
+Per-package checks:
 
 ```bash
 stubborn doctor
@@ -171,7 +171,7 @@ stubborn-watch doctor      # if using dev watch loop
 stubborn-indexer doctor    # future — scip-java toolchain
 ```
 
-Planned one-shot:
+One-shot aggregate:
 
 ```bash
 stubborn-status --json            # merges Doctor Report v1 JSON from installed packages

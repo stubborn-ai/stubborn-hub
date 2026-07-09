@@ -22,6 +22,12 @@ Public showcase: https://github.com/stubborn-ai
 | [`stubborn-mcp`](https://pypi.org/project/stubborn-mcp/) | **0.1.0b2** | MCP server — `workspace_info`, `list_symbols`, `list_contracts`, `get_context`, `metrics` |
 | [`stubborn-watch`](https://pypi.org/project/stubborn-watch/) | **0.1.0b2** | Dev orchestration — file watch → SCIP indexer → merge |
 
+**Repo beta (PyPI pending):**
+
+| Package | Version | Role |
+|---------|---------|------|
+| [`stubborn-status`](https://github.com/stubborn-ai/stubborn-status) | **0.1.0b1** | Aggregate federated `doctor --json` for terminal, CI, and IDE bridges |
+
 ## Release matrix
 
 | Package | Published version | Depends on |
@@ -29,6 +35,7 @@ Public showcase: https://github.com/stubborn-ai
 | `stubborn-stub` | `0.9.0b5` | Core compiler line |
 | `stubborn-mcp` | `0.1.0b2` | `stubborn-stub>=0.9.0b5,<1.0` |
 | `stubborn-watch` | `0.1.0b2` | `stubborn-stub>=0.9.0b5,<1.0` |
+| `stubborn-status` | `0.1.0b1` | — (subprocess `doctor --json`; no `stubborn-stub` runtime dep) |
 
 ## Reading order (recommended)
 
@@ -58,6 +65,7 @@ Public showcase: https://github.com/stubborn-ai
 | **stubborn** | public | Headless core — code/contract ingest, store, prune, weave, CLI, API | **Beta** (`0.9.0b5` on PyPI) |
 | **stubborn-mcp** | public | Source-neutral MCP stdio server | **Beta** (`0.1.0b2` on PyPI) |
 | **stubborn-watch** | public | Dev orchestration: watch → SCIP indexer → merge | **Beta** (`0.1.0b2` on PyPI) |
+| **stubborn-status** | public | Federated `doctor` aggregation CLI | **Beta** (`0.1.0b1`; PyPI pending) |
 | **stubborn-demo** | public | Runnable demos + black-box validation projects | ✅ Active |
 | **vscode-stubborn** | public | VS Code bridge for MCP setup + sidecar stubs | 📋 Planned |
 | **lab-notes** | **private** | Journals, ADR drafts, lab ideas | ✅ Active |
@@ -98,6 +106,7 @@ C:\github\stubborn-ai\
 ├── stubborn/
 ├── stubborn-mcp/
 ├── stubborn-watch/
+├── stubborn-status/
 ├── stubborn-demo/
 ├── vscode-stubborn/
 ├── lab-notes/              private
@@ -137,6 +146,8 @@ Use the repo that owns the contract you want to prove. Full launcher contracts:
 | PetClinic MS MCP smoke | `stubborn-demo/spring-petclinic-microservices/scripts/mcp-smoke.sh` | `stubborn-mcp` + `stubborn-demo` |
 | Watch / orchestration smoke | `stubborn-watch/tests/test_watch.py` | `stubborn-watch` |
 | MCP surface smoke over prepared `symbols.db` | `stubborn-demo/demo-spring/scripts/mcp-smoke.sh` | `stubborn-mcp` + `stubborn-demo` assets |
+| Federated doctor (per package) | `stubborn doctor`, `stubborn-mcp doctor`, `stubborn-watch doctor` | `stubborn`, `stubborn-mcp`, `stubborn-watch` |
+| Doctor aggregation | `stubborn-status --json` | `stubborn-status` |
 | Release matrix consistency | `stubborn-hub/scripts/check_release_matrix.py --pypi` | `stubborn-hub` |
 
 ## What is verified today
@@ -155,6 +166,8 @@ Use the repo that owns the contract you want to prove. Full launcher contracts:
 | Incremental `--merge` (ADR-009) | ✅ |
 | demo-spring save → merge → `list_symbols` host runbook | ✅ |
 | `stubborn-watch` | ✅ PyPI beta + CLI smoke |
+| Federated `doctor` (ADR-015) | ✅ `stubborn`, `stubborn-mcp`, `stubborn-watch` |
+| `stubborn-status` aggregation (ADR-016) | ✅ repo `0.1.0b1`; PyPI publish pending |
 
 ## Conventions (do not forget)
 
@@ -168,11 +181,11 @@ Use the repo that owns the contract you want to prove. Full launcher contracts:
 
 ## Next work (priority)
 
-1. Implement federated `doctor` per [ADR-015](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-015-federated-doctor-diagnostics.md) (`stubborn` → `stubborn-mcp` → `stubborn-watch`)
-2. Coordinated beta release across `stubborn-stub`, `stubborn-mcp`, and hub release matrix
+1. Publish `stubborn-status` `0.1.0b1` to PyPI and tag `v0.1.0b1`
+2. Coordinated beta release across `stubborn-stub`, `stubborn-mcp`, `stubborn-watch`, and hub release matrix
 3. Milestone release checklist wired to `check_release_matrix.py`
 4. Charter `stubborn-indexer` (separate ADR candidate) for scip-java orchestration
-5. Scaffold `stubborn-status` per [ADR-016](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-016-doctor-status-aggregation.md) after `doctor --json` ships
+5. `vscode-stubborn` doctor panel consuming `stubborn-status --json`
 
 See **[AGENTS.md](../AGENTS.md)** for AI session bootstrap.
 

@@ -36,6 +36,12 @@ jobs:
           path: stubborn-watch
           fetch-depth: 0
 
+      - uses: actions/checkout@v4
+        with:
+          repository: stubborn-ai/stubborn-status
+          path: stubborn-status
+          fetch-depth: 0
+
       - name: Verify release matrix, PyPI, and local package metadata
         run: |
           python3 stubborn-hub/scripts/check_release_matrix.py \

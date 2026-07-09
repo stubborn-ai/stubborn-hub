@@ -134,7 +134,7 @@ flowchart LR
 | `stubborn` | Headless core: L1 + L2 + CLI + API | SCIP ecosystem, OpenAPI specs |
 | `stubborn-mcp` | L3 (MCP) | `stubborn-stub` |
 | `stubborn-watch` | L4 (orchestration) | `stubborn-stub`, scip-java |
-| `vscode-stubborn` | L4 (VS Code bridge) | `stubborn-mcp`, `stubborn-watch`, `stubborn-status` (planned) |
+| `vscode-stubborn` | L4 (VS Code bridge) | `stubborn-mcp`, `stubborn-watch`, `stubborn-status` |
 | `stubborn-status` | L4 (setup aggregation) | federated `doctor` CLIs via subprocess ([ADR-016](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-016-doctor-status-aggregation.md)) |
 | `stubborn-demo` | Runnable demos / validation | `stubborn-stub`, `stubborn-mcp`, `stubborn-watch`, scip-java |
 | `lab-notes` | Private drafts | — |

@@ -14,6 +14,7 @@ Stubborn AI is an open engineering program: **architecture-led, AI-assisted deve
 | [**stubborn**](https://github.com/stubborn-ai/stubborn) | Headless core: SCIP code graph + OpenAPI contract graph → SQLite → prune → weave ([`stubborn-stub`](https://pypi.org/project/stubborn-stub/)) | **Beta** (`0.9.0b5`) |
 | [**stubborn-mcp**](https://github.com/stubborn-ai/stubborn-mcp) | Source-neutral MCP server (`workspace_info`, `list_symbols`, `list_contracts`, `get_context`) ([`stubborn-mcp`](https://pypi.org/project/stubborn-mcp/)) | **Beta** (`0.1.0b2`) |
 | [**stubborn-watch**](https://github.com/stubborn-ai/stubborn-watch) | Dev orchestration: file watch → scip-java → `index --merge` ([`stubborn-watch`](https://pypi.org/project/stubborn-watch/)) | **Beta** (`0.1.0b2`) |
+| [**stubborn-status**](https://github.com/stubborn-ai/stubborn-status) | Federated `doctor` aggregation for terminal, CI, and IDE bridges (CLI `stubborn-status`) | **Beta** (`0.1.0b1`; PyPI pending) |
 | [**stubborn-demo**](https://github.com/stubborn-ai/stubborn-demo) | Runnable demos and validation projects | Active |
 | [**vscode-stubborn**](https://github.com/stubborn-ai/vscode-stubborn) | VS Code bridge for MCP setup and sidecar stub UX | Planned |
 | **lab-notes** | Private journals, ADR drafts, ecosystem ideas | Active (local / private remote) |
@@ -25,6 +26,7 @@ Stubborn AI is an open engineering program: **architecture-led, AI-assisted deve
 | `stubborn-stub` | `0.9.0b5` | Core compiler line |
 | `stubborn-mcp` | `0.1.0b2` | `stubborn-stub>=0.9.0b5,<1.0` |
 | `stubborn-watch` | `0.1.0b2` | `stubborn-stub>=0.9.0b5,<1.0` |
+| `stubborn-status` | `0.1.0b1` | — (subprocess `doctor --json`; no `stubborn-stub` runtime dep) |
 
 Details: [ECOSYSTEM.md](docs/ECOSYSTEM.md) · [ROADMAP.md](docs/ROADMAP.md)
 
@@ -80,6 +82,7 @@ stubborn-ai/
 ├── stubborn/           # core compiler
 ├── stubborn-mcp/       # MCP server
 ├── stubborn-watch/     # dev-loop orchestration
+├── stubborn-status/    # federated doctor aggregation
 ├── stubborn-demo/      # runnable demos & validation
 ├── vscode-stubborn/    # VS Code bridge
 ├── lab-notes/          # private — journals & ideas
@@ -131,6 +134,16 @@ stubborn-mcp
 ```
 
 Full quickstart: [stubborn README](https://github.com/stubborn-ai/stubborn#try-in-30-seconds-no-java-required).
+
+**Setup diagnostics (federated doctor):**
+
+```bash
+stubborn doctor --json
+stubborn-status --json            # aggregate installed packages' doctor reports
+stubborn-status --require stubborn-mcp,stubborn-watch
+```
+
+Install `stubborn-status` from the [repo](https://github.com/stubborn-ai/stubborn-status) until the first PyPI release. Specs: [ADR-015](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-015-federated-doctor-diagnostics.md), [ADR-016](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-016-doctor-status-aggregation.md).
 
 ## License
 

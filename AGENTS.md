@@ -10,6 +10,7 @@ Instructions for AI coding assistants (Cursor, etc.) in a **new session** with n
    - Core compiler / ingest / weave → [stubborn](https://github.com/stubborn-ai/stubborn) + its [ADR index](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/README.md)
    - MCP / Cursor → [stubborn-mcp](https://github.com/stubborn-ai/stubborn-mcp)
    - Dev watch loop → [stubborn-watch](https://github.com/stubborn-ai/stubborn-watch)
+   - Doctor aggregation → [stubborn-status](https://github.com/stubborn-ai/stubborn-status)
    - Product positioning → [stubborn POSITIONING](https://github.com/stubborn-ai/stubborn/blob/main/docs/POSITIONING.md)
    - How we build → [stubborn DEVELOPMENT-MODEL](https://github.com/stubborn-ai/stubborn/blob/main/docs/DEVELOPMENT-MODEL.md)
 
@@ -19,7 +20,7 @@ Instructions for AI coding assistants (Cursor, etc.) in a **new session** with n
 
 - **Goal:** Deterministic LLM context compiler for code symbols and service contracts (Java-first beta for code weave quality).
 - **Public org:** https://github.com/stubborn-ai
-- **PyPI:** `stubborn-stub` **0.9.0b5**, `stubborn-mcp` **0.1.0b2**, `stubborn-watch` **0.1.0b2**
+- **PyPI:** `stubborn-stub` **0.9.0b5**, `stubborn-mcp` **0.1.0b2**, `stubborn-watch` **0.1.0b2**; `stubborn-status` **0.1.0b1** (repo beta, PyPI pending)
 - **Deterministic deliverables:** Python — same source graph + target + options → same context.
 - **AI role:** implement under architecture and boundary protocols; Stubborn does **not** call LLMs at runtime.
 
@@ -31,6 +32,7 @@ Instructions for AI coding assistants (Cursor, etc.) in a **new session** with n
 | `stubborn/` | public | Headless core — PyPI `stubborn-stub`, CLI `stubborn` |
 | `stubborn-mcp/` | public | MCP server — PyPI `stubborn-mcp`, entry `stubborn-mcp` |
 | `stubborn-watch/` | public | Dev orchestration — PyPI `stubborn-watch`, watch → merge |
+| `stubborn-status/` | public | Doctor aggregation — CLI `stubborn-status`, subprocess `doctor --json` |
 | `stubborn-demo/` | public | Runnable demos and black-box validation projects |
 | `lab-notes/` | **private** | Journals, ideas, ADR drafts — may contain WIP |
 
@@ -60,10 +62,10 @@ Instructions for AI coding assistants (Cursor, etc.) in a **new session** with n
 | Repos | Multi-repo under org; not a monorepo |
 | Release docs | Hub `README.md` release matrix is canonical; verify with `python3 scripts/check_release_matrix.py --pypi` from `stubborn-hub/` |
 
-## Current status (2026-07-07)
+## Current status (2026-07-09)
 
-- **Done:** schema v4 contract evidence; `index-contract`; `index-openapi`; source-neutral endpoint queries; optional SCIP protobuf runtime; `stubborn-watch` **0.1.0b2**; `stubborn-stub` **0.9.0b5**; `stubborn-mcp` **0.1.0b2** with contract tools; Java E2E; program hub published; demo launcher contracts; PetClinic validation model; [ADR-015 federated doctor](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-015-federated-doctor-diagnostics.md) (accepted, not yet implemented); [ADR-016 `stubborn-status`](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-016-doctor-status-aggregation.md) (accepted, planned)
-- **Next:** implement `stubborn doctor` + `stubborn-mcp doctor` per ADR-015; coordinated beta release
+- **Done:** schema v4 contract evidence; `index-contract`; `index-openapi`; source-neutral endpoint queries; optional SCIP protobuf runtime; `stubborn-watch` **0.1.0b2**; `stubborn-stub` **0.9.0b5**; `stubborn-mcp` **0.1.0b2** with contract tools; Java E2E; program hub published; demo launcher contracts; PetClinic validation model; federated `doctor` per [ADR-015](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-015-federated-doctor-diagnostics.md) (`stubborn`, `stubborn-mcp`, `stubborn-watch`); [stubborn-status](https://github.com/stubborn-ai/stubborn-status) **0.1.0b1** per [ADR-016](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-016-doctor-status-aggregation.md) (repo; PyPI publish pending)
+- **Next:** PyPI publish `stubborn-status`; coordinated beta release; `vscode-stubborn` doctor panel
 
 ## Typical tasks
 
@@ -75,10 +77,11 @@ Instructions for AI coding assistants (Cursor, etc.) in a **new session** with n
 | CLI / API | `stubborn/src/stubborn/cli.py`, `api.py` |
 | MCP server | `stubborn-mcp/src/stubborn_mcp/` |
 | File watch / merge orchestration | `stubborn-watch/src/stubborn_watch/` |
+| Doctor aggregation | `stubborn-status/src/stubborn_status/` |
 | Runnable demos / validation | `stubborn-demo/` + [DEMO-LAUNCHERS.md](docs/DEMO-LAUNCHERS.md), [PETCLINIC-VALIDATION.md](docs/PETCLINIC-VALIDATION.md) |
 | Program docs | `stubborn-hub/docs/` |
 | Exploratory ideas | `lab-notes/ideas/` — promote to ADR when stable |
 
 ## Workspace
 
-Open `stubborn-ai.code-workspace` — includes `stubborn-hub`, `stubborn`, `stubborn-mcp`, `stubborn-watch`, `stubborn-demo`, `lab-notes`.
+Open `stubborn-ai.code-workspace` — includes `stubborn-hub`, `stubborn`, `stubborn-mcp`, `stubborn-watch`, `stubborn-status`, `stubborn-demo`, `lab-notes`.
