@@ -21,7 +21,7 @@ Large exploratory items stay in [`lab-notes/ideas/`](../lab-notes/ideas/) — no
 |------|------|--------|
 | ADR-009 incremental merge (`--merge`, schema v2) | stubborn | ✅ |
 | Real-project validation runbook | stubborn-demo | ✅ initial repo |
-| Federated `doctor` diagnostics ([ADR-015](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-015-federated-doctor-diagnostics.md)) | stubborn, stubborn-mcp, stubborn-watch | 🚧 landing in beta |
+| Federated `doctor` diagnostics ([ADR-015](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-015-federated-doctor-diagnostics.md)) | stubborn, stubborn-mcp, stubborn-watch | ✅ shipped in beta repos |
 | Doctor aggregation CLI ([ADR-016](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-016-doctor-status-aggregation.md)) | stubborn-status | ✅ `0.1.0b1` |
 
 ## Phase 2 — Dev loop
