@@ -20,7 +20,7 @@ Instructions for AI coding assistants (Cursor, etc.) in a **new session** with n
 
 - **Goal:** Deterministic LLM context compiler for code symbols and service contracts (Java-first beta for code weave quality).
 - **Public org:** https://github.com/stubborn-ai
-- **PyPI:** `stubborn-stub` **0.9.0b5**, `stubborn-mcp` **0.1.0b2**, `stubborn-watch` **0.1.0b2**; `stubborn-status` **0.1.0b1** (repo beta, PyPI pending)
+- **PyPI:** `stubborn-stub` **0.9.0b5**, `stubborn-mcp` **0.1.0b2**, `stubborn-watch` **0.1.0b2**, `stubborn-status` **0.1.0b1**
 - **Deterministic deliverables:** Python — same source graph + target + options → same context.
 - **AI role:** implement under architecture and boundary protocols; Stubborn does **not** call LLMs at runtime.
 
@@ -64,8 +64,8 @@ Instructions for AI coding assistants (Cursor, etc.) in a **new session** with n
 
 ## Current status (2026-07-09)
 
-- **Done:** schema v4 contract evidence; `index-contract`; `index-openapi`; source-neutral endpoint queries; optional SCIP protobuf runtime; `stubborn-watch` **0.1.0b2**; `stubborn-stub` **0.9.0b5**; `stubborn-mcp` **0.1.0b2** with contract tools; Java E2E; program hub published; demo launcher contracts; PetClinic validation model; federated `doctor` per [ADR-015](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-015-federated-doctor-diagnostics.md) (`stubborn`, `stubborn-mcp`, `stubborn-watch`); [stubborn-status](https://github.com/stubborn-ai/stubborn-status) **0.1.0b1** per [ADR-016](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-016-doctor-status-aggregation.md) (repo; PyPI publish pending)
-- **Next:** PyPI publish `stubborn-status`; coordinated beta release; `vscode-stubborn` doctor panel
+- **Done:** schema v4 contract evidence; `index-contract`; `index-openapi`; source-neutral endpoint queries; optional SCIP protobuf runtime; `stubborn-watch` **0.1.0b2**; `stubborn-stub` **0.9.0b5**; `stubborn-mcp` **0.1.0b2** with contract tools; Java E2E; program hub published; demo launcher contracts; PetClinic validation model; federated `doctor` per [ADR-015](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-015-federated-doctor-diagnostics.md) (`stubborn`, `stubborn-mcp`, `stubborn-watch`); [stubborn-status](https://github.com/stubborn-ai/stubborn-status) **0.1.0b1** on PyPI per [ADR-016](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-016-doctor-status-aggregation.md)
+- **Next:** coordinated beta release; `vscode-stubborn` doctor panel
 
 ## Typical tasks
 

@@ -179,7 +179,7 @@ stubborn-status --json            # merges Doctor Report v1 JSON from installed 
 stubborn-status --require stubborn-mcp,stubborn-watch
 ```
 
-Repo: [stubborn-status](https://github.com/stubborn-ai/stubborn-status) (`0.1.0b1`; install from repo until PyPI ships).
+Repo: [`stubborn-status`](https://pypi.org/project/stubborn-status/) (`0.1.0b1`).
 
 Specs: [ADR-015](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-015-federated-doctor-diagnostics.md),
 [ADR-016](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-016-doctor-status-aggregation.md).

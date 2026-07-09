@@ -15,9 +15,6 @@ from pathlib import Path
 
 PACKAGES = ("stubborn-stub", "stubborn-mcp", "stubborn-watch", "stubborn-status")
 
-# Documented in the release matrix but not yet verified on PyPI.
-PYPI_SKIP = frozenset({"stubborn-status"})
-
 MATRIX_ROW = re.compile(
     r"^\|\s*`(" + "|".join(re.escape(p) for p in PACKAGES) + r")`\s*\|\s*`([^`]+)`\s*\|",
     re.MULTILINE,
@@ -51,7 +48,7 @@ REPO_LAYOUT = {
         "dir": "stubborn-status",
         "pyproject": "pyproject.toml",
         "version_files": ("src/stubborn_status/__init__.py",),
-        "require_tag": False,
+        "require_tag": True,
     },
 }
 
@@ -249,9 +246,6 @@ def main() -> int:
     if args.pypi:
         print("\nPyPI checks:")
         for package in PACKAGES:
-            if package in PYPI_SKIP:
-                print(f"  SKIP: {package} (not yet on PyPI)")
-                continue
             ok, detail = pypi_has_version(package, canonical[package])
             print(f"  {'OK' if ok else 'FAIL'}: {detail}")
             if not ok:
