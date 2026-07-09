@@ -174,12 +174,54 @@ stubborn-indexer doctor    # future — scip-java toolchain
 Planned one-shot:
 
 ```bash
-stubborn-status            # merges Doctor Report v1 JSON from installed packages
-stubborn-status --json     # for CI and IDE bridges (vscode-stubborn, future IntelliJ)
+stubborn-status --json            # merges Doctor Report v1 JSON from installed packages
+stubborn-status --require stubborn-mcp,stubborn-watch
 ```
+
+Repo: [stubborn-status](https://github.com/stubborn-ai/stubborn-status) (`0.1.0b1`).
 
 Specs: [ADR-015](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-015-federated-doctor-diagnostics.md),
 [ADR-016](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-016-doctor-status-aggregation.md).
+
+## Five-minute paths
+
+Copy-paste entrypoints after `pip install stubborn-stub` (add `stubborn-stub[scip]` for binary `.scip`).
+
+### 1. No Java — JSON fixture only
+
+```bash
+git clone https://github.com/stubborn-ai/stubborn.git
+cd stubborn
+stubborn doctor
+stubborn index --scip examples/fixtures/minimal.json --out /tmp/symbols.db
+stubborn doctor --db /tmp/symbols.db
+stubborn context /tmp/symbols.db \
+  --target "semanticdb maven com/example/OrderService#" \
+  --out /tmp/order-service.stub.java
+```
+
+### 2. Java monolith — host E2E shape
+
+```bash
+git clone https://github.com/stubborn-ai/stubborn-demo.git
+cd stubborn-demo/demo-spring
+stubborn doctor
+./scripts/run-e2e.sh
+```
+
+Requires JDK 21+, Maven, `scip-java`, and `stubborn` on `PATH`. Docker alternative:
+`docker compose run --rm e2e` from `stubborn-demo` root.
+
+### 3. Microservices + contract evidence
+
+```bash
+cd stubborn-demo/spring-petclinic-microservices
+stubborn doctor
+./scripts/run-e2e.sh
+./scripts/mcp-smoke.sh   # requires stubborn-mcp
+```
+
+See [PETCLINIC-VALIDATION.md](PETCLINIC-VALIDATION.md) for pipeline stages.
 
 ## Host ↔ Docker differences worth remembering
 

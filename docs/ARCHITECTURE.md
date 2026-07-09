@@ -139,7 +139,7 @@ flowchart LR
 | `stubborn-demo` | Runnable demos / validation | `stubborn-stub`, `stubborn-mcp`, `stubborn-watch`, scip-java |
 | `lab-notes` | Private drafts | — |
 
-Future ideas (not committed repos): `stubborn-indexer` (multi-SCIP CLI glue), `intellij-stubborn`, LSP/DB ingest adapters beyond OpenAPI — tracked in lab-notes only. **`stubborn-status`** is accepted in [ADR-016](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-016-doctor-status-aggregation.md) but not yet a repo.
+Future ideas (not committed repos): `stubborn-indexer` (multi-SCIP CLI glue), `intellij-stubborn`, LSP/DB ingest adapters beyond OpenAPI — tracked in lab-notes only. **`stubborn-status`** ships in [ADR-016](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-016-doctor-status-aggregation.md).
 
 ## Contracts (boundary protocols)
 
