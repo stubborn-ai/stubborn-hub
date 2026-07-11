@@ -2,16 +2,21 @@
 
 **Deterministic LLM context compiler for code symbols and service contracts.**
 
-Stubborn AI is an open engineering program: **architecture-led, AI-assisted development** where the developer defines pipeline shape and boundary protocols; AI implements most of the code; shipped artifacts are **deterministic Python** — reproducible, test-gated, and verifiable.
+```bash
+pip install stubborn-stub
+stubborn try
+```
 
-> **New here?** Read **[USER-JOURNEY.md](docs/USER-JOURNEY.md)** for goal-oriented paths, then **[START-HERE.md](docs/START-HERE.md)** for the full program map. AI assistants: see **[AGENTS.md](AGENTS.md)**.
+No Java, no git clone. Deeper paths: [USER-JOURNEY.md](docs/USER-JOURNEY.md) · [START-HERE.md](docs/START-HERE.md) · [AGENTS.md](AGENTS.md).
+
+Stubborn AI is an open engineering program: **architecture-led, AI-assisted development** where the developer defines pipeline shape and boundary protocols; AI implements most of the code; shipped artifacts are **deterministic Python** — reproducible, test-gated, and verifiable.
 
 ## Repositories
 
 | Repository | Role | Status |
 |------------|------|--------|
 | [**stubborn-hub**](https://github.com/stubborn-ai/stubborn-hub) | Program overview, architecture, roadmap | Active |
-| [**stubborn**](https://github.com/stubborn-ai/stubborn) | Headless core: SCIP code graph + OpenAPI contract graph → SQLite → prune → weave ([`stubborn-stub`](https://pypi.org/project/stubborn-stub/)) | **Beta** (`0.9.0b6`) |
+| [**stubborn**](https://github.com/stubborn-ai/stubborn) | Headless core: SCIP code graph + OpenAPI contract graph → SQLite → prune → weave ([`stubborn-stub`](https://pypi.org/project/stubborn-stub/)) | **Beta** (`0.9.0b7`) |
 | [**stubborn-mcp**](https://github.com/stubborn-ai/stubborn-mcp) | Source-neutral MCP server (`workspace_info`, `list_symbols`, `list_contracts`, `get_context`) ([`stubborn-mcp`](https://pypi.org/project/stubborn-mcp/)) | **Beta** (`0.1.0b3`) |
 | [**stubborn-watch**](https://github.com/stubborn-ai/stubborn-watch) | Dev orchestration: file watch → scip-java → `index --merge` ([`stubborn-watch`](https://pypi.org/project/stubborn-watch/)) | **Beta** (`0.1.0b3`) |
 | [**stubborn-status**](https://github.com/stubborn-ai/stubborn-status) | Federated `doctor` aggregation for terminal, CI, and IDE bridges ([`stubborn-status`](https://pypi.org/project/stubborn-status/)) | **Beta** (`0.1.0b1`) |
@@ -23,7 +28,7 @@ Stubborn AI is an open engineering program: **architecture-led, AI-assisted deve
 
 | Package | Published version | Depends on |
 |---------|-------------------|------------|
-| `stubborn-stub` | `0.9.0b6` | Core compiler line |
+| `stubborn-stub` | `0.9.0b7` | Core compiler line |
 | `stubborn-mcp` | `0.1.0b3` | `stubborn-stub>=0.9.0b6,<1.0` |
 | `stubborn-watch` | `0.1.0b3` | `stubborn-stub>=0.9.0b6,<1.0` |
 | `stubborn-status` | `0.1.0b1` | — (subprocess `doctor --json`; no `stubborn-stub` runtime dep) |
@@ -108,19 +113,12 @@ stubborn-ai/
 
 ## Getting started
 
-**New here?** Follow the goal-oriented map: **[USER-JOURNEY.md](docs/USER-JOURNEY.md)**.
-
-**Compiler only (CLI):**
-
 ```bash
 pip install stubborn-stub
-stubborn index --fixture minimal --out /tmp/symbols.db
-stubborn context /tmp/symbols.db \
-  --target "semanticdb maven com/example/OrderService#" \
-  --out /tmp/order-service.stub.java
+stubborn try
 ```
 
-**Agents (Cursor / MCP)** — build `metadata/symbols.db` first (fixture above or real SCIP), then:
+**Compiler only (CLI)** — same as above. **Agents (Cursor / MCP)** — build `metadata/symbols.db` first (fixture above or real SCIP), then:
 
 ```bash
 pip install stubborn-stub stubborn-mcp

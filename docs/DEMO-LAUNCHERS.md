@@ -203,15 +203,13 @@ Copy-paste entrypoints after `pip install stubborn-stub` (add `stubborn-stub[sci
 ### 1. No Java — JSON fixture only
 
 ```bash
-git clone https://github.com/stubborn-ai/stubborn.git
-cd stubborn
-stubborn doctor
-stubborn index --fixture minimal --out /tmp/symbols.db
-stubborn doctor --db /tmp/symbols.db
-stubborn context /tmp/symbols.db \
-  --target "semanticdb maven com/example/OrderService#" \
-  --out /tmp/order-service.stub.java
+pip install stubborn-stub
+stubborn try
 ```
+
+Or from [`stubborn-demo`](https://github.com/stubborn-ai/stubborn-demo): `./scripts/try-stubborn.sh`.
+
+Manual steps: `stubborn index --fixture minimal`, `stubborn list-symbols …`, `stubborn context …`.
 
 ### 2. Java monolith — host E2E shape
 

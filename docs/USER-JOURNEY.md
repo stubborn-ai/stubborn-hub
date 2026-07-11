@@ -25,22 +25,16 @@ CI / release engineering      Journey E (Docker + doctor + matrix)
 
 ```bash
 pip install stubborn-stub
-stubborn index --fixture minimal --out /tmp/symbols.db
-stubborn info /tmp/symbols.db
-stubborn list-symbols /tmp/symbols.db --query OrderService
-stubborn context /tmp/symbols.db \
-  --target "semanticdb maven com/example/OrderService#" \
-  --out /tmp/order-service.stub.java
+stubborn try
 ```
+
+From [`stubborn-demo`](https://github.com/stubborn-ai/stubborn-demo): `./scripts/try-stubborn.sh` (same CLI flow).
 
 Notes:
 
-- `--fixture minimal` uses a **bundled JSON SCIP snapshot** inside `stubborn-stub`.
-  You do **not** need to clone the git repo or install Java.
-- Alternative: `stubborn fixture-path minimal` prints the on-disk path if you
-  prefer `--scip`.
-- This proves the **compiler** only. It does not prove weave quality on your
-  codebase.
+- `stubborn try` uses the **bundled JSON fixture** inside `stubborn-stub` (no clone, no Java).
+- Manual steps: `stubborn index --fixture minimal`, `stubborn list-symbols …`, `stubborn context …`.
+- This proves the **compiler** only — not weave quality on your codebase.
 
 **Next:** Journey C if you have Java; Journey B if you want MCP.
 

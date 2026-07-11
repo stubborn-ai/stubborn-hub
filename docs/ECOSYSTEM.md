@@ -6,7 +6,7 @@ Repository catalog for the Stubborn AI program. Status legend: ✅ Active · �
 
 | Repository | PyPI / entry | Role | Status |
 |------------|--------------|------|--------|
-| [**stubborn**](https://github.com/stubborn-ai/stubborn) | [`stubborn-stub`](https://pypi.org/project/stubborn-stub/), CLI `stubborn` | Headless core: SCIP code ingest, OpenAPI/manifest contract ingest, SQLite store, prune, weave, `stubborn.api`, CLI, `doctor` | ✅ **Beta** `0.9.0b6` |
+| [**stubborn**](https://github.com/stubborn-ai/stubborn) | [`stubborn-stub`](https://pypi.org/project/stubborn-stub/), CLI `stubborn` | Headless core: SCIP code ingest, OpenAPI/manifest contract ingest, SQLite store, prune, weave, `stubborn.api`, CLI, `doctor` | ✅ **Beta** `0.9.0b7` |
 | [**stubborn-hub**](https://github.com/stubborn-ai/stubborn-hub) | — | Program docs, architecture, roadmap | ✅ Active |
 
 ## Demos & validation

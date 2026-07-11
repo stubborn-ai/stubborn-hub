@@ -18,7 +18,7 @@ Public showcase: https://github.com/stubborn-ai
 
 | Package | Version | Role |
 |---------|---------|------|
-| [`stubborn-stub`](https://pypi.org/project/stubborn-stub/) | **0.9.0b6** | Core compiler — CLI `stubborn`, `stubborn.api`, code + contract graph |
+| [`stubborn-stub`](https://pypi.org/project/stubborn-stub/) | **0.9.0b7** | Core compiler — CLI `stubborn`, `stubborn.api`, code + contract graph |
 | [`stubborn-mcp`](https://pypi.org/project/stubborn-mcp/) | **0.1.0b3** | MCP server — `workspace_info`, `list_symbols`, `list_contracts`, `get_context`, `metrics` |
 | [`stubborn-watch`](https://pypi.org/project/stubborn-watch/) | **0.1.0b3** | Dev orchestration — file watch → SCIP indexer → merge |
 | [`stubborn-status`](https://pypi.org/project/stubborn-status/) | **0.1.0b1** | Aggregate federated `doctor --json` for terminal, CI, and IDE bridges |
@@ -27,7 +27,7 @@ Public showcase: https://github.com/stubborn-ai
 
 | Package | Published version | Depends on |
 |---------|-------------------|------------|
-| `stubborn-stub` | `0.9.0b6` | Core compiler line |
+| `stubborn-stub` | `0.9.0b7` | Core compiler line |
 | `stubborn-mcp` | `0.1.0b3` | `stubborn-stub>=0.9.0b6,<1.0` |
 | `stubborn-watch` | `0.1.0b3` | `stubborn-stub>=0.9.0b6,<1.0` |
 | `stubborn-status` | `0.1.0b1` | — (subprocess `doctor --json`; no `stubborn-stub` runtime dep) |
@@ -61,7 +61,7 @@ Public showcase: https://github.com/stubborn-ai
 | Repo | Visibility | Role | Status |
 |------|------------|------|--------|
 | **stubborn-hub** | public | Program docs (this repo) | ✅ Active |
-| **stubborn** | public | Headless core — code/contract ingest, store, prune, weave, CLI, API | **Beta** (`0.9.0b6` on PyPI) |
+| **stubborn** | public | Headless core — code/contract ingest, store, prune, weave, CLI, API | **Beta** (`0.9.0b7` on PyPI) |
 | **stubborn-mcp** | public | Source-neutral MCP stdio server | **Beta** (`0.1.0b3` on PyPI) |
 | **stubborn-watch** | public | Dev orchestration: watch → SCIP indexer → merge | **Beta** (`0.1.0b3` on PyPI) |
 | **stubborn-status** | public | Federated `doctor` aggregation CLI | **Beta** (`0.1.0b1` on PyPI) |

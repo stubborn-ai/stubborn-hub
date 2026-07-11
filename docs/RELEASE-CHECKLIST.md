@@ -100,8 +100,8 @@ Use this while preparing a coordinated bump before tags land.
 
 ```bash
 pip install -U stubborn-stub stubborn-mcp stubborn-watch stubborn-status
-stubborn index --fixture minimal --out /tmp/symbols.db
-stubborn doctor --db /tmp/symbols.db
+stubborn try
+stubborn doctor --db stubborn-try.symbols.db
 stubborn-status --json
 ```
 

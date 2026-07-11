@@ -8,7 +8,7 @@ Large exploratory items stay in [`lab-notes/ideas/`](../lab-notes/ideas/) — no
 
 | Item | Repo | Status |
 |------|------|--------|
-| Core compiler (ingest → weave) | stubborn | ✅ Beta `0.9.0b6` on PyPI |
+| Core compiler (ingest → weave) | stubborn | ✅ Beta `0.9.0b7` on PyPI |
 | Java E2E + Docker CI | stubborn-demo | ✅ |
 | Product ADRs 001–009 | stubborn | ✅ |
 | Program hub (`stubborn-hub`) | stubborn-hub | ✅ |
