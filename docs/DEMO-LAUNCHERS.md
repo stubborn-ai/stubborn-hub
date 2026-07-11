@@ -43,6 +43,7 @@ takes an explicit CLI flag: `--java-root` on `verify_petclinic_context.py`.
 | `bash` | All `.sh` launchers |
 | `mvn`, `scip-java` | demo-spring, petclinic, petclinic-ms, dukesbank |
 | `stubborn` CLI (`stubborn-stub`) | All E2E except MCP smoke alone |
+| `stubborn-stub[openapi]` | `contract-graph-minimal` (OpenAPI ingest) |
 | `python3` | All launchers |
 | `git` | petclinic, petclinic-ms (clone pinned upstream) |
 | `stubborn-mcp` | `demo-spring/scripts/mcp-smoke.sh`, `spring-petclinic-microservices/scripts/mcp-smoke.sh` |
@@ -55,6 +56,7 @@ takes an explicit CLI flag: `--java-root` on `verify_petclinic_context.py`.
 | `e2e` | `docker/run-e2e.sh` | `demo-spring/scripts/run-e2e.sh` |
 | `merge-e2e` | `docker/run-merge-e2e.sh` | `demo-spring/scripts/run-merge-e2e.sh` |
 | `multi-repo-e2e` | `scripts/verify_multi_repo_workspace.py` | `multi-repo/scripts/run-e2e.sh` |
+| `contract-graph-e2e` | `scripts/verify_contract_graph_minimal.py` | `contract-graph-minimal/scripts/run-e2e.sh` |
 | `petclinic-e2e` | `docker/run-petclinic-e2e.sh` | `spring-petclinic/scripts/run-e2e.sh` |
 | `petclinic-ms-e2e` | `docker/run-petclinic-ms-e2e.sh` | `spring-petclinic-microservices/scripts/run-e2e.sh` |
 | `dukesbank-e2e` | `docker/run-dukesbank-e2e.sh` | `dukesbank/scripts/run-e2e.sh` |
@@ -97,6 +99,16 @@ Image build arg `STUBBORN_SPEC` defaults to
 
 See [multi-repo/README.md](https://github.com/stubborn-ai/stubborn-demo/blob/main/multi-repo/README.md)
 for the combined-fixture rationale.
+
+### contract-graph-minimal
+
+| Field | `contract-graph-minimal/scripts/run-e2e.sh` → `scripts/verify_contract_graph_minimal.py` |
+|-------|---------------------------------------------------------------------------------------------|
+| Env | `STUBBORN_CMD` optional |
+| PATH | `python3`, `stubborn`; install `stubborn-stub[openapi]` |
+| Proves | Workspace with 2 code repos + OpenAPI + manifest bindings; `list-contracts`; endpoint + provider `context` |
+
+Playbook: [CONTRACT-GRAPH-PLAYBOOK.md](CONTRACT-GRAPH-PLAYBOOK.md).
 
 ### spring-petclinic (monolith)
 

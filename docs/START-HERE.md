@@ -50,7 +50,9 @@ Public showcase: https://github.com/stubborn-ai
 | 11 | [INTEGRATION.md](INTEGRATION.md) | Optional anchor-migration consumer pattern |
 | 12 | [DEMO-LAUNCHERS.md](DEMO-LAUNCHERS.md) | Explicit env/CLI contracts for all demo scripts |
 | 13 | [PETCLINIC-VALIDATION.md](PETCLINIC-VALIDATION.md) | Monolith vs microservices PetClinic proof model |
-| 14 | [stubborn TROUBLESHOOTING](https://github.com/stubborn-ai/stubborn/blob/main/docs/TROUBLESHOOTING.md) | Common setup failures and copy-paste fixes |
+| 14 | [CONTRACT-GRAPH-PLAYBOOK.md](CONTRACT-GRAPH-PLAYBOOK.md) | OpenAPI + manifest ingest and mixed-workspace queries |
+| 15 | [RELEASE-CHECKLIST.md](RELEASE-CHECKLIST.md) | Coordinated PyPI release runbook |
+| 16 | [stubborn TROUBLESHOOTING](https://github.com/stubborn-ai/stubborn/blob/main/docs/TROUBLESHOOTING.md) | Common setup failures and copy-paste fixes |
 
 **Private (if you have access):** `lab-notes/journal/` — latest session log and ecosystem ideas.
 
@@ -140,12 +142,13 @@ Use the repo that owns the contract you want to prove. Full launcher contracts:
 | Multi-repo workspace graph | `stubborn-demo/multi-repo/scripts/run-e2e.sh` | `stubborn-demo` |
 | PetClinic monolith scale-up | `stubborn-demo/spring-petclinic/scripts/run-e2e.sh` | `stubborn-demo` |
 | PetClinic MS + contract bridge | `stubborn-demo/spring-petclinic-microservices/scripts/run-e2e.sh` | `stubborn-demo` |
+| Contract graph minimal (fixtures) | `stubborn-demo/contract-graph-minimal/scripts/run-e2e.sh` | `stubborn-demo` |
 | PetClinic MS MCP smoke | `stubborn-demo/spring-petclinic-microservices/scripts/mcp-smoke.sh` | `stubborn-mcp` + `stubborn-demo` |
 | Watch / orchestration smoke | `stubborn-watch/tests/test_watch.py` | `stubborn-watch` |
 | MCP surface smoke over prepared `symbols.db` | `stubborn-demo/demo-spring/scripts/mcp-smoke.sh` | `stubborn-mcp` + `stubborn-demo` assets |
 | Federated doctor (per package) | `stubborn doctor`, `stubborn-mcp doctor`, `stubborn-watch doctor` | `stubborn`, `stubborn-mcp`, `stubborn-watch` |
 | Doctor aggregation | `stubborn-status --json` | `stubborn-status` |
-| Release matrix consistency | `stubborn-hub/scripts/check_release_matrix.py --pypi` | `stubborn-hub` |
+| Release matrix consistency | `stubborn-hub/scripts/check_release_matrix.py --pypi` | `stubborn-hub` — [RELEASE-CHECKLIST.md](RELEASE-CHECKLIST.md) |
 
 ## What is verified today
 
@@ -159,6 +162,7 @@ Use the repo that owns the contract you want to prove. Full launcher contracts:
 | MCP code + contract tools via **stubborn-mcp** | ✅ |
 | Multi-repo workspace composition | ✅ via `stubborn-demo/multi-repo` |
 | PetClinic monolith + MS contract evidence | ✅ via `stubborn-demo/spring-petclinic*` |
+| Contract graph minimal mixed workspace | ✅ via `stubborn-demo/contract-graph-minimal` |
 | `stubborn diff` / PR symbol-diff workflow | ✅ |
 | Incremental `--merge` (ADR-009) | ✅ |
 | demo-spring save → merge → `list_symbols` host runbook | ✅ |
@@ -178,7 +182,7 @@ Use the repo that owns the contract you want to prove. Full launcher contracts:
 
 ## Next work (priority)
 
-1. Milestone release checklist wired to `check_release_matrix.py`
+1. ~~Milestone release checklist wired to `check_release_matrix.py`~~ → [RELEASE-CHECKLIST.md](RELEASE-CHECKLIST.md)
 2. Charter `stubborn-onboard` (separate ADR candidate) for scip-java orchestration
 3. `vscode-stubborn` doctor panel consuming `stubborn-status --json`
 

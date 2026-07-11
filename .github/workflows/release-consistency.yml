@@ -1,3 +1,4 @@
+# Coordinated release matrix check — runbook: docs/RELEASE-CHECKLIST.md
 name: Release Consistency
 
 on:

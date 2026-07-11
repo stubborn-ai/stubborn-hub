@@ -99,6 +99,8 @@ stubborn-ai/
 - [Integration](docs/INTEGRATION.md) — anchor-migration and optional consumers
 - [Demo launchers](docs/DEMO-LAUNCHERS.md) — explicit env/CLI contracts for validation scripts
 - [PetClinic validation](docs/PETCLINIC-VALIDATION.md) — monolith vs microservices proof model
+- [Contract graph playbook](docs/CONTRACT-GRAPH-PLAYBOOK.md) — OpenAPI + manifest mixed workspace
+- [Release checklist](docs/RELEASE-CHECKLIST.md) — coordinated PyPI release runbook
 - [stubborn ADR-015](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-015-federated-doctor-diagnostics.md) — federated `doctor` per package
 - [stubborn ADR-016](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-016-doctor-status-aggregation.md) — `stubborn-status` doctor aggregation
 - [stubborn docs](https://github.com/stubborn-ai/stubborn/tree/main/docs) — product specs, ADRs, BETA

@@ -6,6 +6,10 @@ multi-service workspace with explicit HTTP contract evidence.
 Launcher contracts and CI mapping:
 [DEMO-LAUNCHERS.md](DEMO-LAUNCHERS.md).
 
+Smallest mixed-workspace proof (fixtures only, no Java):
+[`stubborn-demo/contract-graph-minimal`](https://github.com/stubborn-ai/stubborn-demo/tree/main/contract-graph-minimal) and
+[CONTRACT-GRAPH-PLAYBOOK.md](CONTRACT-GRAPH-PLAYBOOK.md).
+
 ## Two tracks
 
 | Track | Demo path | Primary claim | Contract ingest |

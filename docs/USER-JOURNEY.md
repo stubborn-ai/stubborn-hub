@@ -171,7 +171,7 @@ stubborn list-contracts metadata/symbols.db --workspace <ws>
 stubborn context metadata/symbols.db --target "openapi <service>:<ver> <METHOD> <path>" ...
 ```
 
-A consolidated playbook is on the near-term roadmap.
+Canonical minimal E2E: [CONTRACT-GRAPH-PLAYBOOK.md](https://github.com/stubborn-ai/stubborn-hub/blob/main/docs/CONTRACT-GRAPH-PLAYBOOK.md) and [`stubborn-demo/contract-graph-minimal`](https://github.com/stubborn-ai/stubborn-demo/tree/main/contract-graph-minimal).
 
 ---
 
