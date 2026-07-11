@@ -63,6 +63,8 @@ Push tags over **SSH** (`git@github.com:stubborn-ai/<repo>.git`).
 
 Each package's `Release` workflow runs on `v*` tag push and uploads to PyPI using `PYPI_API_TOKEN`.
 
+**Release gate:** each package `release.yml` runs a `verify` job (`ruff check` + `pytest` on Python 3.12) before `pypi` publishes. A red lint or test blocks the upload and GitHub Release for that tag.
+
 ## Verify
 
 ### Local workspace (all repos checked out)
@@ -114,6 +116,7 @@ cd stubborn-demo/contract-graph-minimal && ./scripts/run-e2e.sh
 
 | Failure | Action |
 |---------|--------|
+| `ruff check` / `pytest` red on tagged commit | Release workflow `verify` job fails — fix on `main`, bump patch beta if needed, re-tag |
 | `not listed on PyPI` | Confirm tag workflow succeeded; wait for PyPI index propagation |
 | `missing git tag` | Push annotated tag `v<version>` to the package repo |
 | Hub matrix mismatch | `README.md` and `START-HERE.md` must list identical versions |
