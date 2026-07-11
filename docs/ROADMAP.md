@@ -8,12 +8,12 @@ Large exploratory items stay in [`lab-notes/ideas/`](../lab-notes/ideas/) — no
 
 | Item | Repo | Status |
 |------|------|--------|
-| Core compiler (ingest → weave) | stubborn | ✅ Beta `0.9.0b5` on PyPI |
+| Core compiler (ingest → weave) | stubborn | ✅ Beta `0.9.0b6` on PyPI |
 | Java E2E + Docker CI | stubborn-demo | ✅ |
 | Product ADRs 001–009 | stubborn | ✅ |
 | Program hub (`stubborn-hub`) | stubborn-hub | ✅ |
 | Org profile (`.github`) | stubborn-ai | ✅ |
-| MCP server package | stubborn-mcp | ✅ `0.1.0b2` on PyPI |
+| MCP server package | stubborn-mcp | ✅ `0.1.0b3` on PyPI |
 
 ## Phase 1 — Beta hardening
 
@@ -28,7 +28,7 @@ Large exploratory items stay in [`lab-notes/ideas/`](../lab-notes/ideas/) — no
 
 | Item | Repo | Status |
 |------|------|--------|
-| `stubborn-watch` (Java, debounced) | stubborn-watch | ✅ `0.1.0b2` on PyPI |
+| `stubborn-watch` (Java, debounced) | stubborn-watch | ✅ `0.1.0b3` on PyPI |
 | demo-spring: save → merge → `list_symbols` E2E | stubborn-demo | ✅ host runbook |
 | VS Code thin bridge scaffold | vscode-stubborn | 📋 Planned |
 
