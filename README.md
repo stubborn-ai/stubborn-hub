@@ -4,7 +4,7 @@
 
 Stubborn AI is an open engineering program: **architecture-led, AI-assisted development** where the developer defines pipeline shape and boundary protocols; AI implements most of the code; shipped artifacts are **deterministic Python** — reproducible, test-gated, and verifiable.
 
-> **New here?** Read **[START-HERE.md](docs/START-HERE.md)** for the full program map. AI assistants: see **[AGENTS.md](AGENTS.md)**.
+> **New here?** Read **[USER-JOURNEY.md](docs/USER-JOURNEY.md)** for goal-oriented paths, then **[START-HERE.md](docs/START-HERE.md)** for the full program map. AI assistants: see **[AGENTS.md](AGENTS.md)**.
 
 ## Repositories
 
@@ -106,35 +106,33 @@ stubborn-ai/
 
 ## Getting started
 
+**New here?** Follow the goal-oriented map: **[USER-JOURNEY.md](docs/USER-JOURNEY.md)**.
+
 **Compiler only (CLI):**
 
 ```bash
 pip install stubborn-stub
-stubborn index --scip examples/fixtures/minimal.json --out /tmp/symbols.db
+stubborn index --fixture minimal --out /tmp/symbols.db
 stubborn context /tmp/symbols.db \
   --target "semanticdb maven com/example/OrderService#" \
   --out /tmp/order-service.stub.java
 ```
 
-**Agents (Cursor / MCP):**
+**Agents (Cursor / MCP)** — build `metadata/symbols.db` first (fixture above or real SCIP), then:
 
 ```bash
 pip install stubborn-stub stubborn-mcp
-stubborn index-openapi --openapi openapi.json --service customers-service --workspace petclinic --out metadata/symbols.db
 export STUBBORN_DB=metadata/symbols.db
-stubborn-mcp
+stubborn-mcp doctor
 ```
 
-For binary/NDJSON SCIP input, install the optional SCIP runtime:
-
-```bash
-pip install "stubborn-stub[scip]" stubborn-mcp
-stubborn index --scip index.scip --out metadata/symbols.db
-export STUBBORN_DB=metadata/symbols.db
-stubborn-mcp
-```
+For binary SCIP from scip-java, use `pip install "stubborn-stub[scip]"` and
+`stubborn index --scip index.scip --out metadata/symbols.db`. Contract/OpenAPI
+workflows: see [USER-JOURNEY.md](docs/USER-JOURNEY.md) Journey D and
+[stubborn-demo spring-petclinic-microservices](https://github.com/stubborn-ai/stubborn-demo/tree/main/spring-petclinic-microservices).
 
 Full quickstart: [stubborn README](https://github.com/stubborn-ai/stubborn#try-in-30-seconds-no-java-required).
+Troubleshooting: [stubborn TROUBLESHOOTING](https://github.com/stubborn-ai/stubborn/blob/main/docs/TROUBLESHOOTING.md).
 
 **Setup diagnostics (federated doctor):**
 

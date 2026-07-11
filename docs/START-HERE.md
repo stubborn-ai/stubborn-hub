@@ -36,6 +36,7 @@ Public showcase: https://github.com/stubborn-ai
 
 | Step | Document | Why |
 |------|----------|-----|
+| 0 | [USER-JOURNEY.md](USER-JOURNEY.md) | **External users:** pick a path by goal (try / MCP / Java / contracts) |
 | 1 | [stubborn DEVELOPMENT-MODEL](https://github.com/stubborn-ai/stubborn/blob/main/docs/DEVELOPMENT-MODEL.md) | Roles, deterministic core, boundary protocols |
 | 2 | [ARCHITECTURE.md](ARCHITECTURE.md) | Layers, repo map, diagrams |
 | 3 | [stubborn POSITIONING](https://github.com/stubborn-ai/stubborn/blob/main/docs/POSITIONING.md) | Audience, honest scope, competitors |
@@ -49,6 +50,7 @@ Public showcase: https://github.com/stubborn-ai
 | 11 | [INTEGRATION.md](INTEGRATION.md) | Optional anchor-migration consumer pattern |
 | 12 | [DEMO-LAUNCHERS.md](DEMO-LAUNCHERS.md) | Explicit env/CLI contracts for all demo scripts |
 | 13 | [PETCLINIC-VALIDATION.md](PETCLINIC-VALIDATION.md) | Monolith vs microservices PetClinic proof model |
+| 14 | [stubborn TROUBLESHOOTING](https://github.com/stubborn-ai/stubborn/blob/main/docs/TROUBLESHOOTING.md) | Common setup failures and copy-paste fixes |
 
 **Private (if you have access):** `lab-notes/journal/` — latest session log and ecosystem ideas.
 

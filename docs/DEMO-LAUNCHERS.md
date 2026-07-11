@@ -194,7 +194,7 @@ Copy-paste entrypoints after `pip install stubborn-stub` (add `stubborn-stub[sci
 git clone https://github.com/stubborn-ai/stubborn.git
 cd stubborn
 stubborn doctor
-stubborn index --scip examples/fixtures/minimal.json --out /tmp/symbols.db
+stubborn index --fixture minimal --out /tmp/symbols.db
 stubborn doctor --db /tmp/symbols.db
 stubborn context /tmp/symbols.db \
   --target "semanticdb maven com/example/OrderService#" \
