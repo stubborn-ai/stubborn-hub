@@ -4,6 +4,8 @@ Coordinated beta release procedure for the Stubborn AI PyPI packages. The
 **canonical version matrix** lives in [README.md](../README.md); this checklist
 is the human runbook. Automation: [`scripts/check_release_matrix.py`](../scripts/check_release_matrix.py) and [`.github/workflows/release-consistency.yml`](../.github/workflows/release-consistency.yml).
 
+**Versioning policy:** [ADR-017 Program versioning policy](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-017-program-versioning-policy.md) (summary below).
+
 ## Packages in scope
 
 | PyPI package | Repo | Tag format | Typical lead |
@@ -22,7 +24,25 @@ Satellite packages pin `stubborn-stub>=<core-release>,<1.0` in `pyproject.toml`.
 3. **Tests** — `pytest` + `ruff` green in each shipping repo.
 4. **Docs** — hub `README.md` + `docs/START-HERE.md` release matrix rows match intended versions.
 
-Versioning policy (pre-1.0): all program PyPI packages share one **unified beta line** (`0.10.0b1`, `0.10.0b2`, …). Bump every shipping package to the same version for coordinated releases. Prefer the next beta step unless the change is clearly patch-level.
+### Version bumps ([ADR-017](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-017-program-versioning-policy.md))
+
+| Change | Bump | Example |
+|--------|------|---------|
+| New feature / release-worthy capability | **Minor** | `0.10.0b1` → `0.11.0b1` |
+| Bug fix / safe refactor | **Patch** | `0.11.0b1` → `0.11.1b1` |
+| Packaging / CI / metadata only | **Beta** | `0.11.0b1` → `0.11.0b2` |
+| Breaking after 1.0 | **Major** | `1.0.0` → `2.0.0` |
+
+Pre-1.0 features use the **minor** integer (`0.9` → `0.10`, not `0.9.1`). Coordinated
+milestones share one **unified line** across all shipping packages. When unsure, prefer
+**minor** over patch.
+
+**Canonical vs display:** `pyproject.toml`, `__version__`, git tags, and PyPI always use
+the full PEP 440 string (e.g. `0.11.0b1`). Hub docs may show `0.11.0` when meaning
+first beta (`b1` omitted); `b2+` must stay visible. Tags: `v0.11.0b1`.
+
+**Grandfathering:** `0.10.0b1` predates ADR-017; new rules apply from the **next**
+release onward.
 
 ## Per-repo version files
 
@@ -124,6 +144,7 @@ cd stubborn-demo/contract-graph-minimal && ./scripts/run-e2e.sh
 
 ## Related
 
+- [ADR-017 Program versioning policy](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-017-program-versioning-policy.md) — full rules (unified line, dependency floors, 1.0 criteria)
 - [USER-JOURNEY.md](USER-JOURNEY.md) — external install paths
 - [stubborn-status RELEASE.md](https://github.com/stubborn-ai/stubborn-status/blob/main/docs/RELEASE.md) — first-time PyPI token notes
 - [DEMO-LAUNCHERS.md](DEMO-LAUNCHERS.md) — validation entrypoints after release
