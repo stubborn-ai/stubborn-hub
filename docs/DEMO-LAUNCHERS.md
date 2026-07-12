@@ -191,10 +191,33 @@ stubborn-status --json            # merges Doctor Report v1 JSON from installed 
 stubborn-status --require stubborn-mcp,stubborn-watch
 ```
 
-Repo: [`stubborn-status`](https://pypi.org/project/stubborn-status/) (`0.10.0b1`).
+Repo: [`stubborn-status`](https://pypi.org/project/stubborn-status/) (`0.10.0b2`).
 
 Specs: [ADR-015](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-015-federated-doctor-diagnostics.md),
 [ADR-016](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-016-doctor-status-aggregation.md).
+
+### Host launcher preflight
+
+Every host `scripts/run-e2e.sh` (and MCP smoke scripts) sources
+[`scripts/stubborn-preflight.sh`](https://github.com/stubborn-ai/stubborn-demo/blob/main/scripts/stubborn-preflight.sh)
+before the main workflow:
+
+1. `stubborn doctor <project-root>` — blocking on **fail** (exit 1); **warn** (exit 2) continues
+2. `stubborn-status --require …` when `stubborn-status` is installed (optional tip if missing)
+
+| Launcher | `stubborn_preflight` root | `--require` packages |
+|----------|---------------------------|----------------------|
+| `demo-spring/scripts/run-e2e.sh` | `demo-spring/` | `stubborn-stub` (default) |
+| `demo-spring/scripts/mcp-smoke.sh` | `demo-spring/` | `stubborn-stub,stubborn-mcp` |
+| `spring-petclinic-microservices/scripts/mcp-smoke.sh` | example root | `stubborn-stub,stubborn-mcp` |
+| `scripts/try-stubborn.sh` | `.` | skipped (`SKIP_STUBBORN_STATUS=1`) |
+
+Docker `e2e` runs the same preflight when `/opt/stubborn-demo/scripts/stubborn-preflight.sh`
+exists in the image.
+
+On failure, scripts print links to
+[TROUBLESHOOTING](https://github.com/stubborn-ai/stubborn/blob/main/docs/TROUBLESHOOTING.md)
+and [USER-JOURNEY](https://github.com/stubborn-ai/stubborn-hub/blob/main/docs/USER-JOURNEY.md).
 
 ## Five-minute paths
 

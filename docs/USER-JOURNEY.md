@@ -36,6 +36,17 @@ Notes:
 - Manual steps: `stubborn index --fixture minimal`, `stubborn list-symbols …`, `stubborn context …`.
 - This proves the **compiler** only — not weave quality on your codebase.
 
+**Next steps (pick one):**
+
+| If you… | Go to |
+|---------|-------|
+| Use **Cursor / MCP** | [Journey B](#journey-b--cursor--mcp-agents) — `pip install stubborn-mcp`, build `symbols.db`, configure `.cursor/mcp.json` |
+| Have a **Java / Spring** repo | [Journey C](#journey-c--real-java--spring-project) — `scip-java` + `stubborn index` |
+| Work on **microservices + OpenAPI** | [Journey D](#journey-d--microservices--contract-graph) |
+| Hit errors | [stubborn TROUBLESHOOTING](https://github.com/stubborn-ai/stubborn/blob/main/docs/TROUBLESHOOTING.md) or `stubborn-status --json` |
+
+`stubborn try` prints the same Journey B/C pointers when it finishes.
+
 **Next:** Journey C if you have Java; Journey B if you want MCP.
 
 ---

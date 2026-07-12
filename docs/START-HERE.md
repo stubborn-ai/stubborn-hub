@@ -18,19 +18,19 @@ Public showcase: https://github.com/stubborn-ai
 
 | Package | Version | Role |
 |---------|---------|------|
-| [`stubborn-stub`](https://pypi.org/project/stubborn-stub/) | **0.10.0b1** | Core compiler — CLI `stubborn`, `stubborn.api`, code + contract graph |
-| [`stubborn-mcp`](https://pypi.org/project/stubborn-mcp/) | **0.10.0b1** | MCP server — `workspace_info`, `list_symbols`, `list_contracts`, `get_context`, `metrics` |
-| [`stubborn-watch`](https://pypi.org/project/stubborn-watch/) | **0.10.0b1** | Dev orchestration — file watch → SCIP indexer → merge |
-| [`stubborn-status`](https://pypi.org/project/stubborn-status/) | **0.10.0b1** | Aggregate federated `doctor --json` for terminal, CI, and IDE bridges |
+| [`stubborn-stub`](https://pypi.org/project/stubborn-stub/) | **0.10.0b2** | Core compiler — CLI `stubborn`, `stubborn.api`, code + contract graph |
+| [`stubborn-mcp`](https://pypi.org/project/stubborn-mcp/) | **0.10.0b2** | MCP server — `workspace_info`, `list_symbols`, `list_contracts`, `get_context`, `metrics` |
+| [`stubborn-watch`](https://pypi.org/project/stubborn-watch/) | **0.10.0b2** | Dev orchestration — file watch → SCIP indexer → merge |
+| [`stubborn-status`](https://pypi.org/project/stubborn-status/) | **0.10.0b2** | Aggregate federated `doctor --json` for terminal, CI, and IDE bridges |
 
 ## Release matrix
 
 | Package | Published version | Depends on |
 |---------|-------------------|------------|
-| `stubborn-stub` | `0.10.0b1` | Core compiler line |
-| `stubborn-mcp` | `0.10.0b1` | `stubborn-stub>=0.10.0b1,<1.0` |
-| `stubborn-watch` | `0.10.0b1` | `stubborn-stub>=0.10.0b1,<1.0` |
-| `stubborn-status` | `0.10.0b1` | — (subprocess `doctor --json`; no `stubborn-stub` runtime dep) |
+| `stubborn-stub` | `0.10.0b2` | Core compiler line |
+| `stubborn-mcp` | `0.10.0b2` | `stubborn-stub>=0.10.0b2,<1.0` |
+| `stubborn-watch` | `0.10.0b2` | `stubborn-stub>=0.10.0b2,<1.0` |
+| `stubborn-status` | `0.10.0b2` | — (subprocess `doctor --json`; no `stubborn-stub` runtime dep) |
 
 ## Reading order (recommended)
 
@@ -61,10 +61,10 @@ Public showcase: https://github.com/stubborn-ai
 | Repo | Visibility | Role | Status |
 |------|------------|------|--------|
 | **stubborn-hub** | public | Program docs (this repo) | ✅ Active |
-| **stubborn** | public | Headless core — code/contract ingest, store, prune, weave, CLI, API | **Beta** (`0.10.0b1` on PyPI) |
-| **stubborn-mcp** | public | Source-neutral MCP stdio server | **Beta** (`0.10.0b1` on PyPI) |
-| **stubborn-watch** | public | Dev orchestration: watch → SCIP indexer → merge | **Beta** (`0.10.0b1` on PyPI) |
-| **stubborn-status** | public | Federated `doctor` aggregation CLI | **Beta** (`0.10.0b1` on PyPI) |
+| **stubborn** | public | Headless core — code/contract ingest, store, prune, weave, CLI, API | **Beta** (`0.10.0b2` on PyPI) |
+| **stubborn-mcp** | public | Source-neutral MCP stdio server | **Beta** (`0.10.0b2` on PyPI) |
+| **stubborn-watch** | public | Dev orchestration: watch → SCIP indexer → merge | **Beta** (`0.10.0b2` on PyPI) |
+| **stubborn-status** | public | Federated `doctor` aggregation CLI | **Beta** (`0.10.0b2` on PyPI) |
 | **stubborn-demo** | public | Runnable demos + black-box validation projects | ✅ Active |
 | **vscode-stubborn** | public | VS Code bridge for MCP setup + sidecar stubs | 📋 Planned |
 | **lab-notes** | **private** | Journals, ADR drafts, lab ideas | ✅ Active |
@@ -168,7 +168,7 @@ Use the repo that owns the contract you want to prove. Full launcher contracts:
 | demo-spring save → merge → `list_symbols` host runbook | ✅ |
 | `stubborn-watch` | ✅ PyPI beta + CLI smoke |
 | Federated `doctor` (ADR-015) | ✅ `stubborn`, `stubborn-mcp`, `stubborn-watch` |
-| `stubborn-status` aggregation (ADR-016) | ✅ PyPI `0.10.0b1` |
+| `stubborn-status` aggregation (ADR-016) | ✅ PyPI `0.10.0b2` |
 
 ## Conventions (do not forget)
 

@@ -65,7 +65,7 @@ Update version literals in:
 Dependency column example:
 
 ```text
-stubborn-stub>=0.10.0b1,<1.0
+stubborn-stub>=0.10.0b2,<1.0
 ```
 
 ## Release order (coordinated)
