@@ -8,10 +8,10 @@ is the human runbook. Automation: [`scripts/check_release_matrix.py`](../scripts
 
 | PyPI package | Repo | Tag format | Typical lead |
 |--------------|------|------------|--------------|
-| `stubborn-stub` | `stubborn` | `v0.9.0bN` | **First** — core compiler |
-| `stubborn-mcp` | `stubborn-mcp` | `v0.1.0bN` | After core is on PyPI |
-| `stubborn-watch` | `stubborn-watch` | `v0.1.0bN` | After core is on PyPI |
-| `stubborn-status` | `stubborn-status` | `v0.1.0bN` | Independent cadence |
+| `stubborn-stub` | `stubborn` | `v0.10.0bN` | **First** — core compiler |
+| `stubborn-mcp` | `stubborn-mcp` | `v0.10.0bN` | After core is on PyPI |
+| `stubborn-watch` | `stubborn-watch` | `v0.10.0bN` | After core is on PyPI |
+| `stubborn-status` | `stubborn-status` | `v0.10.0bN` | Independent cadence |
 
 Satellite packages pin `stubborn-stub>=<core-release>,<1.0` in `pyproject.toml`.
 
@@ -22,7 +22,7 @@ Satellite packages pin `stubborn-stub>=<core-release>,<1.0` in `pyproject.toml`.
 3. **Tests** — `pytest` + `ruff` green in each shipping repo.
 4. **Docs** — hub `README.md` + `docs/START-HERE.md` release matrix rows match intended versions.
 
-Versioning policy (pre-1.0): prefer the next **beta step** for the package line (`0.9.0b5` → `0.9.0b6`) or satellite beta (`0.1.0b2` → `0.1.0b3`). Use a minor-style bump when the change is release-worthy and user-facing across the program.
+Versioning policy (pre-1.0): all program PyPI packages share one **unified beta line** (`0.10.0b1`, `0.10.0b2`, …). Bump every shipping package to the same version for coordinated releases. Prefer the next beta step unless the change is clearly patch-level.
 
 ## Per-repo version files
 
@@ -45,7 +45,7 @@ Update version literals in:
 Dependency column example:
 
 ```text
-stubborn-stub>=0.9.0b6,<1.0
+stubborn-stub>=0.10.0b1,<1.0
 ```
 
 ## Release order (coordinated)

@@ -42,7 +42,7 @@ REPO_LAYOUT = {
     "stubborn-watch": {
         "dir": "stubborn-watch",
         "pyproject": "pyproject.toml",
-        "version_files": (),
+        "version_files": ("src/stubborn_watch/__init__.py",),
     },
     "stubborn-status": {
         "dir": "stubborn-status",

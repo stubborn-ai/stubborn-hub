@@ -8,12 +8,12 @@ Large exploratory items stay in [`lab-notes/ideas/`](../lab-notes/ideas/) — no
 
 | Item | Repo | Status |
 |------|------|--------|
-| Core compiler (ingest → weave) | stubborn | ✅ Beta `0.9.0b7` on PyPI |
+| Core compiler (ingest → weave) | stubborn | ✅ Beta `0.10.0b1` on PyPI |
 | Java E2E + Docker CI | stubborn-demo | ✅ |
 | Product ADRs 001–009 | stubborn | ✅ |
 | Program hub (`stubborn-hub`) | stubborn-hub | ✅ |
 | Org profile (`.github`) | stubborn-ai | ✅ |
-| MCP server package | stubborn-mcp | ✅ `0.1.0b3` on PyPI |
+| MCP server package | stubborn-mcp | ✅ `0.10.0b1` on PyPI |
 
 ## Phase 1 — Beta hardening
 
@@ -23,13 +23,13 @@ Large exploratory items stay in [`lab-notes/ideas/`](../lab-notes/ideas/) — no
 | Real-project validation runbook | stubborn-demo | ✅ initial repo |
 | Contract graph minimal E2E | stubborn-demo | ✅ `contract-graph-minimal` |
 | Federated `doctor` diagnostics ([ADR-015](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-015-federated-doctor-diagnostics.md)) | stubborn, stubborn-mcp, stubborn-watch | ✅ shipped in beta repos |
-| Doctor aggregation CLI ([ADR-016](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-016-doctor-status-aggregation.md)) | stubborn-status | ✅ `0.1.0b1` |
+| Doctor aggregation CLI ([ADR-016](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-016-doctor-status-aggregation.md)) | stubborn-status | ✅ `0.10.0b1` |
 
 ## Phase 2 — Dev loop
 
 | Item | Repo | Status |
 |------|------|--------|
-| `stubborn-watch` (Java, debounced) | stubborn-watch | ✅ `0.1.0b3` on PyPI |
+| `stubborn-watch` (Java, debounced) | stubborn-watch | ✅ `0.10.0b1` on PyPI |
 | demo-spring: save → merge → `list_symbols` E2E | stubborn-demo | ✅ host runbook |
 | VS Code thin bridge scaffold | vscode-stubborn | 📋 Planned |
 
