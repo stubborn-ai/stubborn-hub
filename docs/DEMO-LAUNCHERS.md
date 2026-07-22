@@ -211,6 +211,10 @@ before the main workflow:
 | `demo-spring/scripts/mcp-smoke.sh` | `demo-spring/` | `stubborn-stub,stubborn-mcp` |
 | `spring-petclinic-microservices/scripts/mcp-smoke.sh` | example root | `stubborn-stub,stubborn-mcp` |
 | `scripts/try-stubborn.sh` | `.` | skipped (`SKIP_STUBBORN_STATUS=1`) |
+| `scripts/index-java-project.sh` | caller's `PROJECT_ROOT` | `stubborn-stub` (default) |
+
+`index-java-project.sh` is for **your** Maven/Gradle repo (not only demos under this
+repository). Pass the project path or run from the project root.
 
 Docker `e2e` runs the same preflight when `/opt/stubborn-demo/scripts/stubborn-preflight.sh`
 exists in the image.
@@ -234,12 +238,25 @@ Or from [`stubborn-demo`](https://github.com/stubborn-ai/stubborn-demo): `./scri
 
 Manual steps: `stubborn index --fixture minimal`, `stubborn list-symbols …`, `stubborn context …`.
 
-### 2. Java monolith — host E2E shape
+### 2. Java monolith — your project or demo-spring
+
+**Your Maven/Gradle repo:**
+
+```bash
+pip install "stubborn-stub[scip]"
+git clone https://github.com/stubborn-ai/stubborn-demo.git
+cd /path/to/your-java-app
+../stubborn-demo/scripts/index-java-project.sh --query YourService
+```
+
+If `scip-java` is not installed but you already have `index.scip` (e.g. from CI), add
+`--no-build` to skip build and scip-java and run `stubborn index` only.
+
+**Validated reference (demo-spring):**
 
 ```bash
 git clone https://github.com/stubborn-ai/stubborn-demo.git
 cd stubborn-demo/demo-spring
-stubborn doctor
 ./scripts/run-e2e.sh
 ```
 

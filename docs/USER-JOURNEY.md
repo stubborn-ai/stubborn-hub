@@ -113,8 +113,35 @@ Specs: [ADR-015](https://github.com/stubborn-ai/stubborn/blob/main/docs/adr/ADR-
 
 ## Journey C — Real Java / Spring project
 
-**You need:** JDK 21+, Maven, [scip-java](https://github.com/sourcegraph/scip-java) on `PATH`,
+**You need:** JDK 21+, Maven or Gradle, [scip-java](https://github.com/sourcegraph/scip-java) on `PATH`,
 `pip install "stubborn-stub[scip]"`.
+
+### C0. Your repo (recommended first real-project path)
+
+From any Maven/Gradle project root:
+
+```bash
+pip install "stubborn-stub[scip]"
+git clone https://github.com/stubborn-ai/stubborn-demo.git   # once, for the script
+cd /path/to/your-java-app
+/path/to/stubborn-demo/scripts/index-java-project.sh --query YourService
+```
+
+The script runs: optional build → `scip-java index` → `stubborn index` → `doctor` →
+`list-symbols`, then prints `stubborn context` and watch/MCP next steps. Orchestration
+lives in **stubborn-demo** only (not in core; ADR-015).
+
+Options: `--no-build` skips Maven/Gradle build; when `index.scip` already exists at the
+project root, also skips scip-java (useful without a local scip-java install). `--db PATH`
+sets the SQLite output path.
+
+If CI already produced `index.scip` but you lack scip-java locally:
+
+```bash
+/path/to/stubborn-demo/scripts/index-java-project.sh . --no-build --query YourService
+```
+
+### C1. Manual commands
 
 ```bash
 scip-java index --build-tool maven
